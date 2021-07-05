@@ -18,7 +18,7 @@ EditorUserSettings:
   m_VCDebugCom: 0
   m_VCDebugCmd: 0
   m_VCDebugOut: 0
-  m_SemanticMergeMode: 2
+  m_SemanticMergeMode: 1
   m_VCShowFailedCheckout: 1
   m_VCOverwriteFailedCheckoutAssets: 1
   m_VCProjectOverlayIcons: 1
