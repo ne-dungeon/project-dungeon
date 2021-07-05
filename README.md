@@ -13,3 +13,5 @@ Home of the Project Dungeon Project
 
 6. When you're happy with what you built, run `git push` (you may need to [set your upstream](https://www.atlassian.com/git/tutorials/git-forks-and-upstreams) but git should offer you an appropriate command line to do so) 
 7. Have somebody else take a look and merge into the main branch!
+
+**Alternative:** [Video Github+Unity Tutorial](https://www.youtube.com/watch?v=qpXxcvS-g3g)
