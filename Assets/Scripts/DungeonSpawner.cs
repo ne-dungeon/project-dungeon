@@ -17,20 +17,20 @@ public class DungeonSpawner : MonoBehaviour
         GameObject spawningPoint;
         int count = 0;
 
+        // Get the Parent "SpawnPoints"
+        spawnPoints = GameObject.Find("SpawnPoints").transform;
+
+        // SPAWN THE TOTAL ROOMS
         while (count < totalRooms)
         {
-            // Get the Parent "SpawnPoints"
-            spawnPoints = GameObject.Find("SpawnPoints").transform;
-
             // Get a random spawn point from the "SpawnPoints" Parent
-            if (spawnPoints.childCount > 0)
+            if (spawnPoints.childCount > 0 && count != totalRooms-1)
             {
-                print("aye!");
                 int i = Random.Range(0, spawnPoints.childCount);
                 spawningPoint = spawnPoints.GetChild(i).gameObject;
 
                 // We now check our spawn point (set its doors):
-                spawningPoint = CheckSpawnPoint(spawningPoint);
+                spawningPoint = CheckSpawnPoint(spawningPoint, false);
 
                 // We now spawn our room
                 SpawnRoom(spawningPoint);
@@ -39,7 +39,23 @@ public class DungeonSpawner : MonoBehaviour
                 SpawnNewPoints(spawningPoint);
 
                 // Destroy old spawning point
-                GameObject.Destroy(spawningPoint);
+                /*GameObject.Destroy(spawningPoint);*/
+            }
+            else if(count == totalRooms-1)
+            {
+                for (int i = 0; i < spawnPoints.childCount; i++)
+                {
+                    int j = Random.Range(0, spawnPoints.childCount);
+                    spawningPoint = spawnPoints.GetChild(j).gameObject;
+                    // We now check our spawn point (set its doors):
+                    spawningPoint = CheckSpawnPoint(spawningPoint, true);
+
+                    // We now spawn our room
+                    SpawnRoom(spawningPoint);
+                }
+
+/*                // We now spawn our new spawn points
+                SpawnNewPoints(spawningPoint);*/
             }
 
             // Increment our count
@@ -47,15 +63,13 @@ public class DungeonSpawner : MonoBehaviour
         }
     }
 
-    GameObject CheckSpawnPoint(GameObject point)
+    GameObject CheckSpawnPoint(GameObject point, bool lastRooms)
     {
-        print(point.name);
         float point_xPos = point.transform.position.x;
         float point_yPos = point.transform.position.y;
 
         // -- Check SpawnPoint's Surroundings: --
 
-        // 1. Check for Surrounding Rooms:
         if (GameObject.Find("Room_" + (point_xPos - 1.25f) + " " + point_yPos)) // Room at the left?
         {
             point.GetComponent<SpawnPoint>().roomAtLeft = true;
@@ -69,7 +83,7 @@ public class DungeonSpawner : MonoBehaviour
         }
         else
         {
-            if (Random.Range(0, 2) == 0)
+            if (Random.Range(0, 2) == 0 || lastRooms)
                 point.GetComponent<SpawnPoint>().doorAtLeft = false;
             else
                 point.GetComponent<SpawnPoint>().doorAtLeft = true;
@@ -88,7 +102,7 @@ public class DungeonSpawner : MonoBehaviour
         }
         else
         {
-            if (Random.Range(0, 2) == 0)
+            if (Random.Range(0, 2) == 0 || lastRooms)
                 point.GetComponent<SpawnPoint>().doorAtTop = false;
             else
                 point.GetComponent<SpawnPoint>().doorAtTop = true;
@@ -107,7 +121,7 @@ public class DungeonSpawner : MonoBehaviour
         }
         else
         {
-            if (Random.Range(0, 2) == 0)
+            if (Random.Range(0, 2) == 0 || lastRooms)
                 point.GetComponent<SpawnPoint>().doorAtRight = false;
             else
                 point.GetComponent<SpawnPoint>().doorAtRight = true;
@@ -126,7 +140,7 @@ public class DungeonSpawner : MonoBehaviour
         }
         else
         {
-            if (Random.Range(0, 2) == 0)
+            if (Random.Range(0, 2) == 0 || lastRooms)
                 point.GetComponent<SpawnPoint>().doorAtBottom = false;
             else
                 point.GetComponent<SpawnPoint>().doorAtBottom = true;
@@ -137,11 +151,6 @@ public class DungeonSpawner : MonoBehaviour
 
     void SpawnRoom(GameObject point)
     {
-        print(" Top:" + point.GetComponent<SpawnPoint>().doorAtTop + " Bot:"
-            + point.GetComponent<SpawnPoint>().doorAtBottom + " Right:"
-            + point.GetComponent<SpawnPoint>().doorAtRight + "Left:"
-            + point.GetComponent<SpawnPoint>().doorAtLeft);
-
         // Loop through rooms to spawn the correct one
         foreach (GameObject room in rooms)
         {
@@ -156,6 +165,8 @@ public class DungeonSpawner : MonoBehaviour
 
                 // Change room name
                 newRoom.name = "Room_" + point.transform.position.x + " " + point.transform.position.y;
+                point.transform.parent = newRoom.transform;
+                newRoom.transform.parent = GameObject.Find("Rooms").transform;
             }
         }
     }
@@ -163,9 +174,11 @@ public class DungeonSpawner : MonoBehaviour
     void SpawnNewPoints(GameObject point)
     {
 
-        // Does this point not already exist, and do we have a door at the top?
+        // Does this point/room not already exist, and do we have a door at the top?
         if (!GameObject.Find("SpawnPoint_" + point.transform.position.x
-            + " " + (point.transform.position.y + 1.25f)) && point.GetComponent<SpawnPoint>().doorAtTop)
+            + " " + (point.transform.position.y + 1.25f))
+            && !point.GetComponent<SpawnPoint>().roomAtTop
+            && point.GetComponent<SpawnPoint>().doorAtTop)
         {
             // Spawn a new point adjacent to that door
             GameObject newPoint = Instantiate(spawnPoint_pf, point.transform.position + new Vector3(0, 1.25f, 0), transform.rotation);
@@ -179,7 +192,9 @@ public class DungeonSpawner : MonoBehaviour
 
         // Does this point not already exist, and do we have a door at the bottom?
         if (!GameObject.Find("SpawnPoint_" + point.transform.position.x
-            + " " + (point.transform.position.y - 1.25f)) && point.GetComponent<SpawnPoint>().doorAtBottom)
+            + " " + (point.transform.position.y - 1.25f))
+            && !point.GetComponent<SpawnPoint>().roomAtBottom
+            && point.GetComponent<SpawnPoint>().doorAtBottom)
         {
             // Spawn a new point adjacent to that door
             GameObject newPoint = Instantiate(spawnPoint_pf, point.transform.position + new Vector3(0, -1.25f, 0), transform.rotation);
@@ -193,7 +208,9 @@ public class DungeonSpawner : MonoBehaviour
 
         // Does this point not already exist, and do we have a door at the right?
         if (!GameObject.Find("SpawnPoint_" + (point.transform.position.x + 1.25f)
-            + " " + point.transform.position.y) && point.GetComponent<SpawnPoint>().doorAtRight)
+            + " " + point.transform.position.y)
+            && !point.GetComponent<SpawnPoint>().roomAtRight
+            && point.GetComponent<SpawnPoint>().doorAtRight)
         {
             // Spawn a new point adjacent to that door
             GameObject newPoint = Instantiate(spawnPoint_pf, point.transform.position + new Vector3(1.25f, 0, 0), transform.rotation);
@@ -207,7 +224,9 @@ public class DungeonSpawner : MonoBehaviour
 
         // Does this point not already exist, and do we have a door at the left?
         if (!GameObject.Find("SpawnPoint_" + (point.transform.position.x - 1.25f)
-            + " " + point.transform.position.y) && point.GetComponent<SpawnPoint>().doorAtLeft)
+            + " " + point.transform.position.y)
+            && !point.GetComponent<SpawnPoint>().roomAtLeft
+            && point.GetComponent<SpawnPoint>().doorAtLeft)
         {
             // Spawn a new point adjacent to that door
             GameObject newPoint = Instantiate(spawnPoint_pf, point.transform.position + new Vector3(-1.25f, 0, 0), transform.rotation);
@@ -217,6 +236,16 @@ public class DungeonSpawner : MonoBehaviour
             + " " + point.transform.position.y;
 
             newPoint.transform.parent = GameObject.Find("SpawnPoints").transform;
+        }
+    }
+
+    void spawnFinalRooms()
+    {
+        for (int i = 0; i < GameObject.Find("SpawnPoints").transform.childCount; i++)
+        {
+            GameObject point = GameObject.Find("SpawnPoints").transform.GetChild(i).gameObject;
+            point = CheckSpawnPoint(point, true);
+            SpawnRoom(point);
         }
     }
 }
