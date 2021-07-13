@@ -1,33 +1,42 @@
-class DungeonGenerator
+using System.Collections;
+using System.Collections.Generic;
+
+using UnityEngine;
+
+
+class DungeonGenerator : MonoBehaviour
 {
     enum Direction { NORTH, SOUTH, EAST, WEST }
 
     struct Room
     {
-        int x, y;
+        public int x, y;
     }
 
     struct Door
     {
-        Room room;
-        Direction wallSide;
+        public Room room;
+        public Direction wallSide;
     }
 
     struct DungeonLayout
     {
-        List<Room> rooms;
-        List<Door> doors;
+        public List<Room> rooms;
+        public List<Door> doors;
     }
 
-    int numRooms;
+    GameObject roomPrefab;
+
+    void Start()
+    {
+        DungeonLayout dl = GenerateDungeonLayout(9);
+    }
 
     // Returns a structure which stores a list of rooms and doors.
     // Rooms contain grid coordinates that describe the placement of rooms
     // in relation to each other, not the physical GameObject coordinates.
-    DungeonLayout GenerateDungeon()
+    DungeonLayout GenerateDungeonLayout(int numRooms)
     {
-        Random random = new Random();
-
         List<Room> rooms = new List<Room>();
         List<Room> availableRooms = new List<Room>();
         List<Door> doors = new List<Door>();
@@ -40,14 +49,14 @@ class DungeonGenerator
         rooms.Add(originRoom);
         availableRooms.Add(originRoom);
 
-        doorPositions.Add(NORTH);
-        doorPositions.Add(SOUTH);
-        doorPositions.Add(EAST);
-        doorPositions.Add(WEST);
+        doorPositions.Add(Direction.NORTH);
+        doorPositions.Add(Direction.SOUTH);
+        doorPositions.Add(Direction.EAST);
+        doorPositions.Add(Direction.WEST);
 
         while (rooms.Count < numRooms)
         {
-            int roomIndex = random.next(0, availableRooms.Count);
+            int roomIndex = Random.Range(0, availableRooms.Count);
             Room room = availableRooms[roomIndex];
 
             Room roomNorth = room;
@@ -60,21 +69,21 @@ class DungeonGenerator
             roomEast.x += 1;
             roomWest.x -= 1;
 
-            if inRooms(roomNorth, rooms)
+            if (inRooms(roomNorth, rooms))
             {
-                doorPositions.Remove(NORTH);
+                doorPositions.Remove(Direction.NORTH);
             }
-            if inRooms(roomSouth, rooms)
+            if (inRooms(roomSouth, rooms))
             {
-                doorPositions.Remove(SOUTH);
+                doorPositions.Remove(Direction.SOUTH);
             }
-            if inRooms(roomEast, rooms)
+            if (inRooms(roomEast, rooms))
             {
-                doorPositions.Remove(EAST);
+                doorPositions.Remove(Direction.EAST);
             }
-            if inRooms(roomWest, rooms)
+            if (inRooms(roomWest, rooms))
             {
-                doorPositions.Remove(WEST);
+                doorPositions.Remove(Direction.WEST);
             }
 
             if (doorPositions.Count == 0)
@@ -83,25 +92,30 @@ class DungeonGenerator
             }
             else
             {
-                int neighbourDirectionIndex = random.next(0, doorPositions.Count);
+                int neighbourDirectionIndex = Random.Range(0, doorPositions.Count);
                 Direction neighbourDirection = doorPositions[neighbourDirectionIndex];
                 Room neighbourRoom;
 
-                if (neighbourDirection == NORTH)
+                if (neighbourDirection == Direction.NORTH)
                 {
                     neighbourRoom = roomNorth;
                 }
-                else if (neighbourDirection == SOUTH)
+                else if (neighbourDirection == Direction.SOUTH)
                 {
                     neighbourRoom = roomSouth;
                 }
-                else if (neighbourDirection == EAST)
+                else if (neighbourDirection == Direction.EAST)
                 {
                     neighbourRoom = roomEast;
                 }
-                else if (neighbourDirection == WEST)
+                else if (neighbourDirection == Direction.WEST)
                 {
-                    neighbourRoom == roomWest;
+                    neighbourRoom = roomWest;
+                }
+                else
+                {
+                    // Else there is an error
+                    neighbourRoom = room;
                 }
 
                 Door door;
@@ -119,6 +133,18 @@ class DungeonGenerator
         dl.doors = doors;
 
         return dl;
+    }
+
+    // Place the rooms and doors in the dungeon layout in the physical game world
+    void PlaceDungeon(DungeonLayout dl)
+    {
+        float roomWidth = roomPrefab.GetComponent<BoxCollider2D>().size.x;
+        float roomHeight = roomPrefab.GetComponent<BoxCollider2D>().size.y;
+        foreach (Room room in dl.rooms)
+        {
+            roomPrefab.transform = new Vector3(room.x * roomWidth, room.y * roomHeight, 0);
+            GameObject.Instantiate(roomPrefab);
+        }
     }
 
     private bool inRooms(Room room, List<Room> rooms)
