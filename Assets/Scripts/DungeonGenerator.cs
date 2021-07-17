@@ -8,38 +8,38 @@ class DungeonGenerator : MonoBehaviour
 {
     enum Direction { NORTH, SOUTH, EAST, WEST }
 
-    struct Room
+    class Room
     {
+        int id;
         public int x, y;
+        public bool roomNorth, roomSouth, roomEast, roomWest;
+
+        public Room(int id, int _x, int _y)
+        {
+            id = _id
+
+            x = _x;
+            y = _y;
+
+            roomNorth = false;
+            roomSouth = false;
+            roomEast = false;
+            roomWest = false;
+        }
     }
 
-    struct Door
-    {
-        public Room room;
-        public Direction wallSide;
-    }
+    /*  Returns a list of Room objects.
 
-    struct DungeonLayout
-    {
-        public List<Room> rooms;
-        public List<Door> doors;
-    }
+        Rooms contain boolean variables that indicate where their neighbour
+        rooms are, if they exist (if roomNorth = true, then there is a neighbour
+        room north of the room).
 
-    GameObject roomPrefab;
-
-    void Start()
-    {
-        DungeonLayout dl = GenerateDungeonLayout(9);
-    }
-
-    // Returns a structure which stores a list of rooms and doors.
-    // Rooms contain grid coordinates that describe the placement of rooms
-    // in relation to each other, not the physical GameObject coordinates.
-    DungeonLayout GenerateDungeonLayout(int numRooms)
+        Rooms contain grid coordinates that describe the placement of rooms
+        in relation to each other, not the physical GameObject coordinates. */
+    Rooms [] GenerateDungeonLayout(int numRooms)
     {
         List<Room> rooms = new List<Room>();
         List<Room> availableRooms = new List<Room>();
-        List<Door> doors = new List<Door>();
         List<Direction> doorPositions = new List<Direction>();
 
         Room originRoom;
@@ -59,16 +59,24 @@ class DungeonGenerator : MonoBehaviour
             int roomIndex = Random.Range(0, availableRooms.Count);
             Room room = availableRooms[roomIndex];
 
-            Room roomNorth = room;
-            Room roomSouth = room;
-            Room roomEast = room;
-            Room roomWest = room;
+            // Create a replica of the room with no neighbours
+            Room tempRoom = new Room(room.x, room.y);
 
+            // Use that replica to make neighbour rooms for all sides of
+            // the current room
+            Room roomNorth = tempRoom;
+            Room roomSouth = tempRoom;
+            Room roomEast = tempRoom;
+            Room roomWest = tempRoom;
+
+            // Shift these rooms to their correct coordinates
             roomNorth.y -= 1;
             roomSouth.y += 1;
             roomEast.x += 1;
             roomWest.x -= 1;
 
+            // Remove door positions where a door is already there
+            // since we don't want to overwrite it
             if (inRooms(roomNorth, rooms))
             {
                 doorPositions.Remove(Direction.NORTH);
@@ -86,6 +94,9 @@ class DungeonGenerator : MonoBehaviour
                 doorPositions.Remove(Direction.WEST);
             }
 
+            // If there are no places where a new door can be placed,
+            // then this room is not available for brancing.
+            // So we need to remove this room from availableRooms
             if (doorPositions.Count == 0)
             {
                 availableRooms.Remove(room);
@@ -96,55 +107,44 @@ class DungeonGenerator : MonoBehaviour
                 Direction neighbourDirection = doorPositions[neighbourDirectionIndex];
                 Room neighbourRoom;
 
-                if (neighbourDirection == Direction.NORTH)
+                // Set the neighbour boolean values to the original room
+                // and the neighbour room
+                switch (neighbourDirection)
                 {
-                    neighbourRoom = roomNorth;
-                }
-                else if (neighbourDirection == Direction.SOUTH)
-                {
-                    neighbourRoom = roomSouth;
-                }
-                else if (neighbourDirection == Direction.EAST)
-                {
-                    neighbourRoom = roomEast;
-                }
-                else if (neighbourDirection == Direction.WEST)
-                {
-                    neighbourRoom = roomWest;
-                }
-                else
-                {
-                    // Else there is an error
-                    neighbourRoom = room;
+                    case Direction.NORTH:
+                        
+                        neighbourRoom = roomNorth;
+                        neighbourRoom.roomSouth = true;
+                        break;
+
+                    case Direction.SOUTH:
+                        neighbourRoom = roomSouth;
+                        neighbourRoom.roomNorth = true;
+                        break;
+
+                    case Direction.EAST:
+                        neighbourRoom = roomEast;
+                        neighbourRoom.roomWest = true;
+                        break;
+
+                    case Direction.WEST:
+                        neighbourRoom = roomWest;
+                        neighbourRoom.roomEast = true;
+                        break;
+
+                    default:
+                        // Else there is an error
+                        // Raise an error here maybe?
+                        neighbourRoom = room;
+                    }
                 }
 
-                Door door;
-                door.room = room;
-                door.wallSide = neighbourDirection;
-
-                doors.Add(door);
                 rooms.Add(neighbourRoom);
                 availableRooms.Add(neighbourRoom);
             }
         }
 
-        DungeonLayout dl;
-        dl.rooms = rooms;
-        dl.doors = doors;
-
-        return dl;
-    }
-
-    // Place the rooms and doors in the dungeon layout in the physical game world
-    void PlaceDungeon(DungeonLayout dl)
-    {
-        float roomWidth = roomPrefab.GetComponent<BoxCollider2D>().size.x;
-        float roomHeight = roomPrefab.GetComponent<BoxCollider2D>().size.y;
-        foreach (Room room in dl.rooms)
-        {
-            roomPrefab.transform = new Vector3(room.x * roomWidth, room.y * roomHeight, 0);
-            GameObject.Instantiate(roomPrefab);
-        }
+        return rooms;
     }
 
     private bool inRooms(Room room, List<Room> rooms)
@@ -157,5 +157,20 @@ class DungeonGenerator : MonoBehaviour
             }
         }
         return false;
+    }
+
+    // Finds the index of a Room object in the rooms list
+    private int indexById(Room [] rooms, int id)
+    {
+        for (int i = 0; i < rooms.Count; i++)
+        {
+            if (rooms[i].id == id)
+            {
+                return i;
+            }
+        }
+
+        // The room was not found (which should never happen)
+        return -1;
     }
 }
