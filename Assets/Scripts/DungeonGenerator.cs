@@ -10,13 +10,13 @@ class DungeonGenerator : MonoBehaviour
 
     class Room
     {
-        int id;
+        public int id;
         public int x, y;
         public bool roomNorth, roomSouth, roomEast, roomWest;
 
-        public Room(int id, int _x, int _y)
+        public Room(int _id, int _x, int _y)
         {
-            id = _id
+            id = _id;
 
             x = _x;
             y = _y;
@@ -36,15 +36,16 @@ class DungeonGenerator : MonoBehaviour
 
         Rooms contain grid coordinates that describe the placement of rooms
         in relation to each other, not the physical GameObject coordinates. */
-    Rooms [] GenerateDungeonLayout(int numRooms)
+    List<Room> GenerateDungeonLayout(int numRooms)
     {
         List<Room> rooms = new List<Room>();
         List<Room> availableRooms = new List<Room>();
         List<Direction> doorPositions = new List<Direction>();
 
-        Room originRoom;
-        originRoom.x = 0;
-        originRoom.y = 0;
+        int roomId = 0;
+
+        Room originRoom = new Room(roomId, 0, 0);
+        roomId++;
 
         rooms.Add(originRoom);
         availableRooms.Add(originRoom);
@@ -60,7 +61,8 @@ class DungeonGenerator : MonoBehaviour
             Room room = availableRooms[roomIndex];
 
             // Create a replica of the room with no neighbours
-            Room tempRoom = new Room(room.x, room.y);
+            Room tempRoom = new Room(roomId, room.x, room.y);
+            roomId++;
 
             // Use that replica to make neighbour rooms for all sides of
             // the current room
@@ -105,48 +107,46 @@ class DungeonGenerator : MonoBehaviour
             {
                 int neighbourDirectionIndex = Random.Range(0, doorPositions.Count);
                 Direction neighbourDirection = doorPositions[neighbourDirectionIndex];
-                Room neighbourRoom;
 
                 // Set the neighbour boolean values to the original room
                 // and the neighbour room
                 switch (neighbourDirection)
                 {
                     case Direction.NORTH:
-                        
-                        neighbourRoom = roomNorth;
-                        neighbourRoom.roomSouth = true;
+                        rooms[indexById(rooms, room.id)].roomNorth = true;
+                        roomNorth.roomSouth = true;
+                        rooms.Add(roomNorth);
+                        availableRooms.Add(roomNorth);
                         break;
 
                     case Direction.SOUTH:
-                        neighbourRoom = roomSouth;
-                        neighbourRoom.roomNorth = true;
+                        rooms[indexById(rooms, room.id)].roomSouth = true;
+                        roomSouth.roomNorth = true;
+                        rooms.Add(roomSouth);
+                        availableRooms.Add(roomSouth);
                         break;
 
                     case Direction.EAST:
-                        neighbourRoom = roomEast;
-                        neighbourRoom.roomWest = true;
+                        rooms[indexById(rooms, room.id)].roomEast = true;
+                        roomEast.roomWest = true;
+                        rooms.Add(roomEast);
+                        availableRooms.Add(roomEast);
                         break;
 
                     case Direction.WEST:
-                        neighbourRoom = roomWest;
-                        neighbourRoom.roomEast = true;
+                        rooms[indexById(rooms, room.id)].roomWest = true;
+                        roomWest.roomEast = true;
+                        rooms.Add(roomWest);
+                        availableRooms.Add(roomWest);
                         break;
-
-                    default:
-                        // Else there is an error
-                        // Raise an error here maybe?
-                        neighbourRoom = room;
-                    }
                 }
-
-                rooms.Add(neighbourRoom);
-                availableRooms.Add(neighbourRoom);
             }
         }
 
         return rooms;
     }
 
+    // Checks if a room (defined by its coordinates) is in the rooms list
     private bool inRooms(Room room, List<Room> rooms)
     {
         foreach (Room r in rooms)
@@ -160,7 +160,7 @@ class DungeonGenerator : MonoBehaviour
     }
 
     // Finds the index of a Room object in the rooms list
-    private int indexById(Room [] rooms, int id)
+    private int indexById(List<Room> rooms, int id)
     {
         for (int i = 0; i < rooms.Count; i++)
         {
