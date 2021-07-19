@@ -20,6 +20,7 @@ public struct RoomDetails
     public byte miniBosses;
     // Is this the room that has the level's boss?
     public bool levelBoss;
+    public bool goesDown;
     // What kind of loot are we getting here? :D
     public TreasureType treasure;
 }
@@ -37,9 +38,12 @@ public enum DoorType
 {
     None,
     Open,
-    Locked,
     Breakable,
-    Boss
+    Broken,
+    Locked,
+    Unlocked,
+    Boss,
+    BossUnlocked
 }
 
 public enum TreasureType
