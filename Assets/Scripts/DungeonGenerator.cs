@@ -62,7 +62,12 @@ class DungeonGenerator : MonoBehaviour
         doorPositions.Add(Direction.WEST);
 
         while (rooms.Count < numRooms)
-        {
+        {    
+            doorPositions.Add(Direction.NORTH);
+            doorPositions.Add(Direction.SOUTH);
+            doorPositions.Add(Direction.EAST);
+            doorPositions.Add(Direction.WEST);
+
             int roomIndex = Random.Range(0, availableRooms.Count);
             Room room = availableRooms[roomIndex];
 
