@@ -6,6 +6,11 @@ using UnityEngine;
 
 class DungeonGenerator : MonoBehaviour
 {
+    void Start()
+    {
+        GenerateDungeonLayout(100);
+    }
+
     enum Direction { NORTH, SOUTH, EAST, WEST }
 
     class Room
@@ -60,22 +65,12 @@ class DungeonGenerator : MonoBehaviour
             int roomIndex = Random.Range(0, availableRooms.Count);
             Room room = availableRooms[roomIndex];
 
-            // Create a replica of the room with no neighbours
-            Room tempRoom = new Room(roomId, room.x, room.y);
+            // Create temp neighbours
+            Room roomNorth = new Room(roomId, room.x, room.y - 1);
+            Room roomSouth = new Room(roomId, room.x, room.y + 1);
+            Room roomEast = new Room(roomId, room.x + 1, room.y);
+            Room roomWest = new Room(roomId, room.x - 1, room.y);
             roomId++;
-
-            // Use that replica to make neighbour rooms for all sides of
-            // the current room
-            Room roomNorth = tempRoom;
-            Room roomSouth = tempRoom;
-            Room roomEast = tempRoom;
-            Room roomWest = tempRoom;
-
-            // Shift these rooms to their correct coordinates
-            roomNorth.y -= 1;
-            roomSouth.y += 1;
-            roomEast.x += 1;
-            roomWest.x -= 1;
 
             // Remove door positions where a door is already there
             // since we don't want to overwrite it
