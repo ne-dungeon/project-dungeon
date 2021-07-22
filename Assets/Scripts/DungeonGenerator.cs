@@ -9,6 +9,7 @@ class DungeonGenerator : MonoBehaviour
     void Start()
     {
         GenerateDungeonLayout(100);
+        Debug.Log(":)");
     }
 
     enum Direction { NORTH, SOUTH, EAST, WEST }
@@ -136,6 +137,7 @@ class DungeonGenerator : MonoBehaviour
                         break;
                 }
             }
+            doorPositions.Clear();
         }
 
         return rooms;
