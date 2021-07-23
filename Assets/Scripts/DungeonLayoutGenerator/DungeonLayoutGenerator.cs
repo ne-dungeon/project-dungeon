@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
-
 
 class DungeonLayoutGenerator : MonoBehaviour
 {
@@ -13,26 +11,6 @@ class DungeonLayoutGenerator : MonoBehaviour
     }
 
     enum Direction { NORTH, SOUTH, EAST, WEST }
-
-    class Room
-    {
-        public int id;
-        public int x, y;
-        public bool roomNorth, roomSouth, roomEast, roomWest;
-
-        public Room(int _id, int _x, int _y)
-        {
-            id = _id;
-
-            x = _x;
-            y = _y;
-
-            roomNorth = false;
-            roomSouth = false;
-            roomEast = false;
-            roomWest = false;
-        }
-    }
 
     /*  Returns a list of Room objects.
 
