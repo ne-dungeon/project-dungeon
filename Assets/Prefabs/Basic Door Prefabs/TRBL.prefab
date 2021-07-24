@@ -209,13 +209,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7168578455394372091}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3611f4c9fda35f944948079bf23a1f28, type: 3}
+  m_Script: {fileID: 11500000, guid: be9394fc0d6a2436d923026c70b7caad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorAtRight: 1
-  doorAtLeft: 1
-  doorAtTop: 1
-  doorAtBottom: 1
+  roomNorth: 1
+  roomSouth: 1
+  roomEast: 1
+  roomWest: 1
 --- !u!1 &7168578455456697849
 GameObject:
   m_ObjectHideFlags: 0

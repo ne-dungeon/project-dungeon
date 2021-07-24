@@ -14,7 +14,7 @@ class DungeonLayoutGenerator : MonoBehaviour
 
         Rooms contain grid coordinates that describe the placement of rooms
         in relation to each other, not the physical GameObject coordinates. */
-    List<Room> GenerateDungeonLayout(int numRooms)
+    public List<Room> GenerateDungeonLayout(int numRooms)
     {
         List<Room> rooms = new List<Room>();
         List<Room> availableRooms = new List<Room>();
@@ -44,27 +44,27 @@ class DungeonLayoutGenerator : MonoBehaviour
             Room room = availableRooms[roomIndex];
 
             // Create temp neighbours
-            Room roomNorth = new Room(roomId, room.x, room.y - 1);
-            Room roomSouth = new Room(roomId, room.x, room.y + 1);
+            Room roomNorth = new Room(roomId, room.x, room.y + 1);
+            Room roomSouth = new Room(roomId, room.x, room.y - 1);
             Room roomEast = new Room(roomId, room.x + 1, room.y);
             Room roomWest = new Room(roomId, room.x - 1, room.y);
             roomId++;
 
             // Remove door positions where a door is already there
             // since we don't want to overwrite it
-            if (inRooms(roomNorth, rooms))
+            if (RoomsListInterface.inRooms(roomNorth, rooms))
             {
                 doorPositions.Remove(Direction.NORTH);
             }
-            if (inRooms(roomSouth, rooms))
+            if (RoomsListInterface.inRooms(roomSouth, rooms))
             {
                 doorPositions.Remove(Direction.SOUTH);
             }
-            if (inRooms(roomEast, rooms))
+            if (RoomsListInterface.inRooms(roomEast, rooms))
             {
                 doorPositions.Remove(Direction.EAST);
             }
-            if (inRooms(roomWest, rooms))
+            if (RoomsListInterface.inRooms(roomWest, rooms))
             {
                 doorPositions.Remove(Direction.WEST);
             }
@@ -86,28 +86,28 @@ class DungeonLayoutGenerator : MonoBehaviour
                 switch (neighbourDirection)
                 {
                     case Direction.NORTH:
-                        rooms[indexById(rooms, room.id)].roomNorth = true;
+                        rooms[RoomsListInterface.indexById(rooms, room.id)].roomNorth = true;
                         roomNorth.roomSouth = true;
                         rooms.Add(roomNorth);
                         availableRooms.Add(roomNorth);
                         break;
 
                     case Direction.SOUTH:
-                        rooms[indexById(rooms, room.id)].roomSouth = true;
+                        rooms[RoomsListInterface.indexById(rooms, room.id)].roomSouth = true;
                         roomSouth.roomNorth = true;
                         rooms.Add(roomSouth);
                         availableRooms.Add(roomSouth);
                         break;
 
                     case Direction.EAST:
-                        rooms[indexById(rooms, room.id)].roomEast = true;
+                        rooms[RoomsListInterface.indexById(rooms, room.id)].roomEast = true;
                         roomEast.roomWest = true;
                         rooms.Add(roomEast);
                         availableRooms.Add(roomEast);
                         break;
 
                     case Direction.WEST:
-                        rooms[indexById(rooms, room.id)].roomWest = true;
+                        rooms[RoomsListInterface.indexById(rooms, room.id)].roomWest = true;
                         roomWest.roomEast = true;
                         rooms.Add(roomWest);
                         availableRooms.Add(roomWest);

@@ -11,6 +11,17 @@ public class Room
 
     public int distance;
 
+    public Room(int _x, int _y)
+    {
+        x = _x;
+        y = _y;
+
+        roomNorth = false;
+        roomSouth = false;
+        roomEast = false;
+        roomWest = false;
+    }
+
     public Room(int _id, int _x, int _y)
     {
         id = _id;

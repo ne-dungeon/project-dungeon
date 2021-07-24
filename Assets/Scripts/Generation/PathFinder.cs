@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-class PathFinder
+static class PathFinder
 {
     public enum Direction { NONE, NORTH, SOUTH, EAST, WEST }
 
     // Returns the integer ID of the boss room
-    public int findBossRoom(List<Room> rooms, int originId, Direction dir = Direction.NONE, int currentDistance = 0)
+    static public int findBossRoom(List<Room> rooms, int originId, Direction dir = Direction.NONE, int currentDistance = 0)
     {
         List<Room> traversedRooms = assignDistances(rooms, originId);
 
@@ -27,9 +27,9 @@ class PathFinder
         return highestDistanceId;
     }
 
-    private List<Room> assignDistances(List<Room> rooms, int currentId, Direction dir = Direction.NONE, int currentDistance = 0)
+    static private List<Room> assignDistances(List<Room> rooms, int currentId, Direction dir = Direction.NONE, int currentDistance = 0)
     {
-        int index = indexById(rooms, currentId);
+        int index = RoomsListInterface.indexById(rooms, currentId);
         rooms[index].distance = currentDistance;
         Room currentRoom = rooms[index];
 
@@ -42,7 +42,7 @@ class PathFinder
 
         foreach (int id in neighbourIds)
         {
-            Room neighbour = rooms[indexById(rooms, id)];
+            Room neighbour = rooms[RoomsListInterface.indexById(rooms, id)];
             Direction neighbourDir = getDir(currentRoom, neighbour);
             assignDistances(rooms, id, neighbourDir, currentDistance + 1);
         }
@@ -51,7 +51,7 @@ class PathFinder
     }
 
     // Gets direction of room from neighbour room
-    Direction getDir(Room room, Room neighbourRoom)
+    static Direction getDir(Room room, Room neighbourRoom)
     {
         int xDif, yDif;
         xDif = room.x - neighbourRoom.x;
@@ -77,7 +77,7 @@ class PathFinder
     }
 
     // Dir is the door the search entered the room through
-    private List<int> getNeighbours(List<Room> rooms, Room room, Direction dir)
+    static private List<int> getNeighbours(List<Room> rooms, Room room, Direction dir)
     {
         List<int> neighbourIds = new List<int>();
 
@@ -102,7 +102,7 @@ class PathFinder
     }
 
     // Get the ID of a from from its coordinates
-    private int idByCoords(List<Room> rooms, int x, int y)
+    static private int idByCoords(List<Room> rooms, int x, int y)
     {
         foreach (Room room in rooms)
         {
