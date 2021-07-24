@@ -38,6 +38,13 @@ public struct RoomDetails
 /// Each possible door has a type.
 public struct DoorDirections
 {
+    public DoorDirections(DoorType n, DoorType s, DoorType e, DoorType w)
+    {
+        north = n;
+        south = s;
+        east = e;
+        west = w;
+    }
     DoorType north;
     DoorType south;
     DoorType east;
@@ -72,6 +79,7 @@ public enum Theme
     Default
 }
 
-public enum Puzzle {
+public enum Puzzle
+{
     None
 }
