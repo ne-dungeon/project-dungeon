@@ -6,31 +6,44 @@ class PathFinder
     // Returns the integer ID of the boss room
     public int findBossRoom(List<Room> rooms, int originId, Direction dir = Direction.NONE, int currentDistance = 0)
     {
-        // Count length of all possible paths with recursion
+        List<Room> traversedRooms = assignDistances(rooms, originId);
 
-        int index = indexById(originId);
+        int highestDistanceId = 0;
+        int highestDistance = 0;
+
+        foreach (Room room in traversedRooms)
+        {
+            if (room.distance > highestDistance)
+            {
+                highestDistance = room.distance;
+                highestDistanceId = room.id;
+            }
+        }
+
+        return room.id;
+    }
+
+    private List<Room> assignDistances(List<Room> rooms, int currentId, Direction dir = Direction.NONE, int currentDistance = 0)
+    {
+        int index = indexById(currentId);
         rooms[index].distance = currentDistance;
         Room currentRoom = rooms[index];
 
         List<int> neighbourIds = getNeighbours(rooms, currentRoom, dir);
-        // now neighbourDirs is a list of doors to enter next
 
-        // if there are 0 directions left, you have reached a dead end
         if (neighbourIds.Count == 0)
         {
-            return 0;
-        }
-        else
-        {
-            for (int id in neighbourIds)
-            {
-                indexById(rooms, id)
-            }
+            return;
         }
 
-        // otherwise iterate through them 
-        //
-        
+        foreach (int id in neighbourIds)
+        {
+            neighbour = rooms[indexById(rooms, id)];
+            Direction neighbourDir = getDir(room, neighbourDir);
+            assignDistances(rooms, id, neighbourDir, currentDistance + 1);
+        }
+
+        return rooms;
     }
 
     // Gets direction of room from neighbour room
