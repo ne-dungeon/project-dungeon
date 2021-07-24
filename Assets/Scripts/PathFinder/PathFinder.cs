@@ -1,7 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 
 class PathFinder
 {
-    enum Direction { NONE, NORTH, SOUTH, EAST, WEST }
+    public enum Direction { NONE, NORTH, SOUTH, EAST, WEST }
 
     // Returns the integer ID of the boss room
     public int findBossRoom(List<Room> rooms, int originId, Direction dir = Direction.NONE, int currentDistance = 0)
@@ -20,12 +24,12 @@ class PathFinder
             }
         }
 
-        return room.id;
+        return highestDistanceId;
     }
 
     private List<Room> assignDistances(List<Room> rooms, int currentId, Direction dir = Direction.NONE, int currentDistance = 0)
     {
-        int index = indexById(currentId);
+        int index = indexById(rooms, currentId);
         rooms[index].distance = currentDistance;
         Room currentRoom = rooms[index];
 
@@ -33,13 +37,13 @@ class PathFinder
 
         if (neighbourIds.Count == 0)
         {
-            return;
+            return rooms;
         }
 
         foreach (int id in neighbourIds)
         {
-            neighbour = rooms[indexById(rooms, id)];
-            Direction neighbourDir = getDir(room, neighbourDir);
+            Room neighbour = rooms[indexById(rooms, id)];
+            Direction neighbourDir = getDir(currentRoom, neighbour);
             assignDistances(rooms, id, neighbourDir, currentDistance + 1);
         }
 
@@ -47,7 +51,7 @@ class PathFinder
     }
 
     // Gets direction of room from neighbour room
-    Direction dir getDir(Room room, Room neighbourRoom)
+    Direction getDir(Room room, Room neighbourRoom)
     {
         int xDif, yDif;
         xDif = room.x - neighbourRoom.x;
@@ -68,6 +72,8 @@ class PathFinder
         case -1:
             return Direction.WEST;
         }
+
+        return Direction.NONE;
     }
 
     // Dir is the door the search entered the room through
@@ -95,30 +101,16 @@ class PathFinder
         return neighbourIds;
     }
 
-    // Finds the index of a Room object in the rooms list
-    private int indexById(List<Room> rooms, int id)
-    {
-        for (int i = 0; i < rooms.Count; i++)
-        {
-            if (rooms[i].id == id)
-            {
-                return i;
-            }
-        }
-
-        // The room was not found (which should never happen)
-        return -1;
-    }
-
     // Get the ID of a from from its coordinates
     private int idByCoords(List<Room> rooms, int x, int y)
     {
         foreach (Room room in rooms)
         {
-            if (x == room.x and y == room.y)
+            if (x == room.x && y == room.y)
             {
                 return room.id;
             }
         }
+        return -1;
     }
 }

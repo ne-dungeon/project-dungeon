@@ -4,12 +4,6 @@ using UnityEngine;
 
 class DungeonLayoutGenerator : MonoBehaviour
 {
-    void Start()
-    {
-        GenerateDungeonLayout(100);
-        Debug.Log(":)");
-    }
-
     enum Direction { NORTH, SOUTH, EAST, WEST }
 
     /*  Returns a list of Room objects.
@@ -124,33 +118,5 @@ class DungeonLayoutGenerator : MonoBehaviour
         }
 
         return rooms;
-    }
-
-    // Checks if a room (defined by its coordinates) is in the rooms list
-    private bool inRooms(Room room, List<Room> rooms)
-    {
-        foreach (Room r in rooms)
-        {
-            if (r.x == room.x && r.y == room.y)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // Finds the index of a Room object in the rooms list
-    private int indexById(List<Room> rooms, int id)
-    {
-        for (int i = 0; i < rooms.Count; i++)
-        {
-            if (rooms[i].id == id)
-            {
-                return i;
-            }
-        }
-
-        // The room was not found (which should never happen)
-        return -1;
     }
 }
