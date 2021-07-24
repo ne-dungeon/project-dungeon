@@ -1,9 +1,12 @@
 
 class PathFinder
 {
+    enum Direction { NONE, NORTH, SOUTH, EAST, WEST }
+
     // Returns the integer ID of the boss room
-    int findBossRoom(List<DungeonLayout.Room> rooms, int originId)
+    public int findBossRoom(List<Room> rooms, int originId, Direction dir = Direction.NONE)
     {
+        /*
         // Add distance values
         for (int i = 0; i < rooms.Count; i++)
         {
@@ -18,13 +21,42 @@ class PathFinder
 
         List<DungeonLayout.Room> unvisited = new List<Room>();
         int currentNodeId = originId;
+        */
 
-        
+        // Count length of all possible paths with recursion
+
+        Room currentRoom = rooms[indexById(originId)];
+
+        getNeighbours()
     }
 
-    private getUnvisitedNeighbours()
+    // Dir is the door the search entered the room through
+    private List<Room> getNeighbours(Room room, Direction dir)
     {
+        List<Direction> nextDirs = new List<Direction>();
 
+        if (room.roomNorth)
+        {
+            nextDirs.Add(Direction.NORTH);
+        }
+        else if (room.roomSouth)
+        {
+            nextDirs.Add(Direction.SOUTH);
+        }
+        else if (room.roomEast)
+        {
+            nextDirs.Add(Direction.EAST);
+        }
+        else if (room.roomWest)
+        {
+            nextDirs.Add(Direction.WEST);
+        }
+
+        nextDirs.Remove(dir);
+
+        // now nextDirs is a list of doors to enter next
+
+        
     }
 
     // Finds the index of a Room object in the rooms list
