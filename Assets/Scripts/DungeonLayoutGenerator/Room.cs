@@ -9,6 +9,8 @@ public class Room
     public int x, y;
     public bool roomNorth, roomSouth, roomEast, roomWest;
 
+    public int distance;
+
     public Room(int _id, int _x, int _y)
     {
         id = _id;
