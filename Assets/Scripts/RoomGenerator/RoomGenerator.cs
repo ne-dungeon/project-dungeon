@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Takes the details of a room generated from the dungeon generator and creates a room matching those details.
+/// Takes the details of a room generated from the dungeon generator and creates 
+/// a room Game object matching those details.
 /// </summary>
 public class RoomGenerator : MonoBehaviour
 {
