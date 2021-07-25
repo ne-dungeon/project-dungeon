@@ -3,10 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public static class RoomsListInterface
+public class RoomsList
 {
+    public List<Room> rooms;
+
+    public RoomsList()
+    {
+        rooms = new List<Room>();
+    }
+
+    public void Add(Room room)
+    {
+        rooms.Add(room);
+    }
+
+    public int Count()
+    {
+        return rooms.Count;
+    }
+
     // Checks if a room (defined by its coordinates) is in the rooms list
-    public static bool inRooms(Room room, List<Room> rooms)
+    public bool inRooms(Room room)
     {
         foreach (Room r in rooms)
         {
@@ -19,7 +36,7 @@ public static class RoomsListInterface
     }
 
     // Finds the index of a Room object in the rooms list
-    public static int indexById(List<Room> rooms, int id)
+    public int indexById(int id)
     {
         for (int i = 0; i < rooms.Count; i++)
         {
@@ -33,7 +50,7 @@ public static class RoomsListInterface
         return -1;
     }
 
-    public static Room roomById(List<Room> rooms, int id)
+    public Room roomById(int id)
     {
         foreach (Room room in rooms)
         {
@@ -43,5 +60,19 @@ public static class RoomsListInterface
             }
         }
         return new Room(0, 0);
+    }
+
+
+    // Get the ID of a from from its coordinates
+    public int idByCoords(int x, int y)
+    {
+        foreach (Room room in rooms)
+        {
+            if (x == room.x && y == room.y)
+            {
+                return room.id;
+            }
+        }
+        return -1;
     }
 }

@@ -17,23 +17,25 @@ class DungeonGenerator : MonoBehaviour
     private void Start()
     {
         DungeonLayoutGenerator dlg = new DungeonLayoutGenerator();
-        List<Room> rooms = dlg.GenerateDungeonLayout(totalRooms);
+        RoomsList rooms = dlg.GenerateDungeonLayout(totalRooms);
 
         // Setting a random origin room
-        startingRoom = rooms[Random.Range(0, rooms.Count)];
+        startingRoom = rooms.rooms[Random.Range(0, rooms.rooms.Count)];
 
         // FINDING THE BOSS ROOM //
 
-        //int bossRoomId = PathFinder.findBossRoom(rooms, startingRoom.id);
-        //bossRoom = RoomsListInterface.roomById(rooms, bossRoomId);
+        PathFinder pf = new PathFinder();
 
-        foreach (Room room in rooms)
+        Room bossRoom = pf.findBossRoom(rooms, startingRoom.id);
+
+        foreach (Room room in rooms.rooms)
         {
             //print("Coords: " + room.x + "," + room.y);
             GenerateRoomPrefab(room);
+            print("room: " + room.x + "," + room.y);
         }
 
-        //print("Boss room: " + bossRoom.x + "," + bossRoom.y);
+        print("Boss room: " + bossRoom.x + "," + bossRoom.y);
     }
 
     void GenerateRoomPrefab(Room room)

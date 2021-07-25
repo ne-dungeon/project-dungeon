@@ -14,10 +14,10 @@ class DungeonLayoutGenerator
 
         Rooms contain grid coordinates that describe the placement of rooms
         in relation to each other, not the physical GameObject coordinates. */
-    public List<Room> GenerateDungeonLayout(int numRooms)
+    public RoomsList GenerateDungeonLayout(int numRooms)
     {
-        List<Room> rooms = new List<Room>();
-        List<Room> availableRooms = new List<Room>();
+        RoomsList rooms = new RoomsList();
+        RoomsList availableRooms = new RoomsList();
         List<Direction> doorPositions = new List<Direction>();
 
         int roomId = 0;
@@ -28,15 +28,15 @@ class DungeonLayoutGenerator
         rooms.Add(originRoom);
         availableRooms.Add(originRoom);
 
-        while (rooms.Count < numRooms)
+        while (rooms.Count() < numRooms)
         {    
             doorPositions.Add(Direction.NORTH);
             doorPositions.Add(Direction.SOUTH);
             doorPositions.Add(Direction.EAST);
             doorPositions.Add(Direction.WEST);
 
-            int roomIndex = Random.Range(0, availableRooms.Count);
-            Room room = availableRooms[roomIndex];
+            int roomIndex = Random.Range(0, availableRooms.Count());
+            Room room = availableRooms.rooms[roomIndex];
 
             // Create temp neighbours
             Room roomNorth = new Room(roomId, room.x, room.y + 1);
@@ -47,19 +47,19 @@ class DungeonLayoutGenerator
 
             // Remove door positions where a door is already there
             // since we don't want to overwrite it
-            if (RoomsListInterface.inRooms(roomNorth, rooms))
+            if (rooms.inRooms(roomNorth))
             {
                 doorPositions.Remove(Direction.NORTH);
             }
-            if (RoomsListInterface.inRooms(roomSouth, rooms))
+            if (rooms.inRooms(roomSouth))
             {
                 doorPositions.Remove(Direction.SOUTH);
             }
-            if (RoomsListInterface.inRooms(roomEast, rooms))
+            if (rooms.inRooms(roomEast))
             {
                 doorPositions.Remove(Direction.EAST);
             }
-            if (RoomsListInterface.inRooms(roomWest, rooms))
+            if (rooms.inRooms(roomWest))
             {
                 doorPositions.Remove(Direction.WEST);
             }
@@ -69,7 +69,7 @@ class DungeonLayoutGenerator
             // So we need to remove this room from availableRooms
             if (doorPositions.Count == 0)
             {
-                availableRooms.Remove(room);
+                availableRooms.rooms.Remove(room);
             }
             else
             {
@@ -81,28 +81,28 @@ class DungeonLayoutGenerator
                 switch (neighbourDirection)
                 {
                     case Direction.NORTH:
-                        rooms[RoomsListInterface.indexById(rooms, room.id)].roomNorth = true;
+                        rooms.rooms[rooms.indexById(room.id)].roomNorth = true;
                         roomNorth.roomSouth = true;
                         rooms.Add(roomNorth);
                         availableRooms.Add(roomNorth);
                         break;
 
                     case Direction.SOUTH:
-                        rooms[RoomsListInterface.indexById(rooms, room.id)].roomSouth = true;
+                        rooms.rooms[rooms.indexById(room.id)].roomSouth = true;
                         roomSouth.roomNorth = true;
                         rooms.Add(roomSouth);
                         availableRooms.Add(roomSouth);
                         break;
 
                     case Direction.EAST:
-                        rooms[RoomsListInterface.indexById(rooms, room.id)].roomEast = true;
+                        rooms.rooms[rooms.indexById(room.id)].roomEast = true;
                         roomEast.roomWest = true;
                         rooms.Add(roomEast);
                         availableRooms.Add(roomEast);
                         break;
 
                     case Direction.WEST:
-                        rooms[RoomsListInterface.indexById(rooms, room.id)].roomWest = true;
+                        rooms.rooms[rooms.indexById(room.id)].roomWest = true;
                         roomWest.roomEast = true;
                         rooms.Add(roomWest);
                         availableRooms.Add(roomWest);
