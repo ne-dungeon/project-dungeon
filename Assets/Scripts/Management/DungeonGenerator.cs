@@ -24,8 +24,8 @@ class DungeonGenerator : MonoBehaviour
 
         // FINDING THE BOSS ROOM //
 
-        int bossRoomId = PathFinder.findBossRoom(rooms, startingRoom.id);
-        bossRoom = RoomsListInterface.roomById(rooms, bossRoomId);
+        //int bossRoomId = PathFinder.findBossRoom(rooms, startingRoom.id);
+        //bossRoom = RoomsListInterface.roomById(rooms, bossRoomId);
 
         foreach (Room room in rooms)
         {
@@ -33,7 +33,7 @@ class DungeonGenerator : MonoBehaviour
             GenerateRoomPrefab(room);
         }
 
-        print("Boss room: " + bossRoom.x + "," + bossRoom.y);
+        //print("Boss room: " + bossRoom.x + "," + bossRoom.y);
     }
 
     void GenerateRoomPrefab(Room room)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-class DungeonLayoutGenerator : MonoBehaviour
+class DungeonLayoutGenerator
 {
     enum Direction { NORTH, SOUTH, EAST, WEST }
 
@@ -27,11 +27,6 @@ class DungeonLayoutGenerator : MonoBehaviour
 
         rooms.Add(originRoom);
         availableRooms.Add(originRoom);
-
-        doorPositions.Add(Direction.NORTH);
-        doorPositions.Add(Direction.SOUTH);
-        doorPositions.Add(Direction.EAST);
-        doorPositions.Add(Direction.WEST);
 
         while (rooms.Count < numRooms)
         {    

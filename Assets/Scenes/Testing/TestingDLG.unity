@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f34b6be6fbac0fdf793bfd69555aaa74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalRooms: 100
+  totalRooms: 8
   roomPrefabs:
   - {fileID: 1420514319771225008, guid: 3ff0360e0a0fb394bbc6bef7e163a418, type: 3}
   - {fileID: 648797085405915754, guid: e4e9641a5a3413f4fb6c366b9072474a, type: 3}
