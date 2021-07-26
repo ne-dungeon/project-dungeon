@@ -1,38 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 
-
-class DungeonLayoutGenerator : MonoBehaviour
+class DungeonLayoutGenerator
 {
-    void Start()
-    {
-        GenerateDungeonLayout(100);
-        Debug.Log(":)");
-    }
-
     enum Direction { NORTH, SOUTH, EAST, WEST }
-
-    class Room
-    {
-        public int id;
-        public int x, y;
-        public bool roomNorth, roomSouth, roomEast, roomWest;
-
-        public Room(int _id, int _x, int _y)
-        {
-            id = _id;
-
-            x = _x;
-            y = _y;
-
-            roomNorth = false;
-            roomSouth = false;
-            roomEast = false;
-            roomWest = false;
-        }
-    }
 
     /*  Returns a list of Room objects.
 
@@ -42,10 +14,10 @@ class DungeonLayoutGenerator : MonoBehaviour
 
         Rooms contain grid coordinates that describe the placement of rooms
         in relation to each other, not the physical GameObject coordinates. */
-    List<Room> GenerateDungeonLayout(int numRooms)
+    public RoomsList GenerateDungeonLayout(int numRooms)
     {
-        List<Room> rooms = new List<Room>();
-        List<Room> availableRooms = new List<Room>();
+        RoomsList rooms = new RoomsList();
+        RoomsList availableRooms = new RoomsList();
         List<Direction> doorPositions = new List<Direction>();
 
         int roomId = 0;
@@ -56,43 +28,38 @@ class DungeonLayoutGenerator : MonoBehaviour
         rooms.Add(originRoom);
         availableRooms.Add(originRoom);
 
-        doorPositions.Add(Direction.NORTH);
-        doorPositions.Add(Direction.SOUTH);
-        doorPositions.Add(Direction.EAST);
-        doorPositions.Add(Direction.WEST);
-
-        while (rooms.Count < numRooms)
+        while (rooms.Count() < numRooms)
         {    
             doorPositions.Add(Direction.NORTH);
             doorPositions.Add(Direction.SOUTH);
             doorPositions.Add(Direction.EAST);
             doorPositions.Add(Direction.WEST);
 
-            int roomIndex = Random.Range(0, availableRooms.Count);
-            Room room = availableRooms[roomIndex];
+            int roomIndex = Random.Range(0, availableRooms.Count());
+            Room room = availableRooms.rooms[roomIndex];
 
             // Create temp neighbours
-            Room roomNorth = new Room(roomId, room.x, room.y - 1);
-            Room roomSouth = new Room(roomId, room.x, room.y + 1);
+            Room roomNorth = new Room(roomId, room.x, room.y + 1);
+            Room roomSouth = new Room(roomId, room.x, room.y - 1);
             Room roomEast = new Room(roomId, room.x + 1, room.y);
             Room roomWest = new Room(roomId, room.x - 1, room.y);
             roomId++;
 
             // Remove door positions where a door is already there
             // since we don't want to overwrite it
-            if (inRooms(roomNorth, rooms))
+            if (rooms.inRooms(roomNorth))
             {
                 doorPositions.Remove(Direction.NORTH);
             }
-            if (inRooms(roomSouth, rooms))
+            if (rooms.inRooms(roomSouth))
             {
                 doorPositions.Remove(Direction.SOUTH);
             }
-            if (inRooms(roomEast, rooms))
+            if (rooms.inRooms(roomEast))
             {
                 doorPositions.Remove(Direction.EAST);
             }
-            if (inRooms(roomWest, rooms))
+            if (rooms.inRooms(roomWest))
             {
                 doorPositions.Remove(Direction.WEST);
             }
@@ -102,7 +69,7 @@ class DungeonLayoutGenerator : MonoBehaviour
             // So we need to remove this room from availableRooms
             if (doorPositions.Count == 0)
             {
-                availableRooms.Remove(room);
+                availableRooms.rooms.Remove(room);
             }
             else
             {
@@ -114,28 +81,28 @@ class DungeonLayoutGenerator : MonoBehaviour
                 switch (neighbourDirection)
                 {
                     case Direction.NORTH:
-                        rooms[indexById(rooms, room.id)].roomNorth = true;
+                        rooms.rooms[rooms.indexById(room.id)].roomNorth = true;
                         roomNorth.roomSouth = true;
                         rooms.Add(roomNorth);
                         availableRooms.Add(roomNorth);
                         break;
 
                     case Direction.SOUTH:
-                        rooms[indexById(rooms, room.id)].roomSouth = true;
+                        rooms.rooms[rooms.indexById(room.id)].roomSouth = true;
                         roomSouth.roomNorth = true;
                         rooms.Add(roomSouth);
                         availableRooms.Add(roomSouth);
                         break;
 
                     case Direction.EAST:
-                        rooms[indexById(rooms, room.id)].roomEast = true;
+                        rooms.rooms[rooms.indexById(room.id)].roomEast = true;
                         roomEast.roomWest = true;
                         rooms.Add(roomEast);
                         availableRooms.Add(roomEast);
                         break;
 
                     case Direction.WEST:
-                        rooms[indexById(rooms, room.id)].roomWest = true;
+                        rooms.rooms[rooms.indexById(room.id)].roomWest = true;
                         roomWest.roomEast = true;
                         rooms.Add(roomWest);
                         availableRooms.Add(roomWest);
@@ -146,33 +113,5 @@ class DungeonLayoutGenerator : MonoBehaviour
         }
 
         return rooms;
-    }
-
-    // Checks if a room (defined by its coordinates) is in the rooms list
-    private bool inRooms(Room room, List<Room> rooms)
-    {
-        foreach (Room r in rooms)
-        {
-            if (r.x == room.x && r.y == room.y)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // Finds the index of a Room object in the rooms list
-    private int indexById(List<Room> rooms, int id)
-    {
-        for (int i = 0; i < rooms.Count; i++)
-        {
-            if (rooms[i].id == id)
-            {
-                return i;
-            }
-        }
-
-        // The room was not found (which should never happen)
-        return -1;
     }
 }
