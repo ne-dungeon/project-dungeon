@@ -7,6 +7,8 @@ public class Template : MonoBehaviour
     private Theme theme;
     private DoorDirections doorDirections;
 
+    private ThemeTemplates themeTemplates;
+
     // Temp reference 
     [SerializeField]
     private TilemapVisualizer tilemapVisualizer;
@@ -33,14 +35,7 @@ public class Template : MonoBehaviour
 
         // TODO: Logic to compare door directions with possible template functions and return which 
         // template functions are valid for this set of doors. Only interested in None vs more than none.
-
-        return DefaultTemplates.DoorsAny();
+        themeTemplates = new DefaultTemplates();
+        return themeTemplates.DoorsAny();
     }
 }
-
-// abstract class ThemeTemplates
-// {
-//     // TODO 
-// }
-
-// How to make a parent class that template generators must adhere to/inherit from?

@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
 /// A simple struct to hold the major details of a room to be generated. Passed
 /// from the Dungeon Generator to the Room Generator to create each room.
+/// </summary>
 public struct RoomDetails
 {
     // The theme of the dungeon being generated.
@@ -35,7 +38,7 @@ public struct RoomDetails
     // public SomeType coordinates;
 }
 
-/// Each possible door has a type.
+/// <summary>Each of the four possible possible doors with a type, or none. </summary>
 public struct DoorDirections
 {
     public DoorDirections(DoorType n, DoorType s, DoorType e, DoorType w)
@@ -51,6 +54,7 @@ public struct DoorDirections
     DoorType west;
 }
 
+/// <summary>Type of door or none.</summary>
 public enum DoorType
 {
     None,
@@ -63,6 +67,7 @@ public enum DoorType
     BossUnlocked
 }
 
+/// <summary>Type of treasure or none.</summary>
 public enum TreasureType
 {
     None,
@@ -74,11 +79,13 @@ public enum TreasureType
 }
 
 // We will add more themes once we get beyond the initial dungeon.
+/// <summary>Zone or theme of dungeon being generated.</summary>
 public enum Theme
 {
     Default
 }
 
+/// <summary>Type of puzzle to include in room or none.</summary>
 public enum Puzzle
 {
     None
