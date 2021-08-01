@@ -18,7 +18,7 @@ public class TemplateGeneratorEditor : Editor
         base.OnInspectorGUI();
         if(GUILayout.Button("Get Template")) {
             Debug.Log("Get template button pressed");
-            template.GetTemplate();
+            template.RunGetTemplate();
         }
     }
 }
