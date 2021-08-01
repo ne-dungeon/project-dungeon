@@ -7,8 +7,11 @@ using UnityEngine;
 /// </summary>
 public class DefaultTemplates : ThemeTemplates
 {
-    private static int roomHeight = 8;
-    private static int roomWidth = 12;
+
+    public DefaultTemplates(int roomWidth = 8, int roomHeight = 12) : base(roomWidth, roomHeight) { }
+
+    // private static int roomHeight = 8;
+    // private static int roomWidth = 12;
 
     // Templates applicable to default dungeon theme
     // REturn multiple vectors of various tile types?
@@ -19,7 +22,7 @@ public class DefaultTemplates : ThemeTemplates
         return SolidRoom();
     }
 
-    private static HashSet<Vector2Int> SolidRoom()
+    private HashSet<Vector2Int> SolidRoom()
     {
         HashSet<Vector2Int> floorTiles = new HashSet<Vector2Int>();
 
@@ -33,7 +36,6 @@ public class DefaultTemplates : ThemeTemplates
                 var tileCoords = new Vector2Int(width, height);
                 Debug.Log(tileCoords);
                 floorTiles.Add(tileCoords);
-                //  floorTiles.Add(new Vector2Int(width, height));
             }
         }
 
