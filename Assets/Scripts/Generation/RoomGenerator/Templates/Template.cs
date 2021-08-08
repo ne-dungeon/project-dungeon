@@ -16,7 +16,6 @@ public class Template : MonoBehaviour
     public void RunGetTemplate()
     {
         var templateTiles = GetTemplate();
-        Debug.Log("got tiles");
         tilemapVisualizer.PaintFloorTiles(templateTiles);
     }
 

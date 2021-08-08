@@ -34,7 +34,6 @@ public class DefaultTemplates : ThemeTemplates
             for (int height = startAtHeight; height < roomHeight / 2; height++)
             {
                 var tileCoords = new Vector2Int(width, height);
-                Debug.Log(tileCoords);
                 floorTiles.Add(tileCoords);
             }
         }

@@ -6,21 +6,21 @@ using UnityEngine.Tilemaps;
 public class TilemapVisualizer : MonoBehaviour
 {
     [SerializeField]
-    private Tilemap floorTilemap;
+    private Tilemap tilemap;
 
     [SerializeField]
-    private TileBase floorTile;
+    private TileBase tile;
 
-    public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions)
+    public void PaintFloorTiles(IEnumerable<Vector2Int> tilePositions)
     {
-        PaintTiles(floorPositions, floorTilemap, floorTile);
+        PaintTiles(tilePositions, tilemap, tile);
     }
 
-    private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap floormap, TileBase tile)
+    private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileBase tile)
     {
         foreach (var position in positions)
         {
-            PaintSingleTile(floormap, tile, position);
+            PaintSingleTile(tilemap, tile, position);
         }
     }
 
