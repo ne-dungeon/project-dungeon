@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class DefaultTemplates : ThemeTemplates
 {
+    // Insert code to get and assign to variables appropriate Tiles for this room's floors, walls, etc 
+    // OR: Ruletile?
 
     public DefaultTemplates(int roomWidth = 8, int roomHeight = 12) : base(roomWidth, roomHeight) { }
 

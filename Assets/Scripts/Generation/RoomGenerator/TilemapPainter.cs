@@ -5,18 +5,18 @@ using UnityEngine.Tilemaps;
 
 public class TilemapVisualizer : MonoBehaviour
 {
-    [SerializeField]
-    private Tilemap tilemap;
+    // [SerializeField]
+    // private Tilemap tilemap;
 
-    [SerializeField]
-    private TileBase tile;
+    // [SerializeField]
+    // private TileBase tile;
 
-    public void PaintFloorTiles(IEnumerable<Vector2Int> tilePositions)
-    {
-        PaintTiles(tilePositions, tilemap, tile);
-    }
+    // public void PaintFloorTiles(IEnumerable<Vector2Int> tilePositions)
+    // {
+    //     PaintTiles(tilePositions, tilemap, tile);
+    // }
 
-    private void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileBase tile)
+    public void PaintTiles(IEnumerable<Vector2Int> positions, Tilemap tilemap, TileBase tile)
     {
         foreach (var position in positions)
         {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Template : MonoBehaviour
 {
@@ -12,11 +13,15 @@ public class Template : MonoBehaviour
     // Temp reference 
     [SerializeField]
     private TilemapVisualizer tilemapVisualizer;
+    [SerializeField]
+    private Tilemap tilemap;
+    [SerializeField]
+    private TileBase centerFloorTile;
 
     public void RunGetTemplate()
     {
-        var templateTiles = GetTemplate();
-        tilemapVisualizer.PaintFloorTiles(templateTiles);
+        var templateFloorTiles = GetTemplate();
+        tilemapVisualizer.PaintTiles(templateFloorTiles, tilemap, centerFloorTile);
     }
 
     // Overload with no parameters for testing purposes, delete once things are working and proper tests are set up.
