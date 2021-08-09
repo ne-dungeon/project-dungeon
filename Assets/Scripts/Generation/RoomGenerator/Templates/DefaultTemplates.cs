@@ -43,6 +43,8 @@ public class DefaultTemplates : ThemeTemplates
         // Set coordinates for wall tiles.
         HashSet<Vector2Int> wallTiles = new HashSet<Vector2Int>();
 
+        wallTiles = WallGenerator.GetWalls(floorTiles);
+
         return new TilePositionTemplate(floorTiles, wallTiles);
     }
 }
