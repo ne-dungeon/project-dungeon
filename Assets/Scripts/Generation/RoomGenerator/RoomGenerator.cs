@@ -15,7 +15,7 @@ public class RoomGenerator : MonoBehaviour
         this.details = details;
     }
     
-    public void Generate(RoomDetails details) {
+    public void Generate() {
         // 1. Generate the basic room. Uses details: theme, doors, startroom, levelboss, goesdown.
             // Selects a template from the theme that matches the quantity and direction of non-none doors.
             // If it's a boss room, selects from specifically boss room templates.
@@ -27,5 +27,9 @@ public class RoomGenerator : MonoBehaviour
         // 4. Place any treasure remaining after the puzzle step. Uses treasure
         // 5. Add random obstacles, decor, etc. Needs to guarantee that it does not block pathing. 
         // 6. Returns the assembled game object 
+        if (details.Generated == false)
+        {
+            
+        }
     }
 }

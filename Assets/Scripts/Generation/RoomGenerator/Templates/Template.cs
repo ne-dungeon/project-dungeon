@@ -12,20 +12,27 @@ public class Template : MonoBehaviour
 
     // Temp reference 
     [SerializeField]
-    private TilemapVisualizer tilemapVisualizer;
+    private TilemapPainter tilemapPainter;
     [SerializeField]
-    private Tilemap tilemap;
+    private Tilemap floorTilemap;
+    [SerializeField]
+    private Tilemap wallTilemap;
     [SerializeField]
     private TileBase centerFloorTile;
+    [SerializeField]
+    private TileBase topCenterWallTile;
 
     public void RunGetTemplate()
     {
-        var templateFloorTiles = GetTemplate();
-        tilemapVisualizer.PaintTiles(templateFloorTiles, tilemap, centerFloorTile);
+        var templateTiles = GetTemplate();
+        // Paint floor tiles.
+        tilemapPainter.PaintTiles(templateTiles.floorTilePositions, floorTilemap, centerFloorTile);
+        // Paint wall tiles.
+        tilemapPainter.PaintTiles(templateTiles.wallTilePositions, wallTilemap, topCenterWallTile);
     }
 
     // Overload with no parameters for testing purposes, delete once things are working and proper tests are set up.
-    public HashSet<Vector2Int> GetTemplate()
+    public TilePositionTemplate GetTemplate()
     {
         theme = Theme.Default;
         doors = new DoorDetails[] {
@@ -37,7 +44,7 @@ public class Template : MonoBehaviour
         return GetTemplate(theme, doors);
     }
 
-    public HashSet<Vector2Int> GetTemplate(Theme theme, DoorDetails[] doors)
+    public TilePositionTemplate GetTemplate(Theme theme, DoorDetails[] doors)
     {
         // get template: takes a theme and a door set and picks an appropriate template
         // switch statement, use theme enum, case runs func for theme, func for theme assessess doors and 

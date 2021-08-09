@@ -18,16 +18,16 @@ public class DefaultTemplates : ThemeTemplates
     // Templates applicable to default dungeon theme
     // REturn multiple vectors of various tile types?
     // how to compare template to doors?
-    public override HashSet<Vector2Int> DoorsAny()
+    public override TilePositionTemplate DoorsAny()
     {
         // insert code to randomly select one of several templates
         return SolidRoom();
     }
 
-    private HashSet<Vector2Int> SolidRoom()
+    private TilePositionTemplate SolidRoom()
     {
+        // Set coordinates for floor tiles.
         HashSet<Vector2Int> floorTiles = new HashSet<Vector2Int>();
-
 
         var startAtHeight = -(roomHeight / 2);
         var startAtWidth = -(roomWidth / 2);
@@ -40,6 +40,9 @@ public class DefaultTemplates : ThemeTemplates
             }
         }
 
-        return floorTiles;
+        // Set coordinates for wall tiles.
+        HashSet<Vector2Int> wallTiles = new HashSet<Vector2Int>();
+
+        return new TilePositionTemplate(floorTiles, wallTiles);
     }
 }

@@ -18,7 +18,7 @@ public abstract class ThemeTemplates
     }
 
     /// <summary>Generates a template that will work for any assortment of doors.</summary>
-    public abstract HashSet<Vector2Int> DoorsAny();
+    public abstract TilePositionTemplate DoorsAny();
 
 }
 
