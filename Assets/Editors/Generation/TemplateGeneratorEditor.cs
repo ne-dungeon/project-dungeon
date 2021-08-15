@@ -20,5 +20,10 @@ public class TemplateGeneratorEditor : Editor
             Debug.Log("Get template button pressed");
             template.RunGetTemplate();
         }
+
+        if(GUILayout.Button("Clear Tilemaps")) {
+            Debug.Log("Clear template button pressed");
+            template.ClearAllTileMaps();
+        }
     }
 }

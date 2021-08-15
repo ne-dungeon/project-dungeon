@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,25 +11,28 @@ public class Template : MonoBehaviour
 
     private ThemeTemplates themeTemplates;
 
-    // Temp reference 
-    [SerializeField]
-    private TilemapPainter tilemapPainter;
     [SerializeField]
     private Tilemap floorTilemap;
     [SerializeField]
     private Tilemap wallTilemap;
     [SerializeField]
-    private TileBase centerFloorTile;
+    private TileBase floorRuleTile;
     [SerializeField]
-    private TileBase topCenterWallTile;
+    private TileBase wallRuleTile;
 
     public void RunGetTemplate()
     {
         var templateTiles = GetTemplate();
         // Paint floor tiles.
-        tilemapPainter.PaintTiles(templateTiles.floorTilePositions, floorTilemap, centerFloorTile);
+        TilemapPainter.PaintTiles(templateTiles.floorTilePositions, floorTilemap, floorRuleTile);
         // Paint wall tiles.
-        tilemapPainter.PaintTiles(templateTiles.wallTilePositions, wallTilemap, topCenterWallTile);
+        TilemapPainter.PaintTiles(templateTiles.wallTilePositions, wallTilemap, wallRuleTile);
+    }
+
+    public void ClearAllTileMaps()
+    {
+        TilemapPainter.ClearTiles(floorTilemap);
+        TilemapPainter.ClearTiles(wallTilemap);
     }
 
     // Overload with no parameters for testing purposes, delete once things are working and proper tests are set up.
