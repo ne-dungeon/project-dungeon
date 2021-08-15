@@ -5,29 +5,27 @@ using UnityEngine;
 
 class PathFinder
 {
-    public enum Direction { NONE, NORTH, SOUTH, EAST, WEST }
+    public enum Direction { NORTH, SOUTH, EAST, WEST, NONE }
 
     // Returns the integer ID of the boss room
     public Room findBossRoom(RoomsList rooms, int originId)
     {
         // Populate a list of dead end rooms with their distance from the origin room
-        Room originRoom = rooms.rooms[rooms.indexById(originId)];
+        Room originRoom = rooms.roomById(originId);
         List<Room> deadEnds = assignDeadEnds(rooms, originRoom);
 
         // Find the dead end room farthest from the origin room
-        int highestID = 0;
-        int highestDistance = 0;
+        Room highestDeadEnd = new Room(0, 0);
 
         foreach (Room deadEnd in deadEnds)
         {
-            if (deadEnd.distance > highestDistance)
+            if (deadEnd.distance > highestDeadEnd.distance)
             {
-                highestDistance = deadEnd.distance;
-                highestID = deadEnd.id;
+                highestDeadEnd = deadEnd;
             }
         }
 
-        return rooms.rooms[rooms.indexById(highestID)];
+        return highestDeadEnd;
     }
 
     private List<Room> assignDeadEnds(RoomsList rooms, Room currentRoom, Direction dir = Direction.NONE, int currentDistance = 0)
@@ -91,23 +89,19 @@ class PathFinder
 
         if (room.roomNorth && (dir != Direction.NORTH))
         {
-            int id = rooms.idByCoords(room.x, room.y + 1);
-            neighbours.Add(rooms.rooms[rooms.indexById(id)]);
+            neighbours.Add(rooms.roomByCoords(room.x, room.y + 1));
         }
         if (room.roomSouth && (dir != Direction.SOUTH))
         {
-            int id = rooms.idByCoords(room.x, room.y - 1);
-            neighbours.Add(rooms.rooms[rooms.indexById(id)]);
+            neighbours.Add(rooms.roomByCoords(room.x, room.y - 1));
         }
         if (room.roomEast && (dir != Direction.EAST))
         {
-            int id = rooms.idByCoords(room.x + 1, room.y);
-            neighbours.Add(rooms.rooms[rooms.indexById(id)]);
+            neighbours.Add(rooms.roomByCoords(room.x + 1, room.y));
         }
         if (room.roomWest && (dir != Direction.WEST))
         {
-            int id = rooms.idByCoords(room.x - 1, room.y);
-            neighbours.Add(rooms.rooms[rooms.indexById(id)]);
+            neighbours.Add(rooms.roomByCoords(room.x - 1, room.y));
         }
 
         return neighbours;

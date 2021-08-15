@@ -76,33 +76,35 @@ class DungeonLayoutGenerator
                 int neighbourDirectionIndex = Random.Range(0, doorPositions.Count);
                 Direction neighbourDirection = doorPositions[neighbourDirectionIndex];
 
+                roomIndex = rooms.indexById(room.id);
+
                 // Set the neighbour boolean values to the original room
                 // and the neighbour room
                 switch (neighbourDirection)
                 {
                     case Direction.NORTH:
-                        rooms.rooms[rooms.indexById(room.id)].roomNorth = true;
+                        rooms.rooms[roomIndex].roomNorth = true;
                         roomNorth.roomSouth = true;
                         rooms.Add(roomNorth);
                         availableRooms.Add(roomNorth);
                         break;
 
                     case Direction.SOUTH:
-                        rooms.rooms[rooms.indexById(room.id)].roomSouth = true;
+                        rooms.rooms[roomIndex].roomSouth = true;
                         roomSouth.roomNorth = true;
                         rooms.Add(roomSouth);
                         availableRooms.Add(roomSouth);
                         break;
 
                     case Direction.EAST:
-                        rooms.rooms[rooms.indexById(room.id)].roomEast = true;
+                        rooms.rooms[roomIndex].roomEast = true;
                         roomEast.roomWest = true;
                         rooms.Add(roomEast);
                         availableRooms.Add(roomEast);
                         break;
 
                     case Direction.WEST:
-                        rooms.rooms[rooms.indexById(room.id)].roomWest = true;
+                        rooms.rooms[roomIndex].roomWest = true;
                         roomWest.roomEast = true;
                         rooms.Add(roomWest);
                         availableRooms.Add(roomWest);
