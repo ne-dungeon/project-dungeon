@@ -75,4 +75,18 @@ public class RoomsList
         }
         return -1;
     }
+
+    public Room roomByCoords(int x, int y)
+    {
+        foreach (Room room in rooms)
+        {
+            if (x == room.x && y == room.y)
+            {
+                return room;
+            }
+        }
+
+        // Room not found error
+        return new Room(-1, -1);
+    }
 }
