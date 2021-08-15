@@ -3,55 +3,61 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-static class PathFinder
+class PathFinder
 {
-    public enum Direction { NONE, NORTH, SOUTH, EAST, WEST }
+    public enum Direction { NORTH, SOUTH, EAST, WEST, NONE }
 
     // Returns the integer ID of the boss room
-    static public int findBossRoom(List<Room> rooms, int originId, Direction dir = Direction.NONE, int currentDistance = 0)
+    public Room findBossRoom(RoomsList rooms, int originId)
     {
-        List<Room> traversedRooms = assignDistances(rooms, originId);
+        // Populate a list of dead end rooms with their distance from the origin room
+        Room originRoom = rooms.roomById(originId);
+        List<Room> deadEnds = assignDeadEnds(rooms, originRoom);
 
-        int highestDistanceId = 0;
-        int highestDistance = 0;
+        // Find the dead end room farthest from the origin room
+        Room highestDeadEnd = new Room(0, 0);
 
-        foreach (Room room in traversedRooms)
+        foreach (Room deadEnd in deadEnds)
         {
-            if (room.distance > highestDistance)
+            if (deadEnd.distance > highestDeadEnd.distance)
             {
-                highestDistance = room.distance;
-                highestDistanceId = room.id;
+                highestDeadEnd = deadEnd;
             }
         }
 
-        return highestDistanceId;
+        return highestDeadEnd;
     }
 
-    static private List<Room> assignDistances(List<Room> rooms, int currentId, Direction dir = Direction.NONE, int currentDistance = 0)
+    private List<Room> assignDeadEnds(RoomsList rooms, Room currentRoom, Direction dir = Direction.NONE, int currentDistance = 0)
     {
-        int index = RoomsListInterface.indexById(rooms, currentId);
-        rooms[index].distance = currentDistance;
-        Room currentRoom = rooms[index];
+        List<Room> deadEndRooms = new List<Room>();
+        List<Room> neighbours = getNeighbours(rooms, currentRoom, dir);
 
-        List<int> neighbourIds = getNeighbours(rooms, currentRoom, dir);
-
-        if (neighbourIds.Count == 0)
+        if (neighbours.Count == 0)
         {
-            return rooms;
+            currentRoom.distance = currentDistance;
+            deadEndRooms.Add(currentRoom);
+            return deadEndRooms;
+        }
+        else
+        {
+            foreach (Room neighbour in neighbours)
+            {
+                Direction direction = getDir(currentRoom, neighbour);
+                List<Room> newDeadEndRooms = assignDeadEnds(rooms, neighbour, direction, currentDistance + 1);
+
+                foreach (Room deadEnd in newDeadEndRooms)
+                {
+                    deadEndRooms.Add(deadEnd);
+                }
+            }
         }
 
-        foreach (int id in neighbourIds)
-        {
-            Room neighbour = rooms[RoomsListInterface.indexById(rooms, id)];
-            Direction neighbourDir = getDir(currentRoom, neighbour);
-            assignDistances(rooms, id, neighbourDir, currentDistance + 1);
-        }
-
-        return rooms;
+        return deadEndRooms;
     }
 
     // Gets direction of room from neighbour room
-    static Direction getDir(Room room, Room neighbourRoom)
+    Direction getDir(Room room, Room neighbourRoom)
     {
         int xDif, yDif;
         xDif = room.x - neighbourRoom.x;
@@ -59,9 +65,9 @@ static class PathFinder
 
         switch (yDif)
         {
-        case -1:
-            return Direction.NORTH;
         case 1:
+            return Direction.NORTH;
+        case -1:
             return Direction.SOUTH;
         }
 
@@ -77,40 +83,27 @@ static class PathFinder
     }
 
     // Dir is the door the search entered the room through
-    static private List<int> getNeighbours(List<Room> rooms, Room room, Direction dir)
+    private List<Room> getNeighbours(RoomsList rooms, Room room, Direction dir)
     {
-        List<int> neighbourIds = new List<int>();
+        List<Room> neighbours = new List<Room>();
 
-        if (room.roomNorth && dir != Direction.NORTH)
+        if (room.roomNorth && (dir != Direction.NORTH))
         {
-            neighbourIds.Add(idByCoords(rooms, room.x, room.y - 1));
+            neighbours.Add(rooms.roomByCoords(room.x, room.y + 1));
         }
-        else if (room.roomSouth && dir != Direction.SOUTH)
+        if (room.roomSouth && (dir != Direction.SOUTH))
         {
-            neighbourIds.Add(idByCoords(rooms, room.x, room.y + 1));
+            neighbours.Add(rooms.roomByCoords(room.x, room.y - 1));
         }
-        else if (room.roomEast && dir != Direction.EAST)
+        if (room.roomEast && (dir != Direction.EAST))
         {
-            neighbourIds.Add(idByCoords(rooms, room.x + 1, room.y));
+            neighbours.Add(rooms.roomByCoords(room.x + 1, room.y));
         }
-        else if (room.roomWest && dir != Direction.WEST)
+        if (room.roomWest && (dir != Direction.WEST))
         {
-            neighbourIds.Add(idByCoords(rooms, room.x - 1, room.y));
+            neighbours.Add(rooms.roomByCoords(room.x - 1, room.y));
         }
 
-        return neighbourIds;
-    }
-
-    // Get the ID of a from from its coordinates
-    static private int idByCoords(List<Room> rooms, int x, int y)
-    {
-        foreach (Room room in rooms)
-        {
-            if (x == room.x && y == room.y)
-            {
-                return room.id;
-            }
-        }
-        return -1;
+        return neighbours;
     }
 }
