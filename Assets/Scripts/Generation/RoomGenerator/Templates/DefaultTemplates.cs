@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Creates templates for the Default dungeon theme.
+/// Creates tile position templates for the Default dungeon theme.
 /// </summary>
 public class DefaultTemplates : ThemeTemplates
 {
@@ -15,7 +15,7 @@ public class DefaultTemplates : ThemeTemplates
     // Templates applicable to default dungeon theme
     // REturn multiple vectors of various tile types?
     // how to compare template to doors?
-    public override TilePositionTemplate DoorsAny()
+    public override TilePositionTemplate Get()
     {
         // insert code to randomly select one of several templates
         return SolidRoom();
@@ -23,11 +23,17 @@ public class DefaultTemplates : ThemeTemplates
 
     private TilePositionTemplate SolidRoom()
     {
-        // Set coordinates for floor tiles.
+        // Get coordinates for floor tiles.
         HashSet<Vector2Int> floorTiles = TemplateHelpers.FillRectangularCoordinates(roomHeight, roomWidth);
 
-        // Set coordinates for wall tiles.
+        // Get coordinates for wall tiles.
         HashSet<Vector2Int> wallTiles = WallGenerator.GetWalls(floorTiles, roomHeight, roomWidth);
+
+        // // Get the total area that we do not want overridden with background tiles.
+        // var gameSceneTiles = new HashSet<Vector2Int> (floorTiles);
+        // gameSceneTiles.UnionWith(wallTiles);
+        // // Then get the background tile coordinates.
+        // HashSet<Vector2Int> wallOverrideTiles = WallGenerator.GetWallOverrides(gameSceneTiles, roomHeight, roomWidth);
 
         return new TilePositionTemplate(floorTiles, wallTiles);
     }

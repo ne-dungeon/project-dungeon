@@ -11,14 +11,22 @@ public class Template : MonoBehaviour
 
     private ThemeTemplates themeTemplates;
 
+    // Tilemaps to affect
     [SerializeField]
     private Tilemap floorTilemap;
     [SerializeField]
     private Tilemap wallTilemap;
     [SerializeField]
+    private Tilemap doorTilemap;
+    // Tiles to use
+    [SerializeField]
     private TileBase floorRuleTile;
     [SerializeField]
     private TileBase wallRuleTile;
+    // [SerializeField]
+    // private TileBase wallOverrideTile;
+    [SerializeField]
+    private TileBase doorRuleTile;
 
     public void RunGetTemplate()
     {
@@ -27,12 +35,15 @@ public class Template : MonoBehaviour
         TilemapPainter.PaintTiles(templateTiles.floorTilePositions, floorTilemap, floorRuleTile);
         // Paint wall tiles.
         TilemapPainter.PaintTiles(templateTiles.wallTilePositions, wallTilemap, wallRuleTile);
+        // // Paint override tiles.
+        // TilemapPainter.PaintTiles(templateTiles.wallOverridePositions, wallTilemap, wallOverrideTile);
     }
 
     public void ClearAllTileMaps()
     {
         TilemapPainter.ClearTiles(floorTilemap);
         TilemapPainter.ClearTiles(wallTilemap);
+        TilemapPainter.ClearTiles(doorTilemap);
     }
 
     // Overload with no parameters for testing purposes, delete once things are working and proper tests are set up.
@@ -40,10 +51,10 @@ public class Template : MonoBehaviour
     {
         theme = Theme.Default;
         doors = new DoorDetails[] {
-            new DoorDetails(0, DoorDirection.NORTH, DoorType.Open),
-            new DoorDetails(0, DoorDirection.SOUTH, DoorType.Open),
-            new DoorDetails(0, DoorDirection.EAST, DoorType.Open),
-            new DoorDetails(0, DoorDirection.WEST, DoorType.Open)
+            new DoorDetails(0, DoorDirection.NORTH, DoorType.Open, 4),
+            new DoorDetails(0, DoorDirection.SOUTH, DoorType.Open, 4),
+            new DoorDetails(0, DoorDirection.EAST, DoorType.Open, 4),
+            new DoorDetails(0, DoorDirection.WEST, DoorType.Open, 4)
             };
         return GetTemplate(theme, doors);
     }
@@ -58,6 +69,6 @@ public class Template : MonoBehaviour
         // TODO: Logic to compare door directions with possible template functions and return which 
         // template functions are valid for this set of doors. Only interested in None vs more than none.
         themeTemplates = new DefaultTemplates();
-        return themeTemplates.DoorsAny();
+        return themeTemplates.Get();
     }
 }

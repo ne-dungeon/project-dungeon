@@ -10,14 +10,15 @@ using UnityEngine.Tilemaps;
 /// </summary>
 public static class WallGenerator
 {
-    // The total additional tiles to be placed in each direction beyond the room
-    // size. An overrun of 6 will create 3 additional tiles on each side (half 
-    // above, half below).
+    // The overrun "blank" tiles to be placed outside the walls, on each side. (Doubled in the function)
     [SerializeField]
-    private static int overrunVertical = 6;
+    private static int overrunVertical = 3;
+    [SerializeField]
+    private static int overrunHorizontal = 5;
 
-    [SerializeField]
-    private static int overrunHorizontal = 10;
+    // The width of the wall graphics in tiles. 
+    // [SerializeField]
+    // private static int wallWidth = 1;
 
 
     private static List<Vector2Int> cardinalDirections = new List<Vector2Int> {
@@ -27,23 +28,40 @@ public static class WallGenerator
          Vector2Int.right
     };
 
+    // Gets the positions of walls of specified width surrounding the room.
     public static HashSet<Vector2Int> GetWalls(HashSet<Vector2Int> nonWallPositions, int roomHeight, int roomWidth)
     {
-        int wallPositionsHeight = roomHeight + overrunVertical;
-        int wallPositionsWidth = roomWidth + overrunHorizontal;
+        int wallPositionsHeight = roomHeight + (overrunVertical * 2);
+        int wallPositionsWidth = roomWidth + (overrunHorizontal * 2);
+        // int wallPositionsHeight = roomHeight + (wallWidth * 2);
+        // int wallPositionsWidth = roomWidth + (wallWidth * 2);
 
         HashSet<Vector2Int> wallPositions = GetRectangularWallPositions(nonWallPositions, wallPositionsHeight, wallPositionsWidth);
         
         return wallPositions;
     }
 
-    private static HashSet<Vector2Int> GetRectangularWallPositions(HashSet<Vector2Int> nonWallPositions, int wallPositionsHeight, int wallPositionsWidth)
+    // Gets the positions to fill with blank space override tiles.
+    // internal static HashSet<Vector2Int> GetWallOverrides(HashSet<Vector2Int> gameSceneTiles, int roomHeight, int roomWidth)
+    // {
+    //     int wallPositionsHeight = roomHeight + (overrunVertical * 2);
+    //     int wallPositionsWidth = roomWidth + (overrunHorizontal * 2);
+
+    //     HashSet<Vector2Int> wallPositions = GetRectangularWallPositions(gameSceneTiles, wallPositionsHeight, wallPositionsWidth);
+        
+    //     return wallPositions;
+    // }
+
+    /// <summary>
+    /// Fills a space of specified size, then removes the positions occupied by something else.
+    /// </summary>
+    private static HashSet<Vector2Int> GetRectangularWallPositions(HashSet<Vector2Int> positionsToRemove, int totalPositionsHeight, int totalPositionsWidth)
     {
-        // Fill the viewing area. 
-        HashSet<Vector2Int> wallPositions = TemplateHelpers.FillRectangularCoordinates(wallPositionsHeight, wallPositionsWidth);
+        // Fill the total area. 
+        HashSet<Vector2Int> wallPositions = TemplateHelpers.FillRectangularCoordinates(totalPositionsHeight, totalPositionsWidth);
 
         // Then remove every position that is a position of something not a wall (floor, pit, etc.)
-        wallPositions.RemoveWhere(nonWallPositions.Contains);
+        wallPositions.RemoveWhere(positionsToRemove.Contains);
         
         return wallPositions;
     }

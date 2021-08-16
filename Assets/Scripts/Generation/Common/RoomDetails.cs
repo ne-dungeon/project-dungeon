@@ -75,6 +75,7 @@ public class RoomDetails : ScriptableObject
     // Coordinates?
     // public SomeType coordinates;
 
+    // Move to generated room class/struct that contains all the tilemap templates, etc.
     public bool validateGeneration()
     {
         // Add code to verify that everything that needs to be generated for the room to be a room has been generated.
@@ -87,18 +88,22 @@ public class RoomDetails : ScriptableObject
 /// position in the wall.</summary>
 public struct DoorDetails
 {
-    public DoorDetails(int goesToID, DoorDirection direction, DoorType type, int position = 0)
+    public DoorDetails(int goesToID, DoorDirection direction, DoorType type, int position)
     {
         this.goesToID = goesToID;
         this.direction = direction;
         this.type = type;
         this.position = position;
     }
+    // Every door should have a paired door that is its opposite.
     int goesToID;
+    // The wall of the room that the door goes to.
     DoorDirection direction;
     DoorType type;
-    // 0 is centered in the wall, position will be added to 0 to determine 
-    // final location in wall. Specifics of +/- results depend on axis (direction).
+    // Position is how many tiles from the lower (for doors on east and west walls)
+    // or leftmost (for doors on north and south walls) tile the first tile of the 
+    // door is. A door on the west wall at position 0 will take tiles 0 and 1 on the
+    // west wall and be directly in the southern corner. 
     int position;
 }
 
