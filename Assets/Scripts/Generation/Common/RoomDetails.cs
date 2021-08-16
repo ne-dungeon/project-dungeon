@@ -12,7 +12,7 @@ using UnityEngine;
 public class RoomDetails : ScriptableObject
 {
     // public RoomDetails(
-    //     int id, DoorDetails[] doors, Theme theme = Theme.Default, 
+    //     int id, HashSet<DoorDetails> doors, Theme theme = Theme.Default, 
     //     int roomHeight = 8, int roomWidth = 12, 
     //     bool startRoom = false, bool goesDown = false,
     //     byte difficultyDepth = 0, byte minions = 0,
@@ -52,7 +52,7 @@ public class RoomDetails : ScriptableObject
     // Is this the room with the stairs down?
     public bool goesDown = false;
     // Which doors and of what type should be generated.
-    public DoorDetails[] doors;
+    public HashSet<DoorDetails> doors;
     // public DoorDirections doors;
     // How deep does it go.....?
     public byte difficultyDepth = 0;

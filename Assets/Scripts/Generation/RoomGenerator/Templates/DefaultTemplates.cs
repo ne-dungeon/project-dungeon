@@ -15,7 +15,7 @@ public class DefaultTemplates : ThemeTemplates
     // Templates applicable to default dungeon theme
     // REturn multiple vectors of various tile types?
     // how to compare template to doors?
-    public override TilePositionTemplate Get()
+    public override TilePositionTemplate Get(HashSet<DoorDetails> doors)
     {
         // insert code to randomly select one of several templates
         return SolidRoom();
