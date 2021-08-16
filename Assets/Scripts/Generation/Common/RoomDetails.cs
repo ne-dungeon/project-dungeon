@@ -88,7 +88,7 @@ public class RoomDetails : ScriptableObject
 /// position in the wall.</summary>
 public struct DoorDetails
 {
-    public DoorDetails(int goesToID, DoorDirection direction, DoorType type, int position)
+    public DoorDetails(int goesToID, DoorDirection direction, DoorType type, int position = 0)
     {
         this.goesToID = goesToID;
         this.direction = direction;
@@ -96,15 +96,15 @@ public struct DoorDetails
         this.position = position;
     }
     // Every door should have a paired door that is its opposite.
-    int goesToID;
+    public int goesToID;
     // The wall of the room that the door goes to.
-    DoorDirection direction;
-    DoorType type;
-    // Position is how many tiles from the lower (for doors on east and west walls)
-    // or leftmost (for doors on north and south walls) tile the first tile of the 
-    // door is. A door on the west wall at position 0 will take tiles 0 and 1 on the
-    // west wall and be directly in the southern corner. 
-    int position;
+    public DoorDirection direction;
+    public DoorType type;
+    // Position is the positive coordinate position of door on the wall. 
+    // Example: an east facing wall of length 8. Coordinates on the wall range from 
+    // -4 to +3 y.  A door at position 0 would occupy tiles -1 and 0 y.
+    // Defaults to 0 as this is the center of the wall.
+    public int position;
 }
 
 public enum DoorDirection { NORTH, SOUTH, EAST, WEST }

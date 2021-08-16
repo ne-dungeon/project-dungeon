@@ -10,6 +10,9 @@ public class DefaultTemplates : ThemeTemplates
     // Insert code to get and assign to variables appropriate Tiles for this room's floors, walls, etc 
     // OR: Ruletile?
 
+    // Odd values for room width and height may produce unexpected behavior. We can 
+    // write code for this in the future but at the moment code assumes all values will 
+    // be even.
     public DefaultTemplates(int roomWidth = 8, int roomHeight = 12) : base(roomWidth, roomHeight) { }
 
     // Templates applicable to default dungeon theme
@@ -18,23 +21,20 @@ public class DefaultTemplates : ThemeTemplates
     public override TilePositionTemplate Get(HashSet<DoorDetails> doors)
     {
         // insert code to randomly select one of several templates
-        return SolidRoom();
+        return SolidRoom(doors);
     }
 
-    private TilePositionTemplate SolidRoom()
+    private TilePositionTemplate SolidRoom(HashSet<DoorDetails> doors)
     {
         // Get coordinates for floor tiles.
         HashSet<Vector2Int> floorTiles = TemplateHelpers.FillRectangularCoordinates(roomHeight, roomWidth);
 
         // Get coordinates for wall tiles.
         HashSet<Vector2Int> wallTiles = WallGenerator.GetWalls(floorTiles, roomHeight, roomWidth);
+        
+        // Get coordinates for door tiles.
+        HashSet<Vector2Int> doorTiles = DoorGenerator.GetDoors(doors, roomHeight, roomWidth);
 
-        // // Get the total area that we do not want overridden with background tiles.
-        // var gameSceneTiles = new HashSet<Vector2Int> (floorTiles);
-        // gameSceneTiles.UnionWith(wallTiles);
-        // // Then get the background tile coordinates.
-        // HashSet<Vector2Int> wallOverrideTiles = WallGenerator.GetWallOverrides(gameSceneTiles, roomHeight, roomWidth);
-
-        return new TilePositionTemplate(floorTiles, wallTiles);
+        return new TilePositionTemplate(floorTiles, wallTiles, doorTiles);
     }
 }

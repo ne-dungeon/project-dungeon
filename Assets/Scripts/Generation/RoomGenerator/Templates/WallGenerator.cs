@@ -16,9 +16,9 @@ public static class WallGenerator
     [SerializeField]
     private static int overrunHorizontal = 5;
 
-    // The width of the wall graphics in tiles. 
-    // [SerializeField]
-    // private static int wallWidth = 1;
+    // The width of the wall graphics in tiles.
+    public const int WALLWIDTH = 1;
+    // TODO: Make this 2 when graphcis are available.
 
 
     private static List<Vector2Int> cardinalDirections = new List<Vector2Int> {
@@ -33,24 +33,11 @@ public static class WallGenerator
     {
         int wallPositionsHeight = roomHeight + (overrunVertical * 2);
         int wallPositionsWidth = roomWidth + (overrunHorizontal * 2);
-        // int wallPositionsHeight = roomHeight + (wallWidth * 2);
-        // int wallPositionsWidth = roomWidth + (wallWidth * 2);
 
         HashSet<Vector2Int> wallPositions = GetRectangularWallPositions(nonWallPositions, wallPositionsHeight, wallPositionsWidth);
-        
+
         return wallPositions;
     }
-
-    // Gets the positions to fill with blank space override tiles.
-    // internal static HashSet<Vector2Int> GetWallOverrides(HashSet<Vector2Int> gameSceneTiles, int roomHeight, int roomWidth)
-    // {
-    //     int wallPositionsHeight = roomHeight + (overrunVertical * 2);
-    //     int wallPositionsWidth = roomWidth + (overrunHorizontal * 2);
-
-    //     HashSet<Vector2Int> wallPositions = GetRectangularWallPositions(gameSceneTiles, wallPositionsHeight, wallPositionsWidth);
-        
-    //     return wallPositions;
-    // }
 
     /// <summary>
     /// Fills a space of specified size, then removes the positions occupied by something else.
@@ -62,7 +49,7 @@ public static class WallGenerator
 
         // Then remove every position that is a position of something not a wall (floor, pit, etc.)
         wallPositions.RemoveWhere(positionsToRemove.Contains);
-        
+
         return wallPositions;
     }
 

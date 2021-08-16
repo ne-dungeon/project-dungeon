@@ -23,11 +23,10 @@ public class Template : MonoBehaviour
     private TileBase floorRuleTile;
     [SerializeField]
     private TileBase wallRuleTile;
-    // [SerializeField]
-    // private TileBase wallOverrideTile;
     [SerializeField]
     private TileBase doorRuleTile;
 
+    // Test build a template and paint its tiles.
     public void RunGetTemplate()
     {
         var templateTiles = GetTemplate();
@@ -35,8 +34,8 @@ public class Template : MonoBehaviour
         TilemapPainter.PaintTiles(templateTiles.floorTilePositions, floorTilemap, floorRuleTile);
         // Paint wall tiles.
         TilemapPainter.PaintTiles(templateTiles.wallTilePositions, wallTilemap, wallRuleTile);
-        // // Paint override tiles.
-        // TilemapPainter.PaintTiles(templateTiles.wallOverridePositions, wallTilemap, wallOverrideTile);
+        // Paint door tiles.
+        TilemapPainter.PaintTiles(templateTiles.doorTilePositions, wallTilemap, doorRuleTile);
     }
 
     public void ClearAllTileMaps()
@@ -46,14 +45,15 @@ public class Template : MonoBehaviour
         TilemapPainter.ClearTiles(doorTilemap);
     }
 
-    // Overload with no parameters for testing purposes, delete once things are working and proper tests are set up.
+    // Overload with no parameters for testing purposes, delete (or refactor for 
+    // continued testing) once things are working and proper tests are set up.
     public TilePositionTemplate GetTemplate()
     {
         theme = Theme.Default;
         doors = new HashSet<DoorDetails>(){new DoorDetails(0, DoorDirection.NORTH, DoorType.Open, 4),
-            new DoorDetails(0, DoorDirection.SOUTH, DoorType.Open, 4),
-            new DoorDetails(0, DoorDirection.EAST, DoorType.Open, 4),
-            new DoorDetails(0, DoorDirection.WEST, DoorType.Open, 4)};
+            new DoorDetails(0, DoorDirection.SOUTH, DoorType.Open, -3),
+            new DoorDetails(0, DoorDirection.EAST, DoorType.Open, 1),
+            new DoorDetails(0, DoorDirection.WEST, DoorType.Open, 2)};
         return GetTemplate(theme, doors);
     }
 

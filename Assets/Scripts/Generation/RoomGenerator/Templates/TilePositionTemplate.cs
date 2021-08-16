@@ -6,13 +6,13 @@ public struct TilePositionTemplate
 {
     public HashSet<Vector2Int> floorTilePositions;
     public HashSet<Vector2Int> wallTilePositions;
-    // public HashSet<Vector2Int> wallOverridePositions;
+    public HashSet<Vector2Int> doorTilePositions;
 
     public TilePositionTemplate(HashSet<Vector2Int> floorPositions,
-                                HashSet<Vector2Int> wallPositions) {
-                                // HashSet<Vector2Int> wallOverridePositions) {
+                                HashSet<Vector2Int> wallPositions,
+                                HashSet<Vector2Int> wallOverridePositions) {
         this.floorTilePositions = floorPositions;
         this.wallTilePositions = wallPositions;
-        // this.wallOverridePositions = wallOverridePositions;
+        this.doorTilePositions = wallOverridePositions;
     }
 }
