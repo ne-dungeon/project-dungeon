@@ -3,40 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Creates templates for the Default dungeon theme.
+/// Creates tile position templates for the Default dungeon theme.
 /// </summary>
 public class DefaultTemplates : ThemeTemplates
 {
-    private static int roomHeight = 8;
-    private static int roomWidth = 12;
+    // Insert code to get and assign to variables appropriate Tiles for this room's floors, walls, etc 
+    // OR: Ruletile?
+
+    // Odd values for room width and height may produce unexpected behavior. We can 
+    // write code for this in the future but at the moment code assumes all values will 
+    // be even.
+    public DefaultTemplates(int roomWidth = 8, int roomHeight = 12) : base(roomWidth, roomHeight) { }
 
     // Templates applicable to default dungeon theme
     // REturn multiple vectors of various tile types?
     // how to compare template to doors?
-    public override HashSet<Vector2Int> DoorsAny()
+    public override TilePositionTemplate Get(HashSet<DoorDetails> doors)
     {
         // insert code to randomly select one of several templates
-        return SolidRoom();
+        return SolidRoom(doors);
     }
 
-    private static HashSet<Vector2Int> SolidRoom()
+    private TilePositionTemplate SolidRoom(HashSet<DoorDetails> doors)
     {
-        HashSet<Vector2Int> floorTiles = new HashSet<Vector2Int>();
+        // Get coordinates for floor tiles.
+        HashSet<Vector2Int> floorTiles = TemplateHelpers.FillRectangularCoordinates(roomHeight, roomWidth);
 
+        // Get coordinates for wall tiles.
+        HashSet<Vector2Int> wallTiles = WallGenerator.GetWalls(floorTiles, roomHeight, roomWidth);
+        
+        // Get coordinates for door tiles.
+        HashSet<Vector2Int> doorTiles = DoorGenerator.GetDoors(doors, roomHeight, roomWidth);
 
-        var startAtHeight = -(roomHeight / 2);
-        var startAtWidth = -(roomWidth / 2);
-        for (int width = startAtWidth; width < roomWidth / 2; width++)
-        {
-            for (int height = startAtHeight; height < roomHeight / 2; height++)
-            {
-                var tileCoords = new Vector2Int(width, height);
-                Debug.Log(tileCoords);
-                floorTiles.Add(tileCoords);
-                //  floorTiles.Add(new Vector2Int(width, height));
-            }
-        }
-
-        return floorTiles;
+        return new TilePositionTemplate(floorTiles, wallTiles, doorTiles);
     }
 }
