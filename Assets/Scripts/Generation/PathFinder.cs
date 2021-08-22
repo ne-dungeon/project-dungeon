@@ -8,16 +8,16 @@ class PathFinder
     public enum Direction { NORTH, SOUTH, EAST, WEST, NONE }
 
     // Returns the integer ID of the boss room
-    public RoomLayout findBossRoom(RoomsList rooms, int originId)
+    public LayoutRoom findBossRoom(LayoutRoomsList rooms, int originId)
     {
         // Populate a list of dead end rooms with their distance from the origin room
-        RoomLayout originRoom = rooms.roomById(originId);
-        List<RoomLayout> deadEnds = assignDeadEnds(rooms, originRoom);
+        LayoutRoom originRoom = rooms.roomById(originId);
+        List<LayoutRoom> deadEnds = assignDeadEnds(rooms, originRoom);
 
         // Find the dead end room farthest from the origin room
-        RoomLayout highestDeadEnd = new RoomLayout(0, 0);
+        LayoutRoom highestDeadEnd = new LayoutRoom(0, 0);
 
-        foreach (RoomLayout deadEnd in deadEnds)
+        foreach (LayoutRoom deadEnd in deadEnds)
         {
             if (deadEnd.distance > highestDeadEnd.distance)
             {
@@ -28,10 +28,10 @@ class PathFinder
         return highestDeadEnd;
     }
 
-    private List<RoomLayout> assignDeadEnds(RoomsList rooms, RoomLayout currentRoom, Direction dir = Direction.NONE, int currentDistance = 0)
+    private List<LayoutRoom> assignDeadEnds(LayoutRoomsList rooms, LayoutRoom currentRoom, Direction dir = Direction.NONE, int currentDistance = 0)
     {
-        List<RoomLayout> deadEndRooms = new List<RoomLayout>();
-        List<RoomLayout> neighbours = getNeighbours(rooms, currentRoom, dir);
+        List<LayoutRoom> deadEndRooms = new List<LayoutRoom>();
+        List<LayoutRoom> neighbours = getNeighbours(rooms, currentRoom, dir);
 
         if (neighbours.Count == 0)
         {
@@ -41,12 +41,12 @@ class PathFinder
         }
         else
         {
-            foreach (RoomLayout neighbour in neighbours)
+            foreach (LayoutRoom neighbour in neighbours)
             {
                 Direction direction = getDir(currentRoom, neighbour);
-                List<RoomLayout> newDeadEndRooms = assignDeadEnds(rooms, neighbour, direction, currentDistance + 1);
+                List<LayoutRoom> newDeadEndRooms = assignDeadEnds(rooms, neighbour, direction, currentDistance + 1);
 
-                foreach (RoomLayout deadEnd in newDeadEndRooms)
+                foreach (LayoutRoom deadEnd in newDeadEndRooms)
                 {
                     deadEndRooms.Add(deadEnd);
                 }
@@ -57,7 +57,7 @@ class PathFinder
     }
 
     // Gets direction of room from neighbour room
-    Direction getDir(RoomLayout room, RoomLayout neighbourRoom)
+    Direction getDir(LayoutRoom room, LayoutRoom neighbourRoom)
     {
         int xDif, yDif;
         xDif = room.x - neighbourRoom.x;
@@ -83,9 +83,9 @@ class PathFinder
     }
 
     // Dir is the door the search entered the room through
-    private List<RoomLayout> getNeighbours(RoomsList rooms, RoomLayout room, Direction dir)
+    private List<LayoutRoom> getNeighbours(LayoutRoomsList rooms, LayoutRoom room, Direction dir)
     {
-        List<RoomLayout> neighbours = new List<RoomLayout>();
+        List<LayoutRoom> neighbours = new List<LayoutRoom>();
 
         if (room.roomNorth && (dir != Direction.NORTH))
         {

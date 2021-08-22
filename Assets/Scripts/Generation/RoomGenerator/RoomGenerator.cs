@@ -9,9 +9,9 @@ using UnityEngine;
 public class RoomGenerator : MonoBehaviour
 {
     [SerializeField]
-    RoomDetails details;
+    RoomGenDetails details;
 
-    public RoomGenerator(RoomDetails details) {
+    public RoomGenerator(RoomGenDetails details) {
         this.details = details;
     }
     

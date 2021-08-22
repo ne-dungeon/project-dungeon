@@ -4,8 +4,6 @@ using UnityEngine;
 
 class DungeonLayoutGenerator
 {
-    enum Direction { NORTH, SOUTH, EAST, WEST }
-
     /*  Returns a list of Room objects.
 
         Rooms contain boolean variables that indicate where their neighbour
@@ -14,58 +12,58 @@ class DungeonLayoutGenerator
 
         Rooms contain grid coordinates that describe the placement of rooms
         in relation to each other, not the physical GameObject coordinates. */
-    public RoomsList GenerateDungeonLayout(int numRooms)
+    public LayoutRoomsList GenerateDungeonLayout(int numRooms)
     {
-        RoomsList rooms = new RoomsList();
-        RoomsList availableRooms = new RoomsList();
-        List<Direction> doorPositions = new List<Direction>();
+        LayoutRoomsList rooms = new LayoutRoomsList();
+        LayoutRoomsList availableRooms = new LayoutRoomsList();
+        List<DoorDirection> doorPositions = new List<DoorDirection>();
 
         int roomId = 0;
 
-        RoomLayout originRoom = new RoomLayout(roomId, 0, 0);
+        LayoutRoom originRoom = new LayoutRoom(roomId, 0, 0);
         roomId++;
 
         rooms.Add(originRoom);
         availableRooms.Add(originRoom);
 
         while (rooms.Count() < numRooms)
-        {    
-            doorPositions.Add(Direction.NORTH);
-            doorPositions.Add(Direction.SOUTH);
-            doorPositions.Add(Direction.EAST);
-            doorPositions.Add(Direction.WEST);
+        {
+            doorPositions.Add(DoorDirection.NORTH);
+            doorPositions.Add(DoorDirection.SOUTH);
+            doorPositions.Add(DoorDirection.EAST);
+            doorPositions.Add(DoorDirection.WEST);
 
             int roomIndex = Random.Range(0, availableRooms.Count());
-            RoomLayout room = availableRooms.rooms[roomIndex];
+            LayoutRoom room = availableRooms.rooms[roomIndex];
 
             // Create temp neighbours
-            RoomLayout roomNorth = new RoomLayout(roomId, room.x, room.y + 1);
-            RoomLayout roomSouth = new RoomLayout(roomId, room.x, room.y - 1);
-            RoomLayout roomEast = new RoomLayout(roomId, room.x + 1, room.y);
-            RoomLayout roomWest = new RoomLayout(roomId, room.x - 1, room.y);
+            LayoutRoom roomNorth = new LayoutRoom(roomId, room.x, room.y + 1);
+            LayoutRoom roomSouth = new LayoutRoom(roomId, room.x, room.y - 1);
+            LayoutRoom roomEast = new LayoutRoom(roomId, room.x + 1, room.y);
+            LayoutRoom roomWest = new LayoutRoom(roomId, room.x - 1, room.y);
             roomId++;
 
             // Remove door positions where a door is already there
             // since we don't want to overwrite it
             if (rooms.inRooms(roomNorth))
             {
-                doorPositions.Remove(Direction.NORTH);
+                doorPositions.Remove(DoorDirection.NORTH);
             }
             if (rooms.inRooms(roomSouth))
             {
-                doorPositions.Remove(Direction.SOUTH);
+                doorPositions.Remove(DoorDirection.SOUTH);
             }
             if (rooms.inRooms(roomEast))
             {
-                doorPositions.Remove(Direction.EAST);
+                doorPositions.Remove(DoorDirection.EAST);
             }
             if (rooms.inRooms(roomWest))
             {
-                doorPositions.Remove(Direction.WEST);
+                doorPositions.Remove(DoorDirection.WEST);
             }
 
             // If there are no places where a new door can be placed,
-            // then this room is not available for brancing.
+            // then this room is not available for branching.
             // So we need to remove this room from availableRooms
             if (doorPositions.Count == 0)
             {
@@ -74,7 +72,7 @@ class DungeonLayoutGenerator
             else
             {
                 int neighbourDirectionIndex = Random.Range(0, doorPositions.Count);
-                Direction neighbourDirection = doorPositions[neighbourDirectionIndex];
+                DoorDirection neighbourDirection = doorPositions[neighbourDirectionIndex];
 
                 roomIndex = rooms.indexById(room.id);
 
@@ -82,28 +80,28 @@ class DungeonLayoutGenerator
                 // and the neighbour room
                 switch (neighbourDirection)
                 {
-                    case Direction.NORTH:
+                    case DoorDirection.NORTH:
                         rooms.rooms[roomIndex].roomNorth = true;
                         roomNorth.roomSouth = true;
                         rooms.Add(roomNorth);
                         availableRooms.Add(roomNorth);
                         break;
 
-                    case Direction.SOUTH:
+                    case DoorDirection.SOUTH:
                         rooms.rooms[roomIndex].roomSouth = true;
                         roomSouth.roomNorth = true;
                         rooms.Add(roomSouth);
                         availableRooms.Add(roomSouth);
                         break;
 
-                    case Direction.EAST:
+                    case DoorDirection.EAST:
                         rooms.rooms[roomIndex].roomEast = true;
                         roomEast.roomWest = true;
                         rooms.Add(roomEast);
                         availableRooms.Add(roomEast);
                         break;
 
-                    case Direction.WEST:
+                    case DoorDirection.WEST:
                         rooms.rooms[roomIndex].roomWest = true;
                         roomWest.roomEast = true;
                         rooms.Add(roomWest);

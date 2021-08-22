@@ -8,10 +8,10 @@ using UnityEngine;
 /// information from the Layout and Pathfinding generators to the room generator
 /// in order to create each room. 
 /// </summary>
-[CreateAssetMenu(fileName = "RoomDetails_", menuName = "Generation/RoomDetails")]
-public class RoomDetails : ScriptableObject
+[CreateAssetMenu(fileName = "RoomGenDetails_", menuName = "Generation/RoomGenDetails")]
+public class RoomGenDetails : ScriptableObject
 {
-    // public RoomDetails(
+    // public RoomGenDetails(
     //     int id, HashSet<DoorDetails> doors, Theme theme = Theme.Default, 
     //     int roomHeight = 8, int roomWidth = 12, 
     //     bool startRoom = false, bool goesDown = false,
@@ -88,15 +88,15 @@ public class RoomDetails : ScriptableObject
 /// position in the wall.</summary>
 public struct DoorDetails
 {
-    public DoorDetails(int goesToID, DoorDirection direction, DoorType type, int position = 0)
+    public DoorDetails(int pairID, DoorDirection direction, DoorType type, int position = 0)
     {
-        this.goesToID = goesToID;
+        this.pairID = pairID;
         this.direction = direction;
         this.type = type;
         this.position = position;
     }
     // Every door should have a paired door that is its opposite.
-    public int goesToID;
+    public int pairID;
     // The wall of the room that the door goes to.
     public DoorDirection direction;
     public DoorType type;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class RoomLayout
+public class LayoutRoom
 {
     public int id;
     public int x, y;
@@ -11,7 +11,7 @@ public class RoomLayout
 
     public int distance;
 
-    public RoomLayout(int _x, int _y)
+    public LayoutRoom(int _x, int _y)
     {
         x = _x;
         y = _y;
@@ -22,7 +22,7 @@ public class RoomLayout
         roomWest = false;
     }
 
-    public RoomLayout(int _id, int _x, int _y)
+    public LayoutRoom(int _id, int _x, int _y)
     {
         id = _id;
 

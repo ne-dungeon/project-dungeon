@@ -8,16 +8,16 @@ class DungeonGenerator : MonoBehaviour
     // Temporary Variables (FOR TESTING)
     [SerializeField]
     private int totalRooms;
-    private RoomLayout startingRoom;
-    private RoomLayout bossRoom;
+    private LayoutRoom startingRoom;
+    private LayoutRoom bossRoom;
 
     [SerializeField]
     private GameObject[] roomPrefabs;
 
-    private void Start()
+    public void GenerateDungeon()
     {
         DungeonLayoutGenerator dlg = new DungeonLayoutGenerator();
-        RoomsList rooms = dlg.GenerateDungeonLayout(totalRooms);
+        LayoutRoomsList rooms = dlg.GenerateDungeonLayout(totalRooms);
 
         // Setting a random origin room
         startingRoom = rooms.rooms[Random.Range(0, rooms.rooms.Count)];
@@ -26,9 +26,9 @@ class DungeonGenerator : MonoBehaviour
 
         PathFinder pf = new PathFinder();
 
-        RoomLayout bossRoom = pf.findBossRoom(rooms, startingRoom.id);
+        LayoutRoom bossRoom = pf.findBossRoom(rooms, startingRoom.id);
 
-        foreach (RoomLayout room in rooms.rooms)
+        foreach (LayoutRoom room in rooms.rooms)
         {
             //print("Coords: " + room.x + "," + room.y);
             GenerateRoomPrefab(room);
@@ -38,7 +38,7 @@ class DungeonGenerator : MonoBehaviour
         print("Boss room: " + bossRoom.x + "," + bossRoom.y);
     }
 
-    void GenerateRoomPrefab(RoomLayout room)
+    void GenerateRoomPrefab(LayoutRoom room)
     {
         float dif = 1.25f;
         foreach (var rpfb in roomPrefabs)

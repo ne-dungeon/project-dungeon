@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class RoomsList
+public class LayoutRoomsList
 {
-    public List<RoomLayout> rooms;
+    public List<LayoutRoom> rooms;
 
-    public RoomsList()
+    public LayoutRoomsList()
     {
-        rooms = new List<RoomLayout>();
+        rooms = new List<LayoutRoom>();
     }
 
-    public void Add(RoomLayout room)
+    public void Add(LayoutRoom room)
     {
         rooms.Add(room);
     }
@@ -23,9 +23,9 @@ public class RoomsList
     }
 
     // Checks if a room (defined by its coordinates) is in the rooms list
-    public bool inRooms(RoomLayout room)
+    public bool inRooms(LayoutRoom room)
     {
-        foreach (RoomLayout r in rooms)
+        foreach (LayoutRoom r in rooms)
         {
             if (r.x == room.x && r.y == room.y)
             {
@@ -50,23 +50,23 @@ public class RoomsList
         return -1;
     }
 
-    public RoomLayout roomById(int id)
+    public LayoutRoom roomById(int id)
     {
-        foreach (RoomLayout room in rooms)
+        foreach (LayoutRoom room in rooms)
         {
             if (room.id == id)
             {
                 return room;
             }
         }
-        return new RoomLayout(0, 0);
+        return new LayoutRoom(0, 0);
     }
 
 
     // Get the ID of a from from its coordinates
     public int idByCoords(int x, int y)
     {
-        foreach (RoomLayout room in rooms)
+        foreach (LayoutRoom room in rooms)
         {
             if (x == room.x && y == room.y)
             {
@@ -76,9 +76,9 @@ public class RoomsList
         return -1;
     }
 
-    public RoomLayout roomByCoords(int x, int y)
+    public LayoutRoom roomByCoords(int x, int y)
     {
-        foreach (RoomLayout room in rooms)
+        foreach (LayoutRoom room in rooms)
         {
             if (x == room.x && y == room.y)
             {
@@ -87,6 +87,6 @@ public class RoomsList
         }
 
         // Room not found error
-        return new RoomLayout(-1, -1);
+        return new LayoutRoom(-1, -1);
     }
 }
