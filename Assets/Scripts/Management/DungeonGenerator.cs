@@ -8,8 +8,8 @@ class DungeonGenerator : MonoBehaviour
     // Temporary Variables (FOR TESTING)
     [SerializeField]
     private int totalRooms;
-    private Room startingRoom;
-    private Room bossRoom;
+    private RoomLayout startingRoom;
+    private RoomLayout bossRoom;
 
     [SerializeField]
     private GameObject[] roomPrefabs;
@@ -26,9 +26,9 @@ class DungeonGenerator : MonoBehaviour
 
         PathFinder pf = new PathFinder();
 
-        Room bossRoom = pf.findBossRoom(rooms, startingRoom.id);
+        RoomLayout bossRoom = pf.findBossRoom(rooms, startingRoom.id);
 
-        foreach (Room room in rooms.rooms)
+        foreach (RoomLayout room in rooms.rooms)
         {
             //print("Coords: " + room.x + "," + room.y);
             GenerateRoomPrefab(room);
@@ -38,7 +38,7 @@ class DungeonGenerator : MonoBehaviour
         print("Boss room: " + bossRoom.x + "," + bossRoom.y);
     }
 
-    void GenerateRoomPrefab(Room room)
+    void GenerateRoomPrefab(RoomLayout room)
     {
         float dif = 1.25f;
         foreach (var rpfb in roomPrefabs)

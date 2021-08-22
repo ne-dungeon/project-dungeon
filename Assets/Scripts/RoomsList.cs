@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class RoomsList
 {
-    public List<Room> rooms;
+    public List<RoomLayout> rooms;
 
     public RoomsList()
     {
-        rooms = new List<Room>();
+        rooms = new List<RoomLayout>();
     }
 
-    public void Add(Room room)
+    public void Add(RoomLayout room)
     {
         rooms.Add(room);
     }
@@ -23,9 +23,9 @@ public class RoomsList
     }
 
     // Checks if a room (defined by its coordinates) is in the rooms list
-    public bool inRooms(Room room)
+    public bool inRooms(RoomLayout room)
     {
-        foreach (Room r in rooms)
+        foreach (RoomLayout r in rooms)
         {
             if (r.x == room.x && r.y == room.y)
             {
@@ -50,23 +50,23 @@ public class RoomsList
         return -1;
     }
 
-    public Room roomById(int id)
+    public RoomLayout roomById(int id)
     {
-        foreach (Room room in rooms)
+        foreach (RoomLayout room in rooms)
         {
             if (room.id == id)
             {
                 return room;
             }
         }
-        return new Room(0, 0);
+        return new RoomLayout(0, 0);
     }
 
 
     // Get the ID of a from from its coordinates
     public int idByCoords(int x, int y)
     {
-        foreach (Room room in rooms)
+        foreach (RoomLayout room in rooms)
         {
             if (x == room.x && y == room.y)
             {
@@ -76,9 +76,9 @@ public class RoomsList
         return -1;
     }
 
-    public Room roomByCoords(int x, int y)
+    public RoomLayout roomByCoords(int x, int y)
     {
-        foreach (Room room in rooms)
+        foreach (RoomLayout room in rooms)
         {
             if (x == room.x && y == room.y)
             {
@@ -87,6 +87,6 @@ public class RoomsList
         }
 
         // Room not found error
-        return new Room(-1, -1);
+        return new RoomLayout(-1, -1);
     }
 }

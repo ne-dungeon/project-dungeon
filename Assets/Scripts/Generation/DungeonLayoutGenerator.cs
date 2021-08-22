@@ -22,7 +22,7 @@ class DungeonLayoutGenerator
 
         int roomId = 0;
 
-        Room originRoom = new Room(roomId, 0, 0);
+        RoomLayout originRoom = new RoomLayout(roomId, 0, 0);
         roomId++;
 
         rooms.Add(originRoom);
@@ -36,13 +36,13 @@ class DungeonLayoutGenerator
             doorPositions.Add(Direction.WEST);
 
             int roomIndex = Random.Range(0, availableRooms.Count());
-            Room room = availableRooms.rooms[roomIndex];
+            RoomLayout room = availableRooms.rooms[roomIndex];
 
             // Create temp neighbours
-            Room roomNorth = new Room(roomId, room.x, room.y + 1);
-            Room roomSouth = new Room(roomId, room.x, room.y - 1);
-            Room roomEast = new Room(roomId, room.x + 1, room.y);
-            Room roomWest = new Room(roomId, room.x - 1, room.y);
+            RoomLayout roomNorth = new RoomLayout(roomId, room.x, room.y + 1);
+            RoomLayout roomSouth = new RoomLayout(roomId, room.x, room.y - 1);
+            RoomLayout roomEast = new RoomLayout(roomId, room.x + 1, room.y);
+            RoomLayout roomWest = new RoomLayout(roomId, room.x - 1, room.y);
             roomId++;
 
             // Remove door positions where a door is already there
