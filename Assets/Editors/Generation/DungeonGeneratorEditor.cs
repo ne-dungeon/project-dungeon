@@ -18,7 +18,12 @@ public class LayoutGeneratorEditor : Editor
         base.OnInspectorGUI();
         if (GUILayout.Button("Generate Dungeon"))
         {
-            dungeonGenerator.GenerateDungeon();
+            dungeonGenerator.RunLayoutGen();
+        }
+
+        if (GUILayout.Button("Clear Dungeon"))
+        {
+            dungeonGenerator.ClearLayoutGen();
         }
     }
 }
