@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-static class DungeonLayoutGenerator
+class BasicLayoutGenerator : AbstractLayoutGenerator
 {
     /*  Returns a list of Room objects.
 
@@ -12,7 +12,7 @@ static class DungeonLayoutGenerator
 
         Rooms contain grid coordinates that describe the placement of rooms
         in relation to each other, not the physical GameObject coordinates. */
-    public static LayoutRoomsList GenerateDungeonLayout(int numRooms)
+    public override LayoutRoomsList GenerateDungeonLayout(int numRooms)
     {
         LayoutRoomsList rooms = new LayoutRoomsList();
         LayoutRoomsList availableRooms = new LayoutRoomsList();

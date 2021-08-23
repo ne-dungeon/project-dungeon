@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(DungeonGenerator), true)]
+[CustomEditor(typeof(LayoutGenerator), true)]
 public class LayoutGeneratorEditor : Editor
 {
-    DungeonGenerator dungeonGenerator;
+    LayoutGenerator layoutGenerator;
 
     private void Awake()
     {
-        dungeonGenerator = (DungeonGenerator)target;
+        layoutGenerator = (LayoutGenerator)target;
     }
 
     public override void OnInspectorGUI()
@@ -18,12 +18,12 @@ public class LayoutGeneratorEditor : Editor
         base.OnInspectorGUI();
         if (GUILayout.Button("Generate Dungeon"))
         {
-            dungeonGenerator.RunLayoutGen();
+            layoutGenerator.RunLayoutGen();
         }
 
         if (GUILayout.Button("Clear Dungeon"))
         {
-            dungeonGenerator.ClearLayoutGen();
+            layoutGenerator.ClearPrefabLayout();
         }
     }
 }

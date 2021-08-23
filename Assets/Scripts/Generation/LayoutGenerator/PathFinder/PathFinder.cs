@@ -5,15 +5,23 @@ using UnityEngine;
 
 class PathFinder
 {
+    private LayoutRoomsList rooms;
+    private LayoutRoom originRoom;
+    private List<LayoutRoom> deadEnds;
+
+    public PathFinder(LayoutRoomsList rooms, LayoutRoom originRoom)
+    {
+        this.rooms = rooms;
+        this.originRoom = originRoom;
+        // Determine dead ends based on the origin room for use by all pathfinder scripts.
+        deadEnds = assignDeadEnds(rooms, originRoom);
+    }
+
     public enum Direction { NORTH, SOUTH, EAST, WEST, NONE }
 
-    // Returns the integer ID of the boss room
-    public LayoutRoom findBossRoom(LayoutRoomsList rooms, int originId)
+    // Return the room object of the boss room.
+    public LayoutRoom findBossRoom()
     {
-        // Populate a list of dead end rooms with their distance from the origin room
-        LayoutRoom originRoom = rooms.roomById(originId);
-        List<LayoutRoom> deadEnds = assignDeadEnds(rooms, originRoom);
-
         // Find the dead end room farthest from the origin room
         LayoutRoom highestDeadEnd = new LayoutRoom(0, 0);
 
@@ -28,6 +36,7 @@ class PathFinder
         return highestDeadEnd;
     }
 
+    // Populate a list of dead end rooms with their distance from a given room.
     private List<LayoutRoom> assignDeadEnds(LayoutRoomsList rooms, LayoutRoom currentRoom, Direction dir = Direction.NONE, int currentDistance = 0)
     {
         List<LayoutRoom> deadEndRooms = new List<LayoutRoom>();
@@ -65,18 +74,18 @@ class PathFinder
 
         switch (yDif)
         {
-        case 1:
-            return Direction.NORTH;
-        case -1:
-            return Direction.SOUTH;
+            case 1:
+                return Direction.NORTH;
+            case -1:
+                return Direction.SOUTH;
         }
 
         switch (xDif)
         {
-        case 1:
-            return Direction.EAST;
-        case -1:
-            return Direction.WEST;
+            case 1:
+                return Direction.EAST;
+            case -1:
+                return Direction.WEST;
         }
 
         return Direction.NONE;

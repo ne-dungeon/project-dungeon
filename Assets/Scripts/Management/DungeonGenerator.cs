@@ -5,77 +5,83 @@ using UnityEngine;
 
 class DungeonGenerator : MonoBehaviour
 {
-    // Temporary Variables (FOR TESTING)
-    [SerializeField]
-    private int totalRooms;
-    private LayoutRoom startingRoom;
-    private LayoutRoom bossRoom;
+//     private LayoutRoom startingRoom;
+//     private LayoutRoom bossRoom;
 
-    [SerializeField]
-    private GameObject[] roomPrefabs;
+//     // Temporary Variables (FOR TESTING)
+//     [SerializeField]
+//     private int totalRooms;
 
-    // The active room prefabs in the scene.
-    private List<GameObject> activePrefabs;
+//     [SerializeField]
+//     private GameObject[] roomPrefabs;
 
-    public void RunLayoutGen()
-    {
-        // First clear the existing layout.
-        ClearLayoutGen();
-        LayoutRoomsList rooms = DungeonLayoutGenerator.GenerateDungeonLayout(totalRooms);
+//     AbstractLayoutGenerator layoutGenerator;
 
-        // Setting a random origin room
-        startingRoom = rooms.rooms[Random.Range(0, rooms.rooms.Count)];
+//     // The active room prefabs in the scene.
+//     private List<GameObject> activePrefabs;
 
-        // FINDING THE BOSS ROOM //
+//     public void RunLayoutGen()
+//     {
+//         // First clear the existing layout.
+//         ClearLayoutGen();
+//         layoutGenerator = new BasicLayoutGenerator();
+//         LayoutRoomsList rooms = layoutGenerator.GenerateDungeonLayout(totalRooms);
 
-        PathFinder pf = new PathFinder();
+//         // Setting a random origin room
+//         startingRoom = rooms.rooms[Random.Range(0, rooms.rooms.Count)];
 
-        LayoutRoom bossRoom = pf.findBossRoom(rooms, startingRoom.id);
+//         // FINDING THE BOSS ROOM //
 
-        print("Boss room: " + bossRoom.x + "," + bossRoom.y);
-        foreach (LayoutRoom room in rooms.rooms)
-        {
-            //print("Coords: " + room.x + "," + room.y);
-            GenerateRoomPrefab(room);
-            // print("room: " + room.x + "," + room.y);
-        }
+//         PathFinder pf = new PathFinder();
 
-    }
+//         bossRoom = pf.findBossRoom(rooms, startingRoom.id);
 
-    internal void ClearLayoutGen()
-    {
-        foreach (var prefab in activePrefabs)
-        {
-            Destroy(prefab);
-        }
-        
-    }
+//         // print("Boss room: " + bossRoom.x + "," + bossRoom.y);
+//         foreach (LayoutRoom room in rooms.rooms)
+//         {
+//             //print("Coords: " + room.x + "," + room.y);
+//             GenerateRoomPrefab(room);
+//             // print("room: " + room.x + "," + room.y);
+//         }
 
-    void GenerateRoomPrefab(LayoutRoom room)
-    {
-        float dif = 1.25f;
-        foreach (var rpfb in roomPrefabs)
-        {
-            RoomPrefab rpfb_script = rpfb.GetComponent<RoomPrefab>();
+//     }
 
-            if (rpfb_script.roomNorth == room.roomNorth
-            && rpfb_script.roomEast == room.roomEast
-            && rpfb_script.roomSouth == room.roomSouth
-            && rpfb_script.roomWest == room.roomWest)
-            {
-                GameObject newRoom = Instantiate(rpfb, new Vector3(room.x * dif, room.y * dif, 0),
-                    transform.rotation);
-                activePrefabs.Add(newRoom);
+//     internal void ClearLayoutGen()
+//     {
+//         foreach (var prefab in activePrefabs)
+//         {
+//             DestroyImmediate(prefab);
+//         }
 
-                if (room == startingRoom)
-                {
-                    newRoom.transform.Find("base").GetComponent<SpriteRenderer>().color = Color.blue;
-                }
-                else if (room == bossRoom)
-                {
-                    newRoom.transform.Find("base").GetComponent<SpriteRenderer>().color = Color.red;
-                }
-            }
-        }
-    }
+//     }
+
+//     void GenerateRoomPrefab(LayoutRoom room)
+//     {
+//         float dif = 1.25f;
+//         foreach (var rpfb in roomPrefabs)
+//         {
+//             RoomPrefab rpfb_script = rpfb.GetComponent<RoomPrefab>();
+
+//             if (rpfb_script.roomNorth == room.roomNorth
+//             && rpfb_script.roomEast == room.roomEast
+//             && rpfb_script.roomSouth == room.roomSouth
+//             && rpfb_script.roomWest == room.roomWest)
+//             {
+//                 GameObject newRoom = Instantiate(rpfb, new Vector3(room.x * dif, room.y * dif, 0),
+//                     transform.rotation);
+
+//                 // Add these to the list so they are easy to clear later.
+//                 activePrefabs.Add(newRoom);
+
+//                 if (room == startingRoom)
+//                 {
+//                     newRoom.transform.Find("base").GetComponent<SpriteRenderer>().color = Color.blue;
+//                 }
+//                 else if (room == bossRoom)
+//                 {
+//                     newRoom.transform.Find("base").GetComponent<SpriteRenderer>().color = Color.red;
+//                 }
+//             }
+//         }
+//     }
 }
