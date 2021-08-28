@@ -19,12 +19,20 @@ public class PlayerMovement : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
         movement = movement.normalized;
 
+        // Set the animator movement for walking animations.
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
+
+        // Set the animator last direction for idle animations.
+        if (movement != Vector2.zero)
+        {
+            animator.SetFloat("LastHorizontal", movement.x);
+            animator.SetFloat("LastVertical", movement.y);
+        }
     }
 
-    void FixedUpdate ()
+    void FixedUpdate()
     {
         // Physics based on fixed update rate
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
