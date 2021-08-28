@@ -13,12 +13,12 @@ public class LayoutGenerator : MonoBehaviour
     private int totalRooms;
 
     [SerializeField]
-    private GameObject[] roomPrefabs;
+    private List<GameObject> roomPrefabs = new List<GameObject>();
 
     AbstractLayoutGenerator layoutGenerator;
 
     // The active room prefabs in the scene.
-    private List<GameObject> activePrefabs;
+    private List<GameObject> activePrefabs = new List<GameObject>();
 
     public void RunLayoutGen()
     {
@@ -50,9 +50,7 @@ public class LayoutGenerator : MonoBehaviour
 
     internal void ClearPrefabLayout()
     {
-        // If you do not check if this is null, the first time you run RunGenerateLayout 
-        // it will error out.
-        if (activePrefabs != null)
+        if (activePrefabs.Count > 0)
         {
             foreach (var prefab in activePrefabs)
             {
