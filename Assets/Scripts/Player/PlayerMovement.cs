@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float moveSpeed = 4f;
 
-    public Rigidbody2D rb;
-    public Animator animator;
+    private Rigidbody2D playerRigidBody;
+    private Animator animator;
 
     Vector2 movement;
+
+    void Start () {
+        playerRigidBody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -35,6 +40,6 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         // Physics based on fixed update rate
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        playerRigidBody.MovePosition(playerRigidBody.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 }
