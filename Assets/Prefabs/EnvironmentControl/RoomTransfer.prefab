@@ -73,3 +73,7 @@ MonoBehaviour:
   cameraChangeMin: {x: -16, y: 0}
   cameraChangeMax: {x: -18, y: 0}
   playerChange: {x: -6, y: 0, z: 0}
+  needPlaceCard: 0
+  placeName: 
+  textDisplay: {fileID: 0}
+  placeText: {fileID: 0}
