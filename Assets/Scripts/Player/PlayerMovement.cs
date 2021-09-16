@@ -2,8 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerState
+{
+    walk,
+    slash,
+    interact
+}
+
+
 public class PlayerMovement : MonoBehaviour
 {
+    public PlayerState currentState;
     public float moveSpeed = 4f;
 
     private Rigidbody2D playerRigidBody;
@@ -11,7 +20,9 @@ public class PlayerMovement : MonoBehaviour
 
     Vector2 movement;
 
-    void Start () {
+    void Start()
+    {
+        currentState = PlayerState.walk;
         playerRigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -20,9 +31,29 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // Input based on framerate
+        movement = Vector2.zero;
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         movement = movement.normalized;
+
+        if (Input.GetButtonDown("slash") && !isAttacking())
+        {
+            StartCoroutine(SlashCo());
+        }
+        else if (currentState == PlayerState.walk)
+        {
+            UpdateAnimationAndMove();
+        }
+    }
+
+    void FixedUpdate()
+    {
+        // Physics based on fixed update rate
+        playerRigidBody.MovePosition(playerRigidBody.position + movement * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    void UpdateAnimationAndMove()
+    {
 
         // Set the animator movement for walking animations.
         animator.SetFloat("Horizontal", movement.x);
@@ -37,9 +68,19 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    private IEnumerator SlashCo()
     {
-        // Physics based on fixed update rate
-        playerRigidBody.MovePosition(playerRigidBody.position + movement * moveSpeed * Time.fixedDeltaTime);
+        animator.SetBool("Slashing", true);
+        currentState = PlayerState.slash;
+        yield return null;
+        animator.SetBool("Slashing", false);
+        yield return new WaitForSeconds(0.33f);
+        currentState = PlayerState.walk;
+    }
+
+    // Update this if/when we add additional attack types.
+    bool isAttacking()
+    {
+        return currentState == PlayerState.slash;
     }
 }

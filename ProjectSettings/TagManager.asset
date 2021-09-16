@@ -46,7 +46,7 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Objects
+  - name: Interactable Objects
     uniqueID: 2060665779
     locked: 0
   - name: Player

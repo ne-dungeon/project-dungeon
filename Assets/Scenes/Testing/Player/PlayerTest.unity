@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &182957406
 RectTransform:
   m_ObjectHideFlags: 0
@@ -199,6 +199,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 182957405}
   m_CullTransparentMesh: 1
+--- !u!1 &331066699 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6801074465894601129, guid: 13847940767ec41e6833e0a0b91c109b, type: 3}
+  m_PrefabInstance: {fileID: 6801074465055599900}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &331066700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331066699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e027c6f4fad8a4581b8b032b56ef0072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogBox: {fileID: 182957405}
+  dialogText: {fileID: 1520398089}
+  dialogContents: A faintly glowing crystal.
+  playerInRange: 0
 --- !u!1 &579206511
 GameObject:
   m_ObjectHideFlags: 0
@@ -3490,6 +3511,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddbfb6c81e3d44bdfa5e1a151c25246f, type: 3}
+--- !u!1 &1386839710 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8607341472758871398, guid: e8c275821b2ff49a68b0ae0187738b4a, type: 3}
+  m_PrefabInstance: {fileID: 8607341473795368854}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1386839711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386839710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e027c6f4fad8a4581b8b032b56ef0072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogBox: {fileID: 182957405}
+  dialogText: {fileID: 1520398089}
+  dialogContents: An unfortunate adventurer...?
+  playerInRange: 0
 --- !u!1 &1520398087
 GameObject:
   m_ObjectHideFlags: 0
