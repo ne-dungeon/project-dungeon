@@ -10,7 +10,7 @@ public enum PlayerState
 }
 
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerControl : MonoBehaviour
 {
     public PlayerState currentState;
     public float moveSpeed = 4f;

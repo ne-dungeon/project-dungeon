@@ -1,7 +1,7 @@
 
 Example:
 "Whispers of Avalon: Grassland Tileset" by Leonard Pabin licensed CC-BY 3.0, GPL 2.0, or GPL 3.0: https://opengameart.org/node/3009
-
+TODO: make credits follow this pattern
 
 ## LPC Submissions from Johannes Sjölund
 
