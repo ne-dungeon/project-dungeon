@@ -17,9 +17,9 @@ public class LayoutRoom
         y = _y;
 
         roomNorth = false;
+        roomWest = false;
         roomSouth = false;
         roomEast = false;
-        roomWest = false;
     }
 
     public LayoutRoom(int _id, int _x, int _y)
@@ -30,8 +30,8 @@ public class LayoutRoom
         y = _y;
 
         roomNorth = false;
+        roomWest = false;
         roomSouth = false;
         roomEast = false;
-        roomWest = false;
     }
 }

@@ -2,29 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerState
-{
-    walk,
-    slash,
-    interact
-}
 
 
-public class PlayerControl : MonoBehaviour
+public class PlayerControl : CharacterControl
 {
-    public PlayerState currentState;
+
+    public CharacterState currentState;
     public float moveSpeed = 4f;
 
     private Rigidbody2D playerRigidBody;
-    private Animator animator;
+    private CharacterAnimation characterAnimation;
 
     Vector2 movement;
+    CardinalDirection lastDirection = CardinalDirection.SOUTH;
+
 
     void Start()
     {
-        currentState = PlayerState.walk;
+        currentState = CharacterState.WALK;
         playerRigidBody = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        characterAnimation = GetComponent<CharacterAnimation>();
     }
 
     // Update is called once per frame
@@ -36,51 +33,96 @@ public class PlayerControl : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
         movement = movement.normalized;
 
-        if (Input.GetButtonDown("slash") && !isAttacking())
+        var isAttacking = IsAttacking();
+        // This logic needs to change if we are not setting variables in the animator for stuff
+        if (Input.GetButtonDown("slash") && !isAttacking)
         {
+            // Debug.Log(isAttacking());
             StartCoroutine(SlashCo());
         }
-        else if (currentState == PlayerState.walk)
+        else if (currentState == CharacterState.WALK)
         {
-            UpdateAnimationAndMove();
+            UpdateAnimationAndMove(isAttacking);
         }
     }
 
     void FixedUpdate()
     {
-        // Physics based on fixed update rate
-        playerRigidBody.MovePosition(playerRigidBody.position + movement * moveSpeed * Time.fixedDeltaTime);
+        // // Physics based on fixed update rate
+        // if (!IsAttacking())
+        // {
+        //     playerRigidBody.MovePosition(playerRigidBody.position + movement * moveSpeed * Time.fixedDeltaTime);
+        // }
     }
 
-    void UpdateAnimationAndMove()
+    void UpdateAnimationAndMove(bool isAttacking)
     {
 
+        // Physics based on fixed update rate
+        if (!isAttacking)
+        {
+            playerRigidBody.MovePosition(playerRigidBody.position + movement * moveSpeed * Time.fixedDeltaTime);
+        }
         // Set the animator movement for walking animations.
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("Speed", movement.sqrMagnitude);
+        // check if attak. NO MOVE
+        // check if moving if (movement != Vector2.zero)
+        // get direction
+        // set lastDirection for idle
+
+
+        if (isAttacking)
+        {
+            // todo: set animation for attak when I get animation set up
+
+        }
 
         // Set the animator last direction for idle animations.
         if (movement != Vector2.zero)
         {
-            animator.SetFloat("LastHorizontal", movement.x);
-            animator.SetFloat("LastVertical", movement.y);
+            lastDirection = CheckDirection(movement);
+            currentState = CharacterState.WALK;
         }
+
+        characterAnimation.ChangeAnimationState(lastDirection, currentState);
     }
 
     private IEnumerator SlashCo()
     {
-        animator.SetBool("Slashing", true);
-        currentState = PlayerState.slash;
+        // animator.SetBool("Slashing", true);
+        currentState = CharacterState.SLASH;
         yield return null;
-        animator.SetBool("Slashing", false);
+        // animator.SetBool("Slashing", false);
         yield return new WaitForSeconds(0.33f);
-        currentState = PlayerState.walk;
+        currentState = CharacterState.WALK;
     }
 
     // Update this if/when we add additional attack types.
-    bool isAttacking()
+    bool IsAttacking()
     {
-        return currentState == PlayerState.slash;
+        return currentState == CharacterState.SLASH;
+    }
+
+    CardinalDirection CheckDirection(Vector2 movement)
+    {
+        if (movement.x == 0 && movement.y == 1)
+        {
+            return CardinalDirection.NORTH;
+        }
+        else if (movement.x == -1 && movement.y == 0)
+        {
+            return CardinalDirection.WEST;
+        }
+        else if (movement.x == 0 && movement.y == -1)
+        {
+            return CardinalDirection.SOUTH;
+        }
+        else if (movement.x == 1 && movement.y == 0)
+        {
+            return CardinalDirection.EAST;
+        }
+        else
+        {
+            return lastDirection;
+        }
     }
 }

@@ -107,21 +107,21 @@ public struct DoorDetails
     public int position;
 }
 
-public enum DoorDirection { NORTH, SOUTH, EAST, WEST }
+public enum DoorDirection { NORTH, WEST, SOUTH, EAST }
 
 // public struct DoorDirections
 // {
 //     public DoorDirections(DoorType n, DoorType s, DoorType e, DoorType w)
 //     {
 //         north = n;
+//         west = w;
 //         south = s;
 //         east = e;
-//         west = w;
 //     }
 //     DoorType north;
+//     DoorType west;
 //     DoorType south;
 //     DoorType east;
-//     DoorType west;
 // }
 
 /// <summary>Type of door or none.</summary>

@@ -6,7 +6,7 @@ public class CharacterAnimation : MonoBehaviour
 {
     // Do not change the names of these, they convert toString to the string names of
     // the animations!
-    public enum CharacterState {
+    public enum AnimationName {
         IdleN,
         IdleW,
         IdleS,
@@ -18,7 +18,7 @@ public class CharacterAnimation : MonoBehaviour
     }
 
     Animator animator;
-    private string currentState;
+    private AnimationName currentAnimation;
 
     // Start is called before the first frame update
     void Start()
@@ -26,18 +26,58 @@ public class CharacterAnimation : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    void ChangeAnimationState(string newState)
+    public void ChangeAnimationState(CardinalDirection direction, CharacterControl.CharacterState state)
     {
+        AnimationName newAnimation = CharacterAnimation.AnimationName.IdleS;
+
+
+        if (state == CharacterControl.CharacterState.WALK)
+        {
+            switch (direction)
+            {
+                case CardinalDirection.NORTH:
+                    currentAnimation = CharacterAnimation.AnimationName.WalkN;
+                    break;
+                case CardinalDirection.WEST:
+                    currentAnimation = CharacterAnimation.AnimationName.WalkW;
+                    break;
+                case CardinalDirection.SOUTH:
+                    currentAnimation = CharacterAnimation.AnimationName.WalkS;
+                    break;
+                case CardinalDirection.EAST:
+                    currentAnimation = CharacterAnimation.AnimationName.WalkE;
+                    break;
+            }
+        }
+        else
+        {
+            switch (direction)
+            {
+                case CardinalDirection.NORTH:
+                    currentAnimation = CharacterAnimation.AnimationName.IdleN;
+                    break;
+                case CardinalDirection.WEST:
+                    currentAnimation = CharacterAnimation.AnimationName.IdleW;
+                    break;
+                case CardinalDirection.SOUTH:
+                    currentAnimation = CharacterAnimation.AnimationName.IdleS;
+                    break;
+                case CardinalDirection.EAST:
+                    currentAnimation = CharacterAnimation.AnimationName.IdleE;
+                    break;
+            }
+        }
+
         // Don't allow animation to interrupt itself
-        if (currentState == newState)
+        if (currentAnimation == newAnimation)
         {
             return;
         }
 
         // Play the input animation
-        animator.Play(newState);
+        animator.Play(newAnimation.ToString());
 
         // Reassign the current state
-        currentState = newState;
+        currentAnimation = newAnimation;
     }
 }
