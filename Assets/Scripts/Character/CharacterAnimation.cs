@@ -6,7 +6,8 @@ public class CharacterAnimation : MonoBehaviour
 {
     // Do not change the names of these, they convert toString to the string names of
     // the animations!
-    public enum AnimationName {
+    public enum AnimationName
+    {
         IdleN,
         IdleW,
         IdleS,
@@ -14,7 +15,11 @@ public class CharacterAnimation : MonoBehaviour
         WalkN,
         WalkW,
         WalkS,
-        WalkE
+        WalkE,
+        SlashN,
+        SlashW,
+        SlashS,
+        SlashE
     }
 
     Animator animator;
@@ -28,42 +33,59 @@ public class CharacterAnimation : MonoBehaviour
 
     public void ChangeAnimationState(CardinalDirection direction, CharacterControl.CharacterState state)
     {
-        AnimationName newAnimation = CharacterAnimation.AnimationName.IdleS;
+        AnimationName newAnimation = currentAnimation;
 
-
-        if (state == CharacterControl.CharacterState.WALK)
+    if (state == CharacterControl.CharacterState.SLASH)
         {
             switch (direction)
             {
                 case CardinalDirection.NORTH:
-                    currentAnimation = CharacterAnimation.AnimationName.WalkN;
+                    newAnimation = CharacterAnimation.AnimationName.SlashN;
                     break;
                 case CardinalDirection.WEST:
-                    currentAnimation = CharacterAnimation.AnimationName.WalkW;
+                    newAnimation = CharacterAnimation.AnimationName.SlashW;
                     break;
                 case CardinalDirection.SOUTH:
-                    currentAnimation = CharacterAnimation.AnimationName.WalkS;
+                    newAnimation = CharacterAnimation.AnimationName.SlashS;
                     break;
                 case CardinalDirection.EAST:
-                    currentAnimation = CharacterAnimation.AnimationName.WalkE;
+                    newAnimation = CharacterAnimation.AnimationName.SlashE;
                     break;
             }
         }
-        else
+        else if (state == CharacterControl.CharacterState.WALK)
         {
             switch (direction)
             {
                 case CardinalDirection.NORTH:
-                    currentAnimation = CharacterAnimation.AnimationName.IdleN;
+                    newAnimation = CharacterAnimation.AnimationName.WalkN;
                     break;
                 case CardinalDirection.WEST:
-                    currentAnimation = CharacterAnimation.AnimationName.IdleW;
+                    newAnimation = CharacterAnimation.AnimationName.WalkW;
                     break;
                 case CardinalDirection.SOUTH:
-                    currentAnimation = CharacterAnimation.AnimationName.IdleS;
+                    newAnimation = CharacterAnimation.AnimationName.WalkS;
                     break;
                 case CardinalDirection.EAST:
-                    currentAnimation = CharacterAnimation.AnimationName.IdleE;
+                    newAnimation = CharacterAnimation.AnimationName.WalkE;
+                    break;
+            }
+        }
+        else if (state <= CharacterControl.CharacterState.INTERACT)
+        {
+            switch (direction)
+            {
+                case CardinalDirection.NORTH:
+                    newAnimation = CharacterAnimation.AnimationName.IdleN;
+                    break;
+                case CardinalDirection.WEST:
+                    newAnimation = CharacterAnimation.AnimationName.IdleW;
+                    break;
+                case CardinalDirection.SOUTH:
+                    newAnimation = CharacterAnimation.AnimationName.IdleS;
+                    break;
+                case CardinalDirection.EAST:
+                    newAnimation = CharacterAnimation.AnimationName.IdleE;
                     break;
             }
         }

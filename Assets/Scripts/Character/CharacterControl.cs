@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CharacterControl : MonoBehaviour
 {
-
     public enum CharacterState
     {
         IDLE,
@@ -12,6 +11,12 @@ public class CharacterControl : MonoBehaviour
         WALK,
         SLASH
     }
+
+    public CharacterState currentState;
+    public CardinalDirection lastDirection = CardinalDirection.SOUTH;
+
+    public float moveSpeed = 4f;
+
     // Start is called before the first frame update
     void Start()
     {
