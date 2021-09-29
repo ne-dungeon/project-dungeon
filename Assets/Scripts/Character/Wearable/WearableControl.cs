@@ -4,29 +4,19 @@ using UnityEngine;
 
 public class WearableControl : MonoBehaviour
 {
-    // public GameObject parentBody;
-
-    private CharacterControl parentControl;
-    private CharacterAnimation wearableAnimation;
-
-    public CharacterControl.CharacterState wearableState;
-    public CardinalDirection wearableDirection;
+    private Animator[] wearableAnimators;
 
     // Start is called before the first frame update
     void Start()
     {
-        parentControl = GetComponentInParent<CharacterControl>();
-        wearableAnimation = GetComponent<CharacterAnimation>();
-        wearableState = parentControl.currentState;
-        wearableDirection = parentControl.lastDirection;
+        wearableAnimators = GetComponentsInChildren<Animator>();
     }
 
-    // LateUpdate is called after Update
-    void LateUpdate()
+    public void UpdateAnimations(CharacterAnimation.AnimationName animationName)
     {
-        wearableState = parentControl.currentState;
-        wearableDirection = parentControl.lastDirection;
-
-        wearableAnimation.ChangeAnimationState(wearableDirection, wearableState);
+        foreach (Animator animator in wearableAnimators)
+        {
+            animator.Play(animationName.ToString());
+        }
     }
 }

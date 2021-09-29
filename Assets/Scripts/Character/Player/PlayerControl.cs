@@ -9,6 +9,8 @@ public class PlayerControl : CharacterControl
     private Rigidbody2D playerRigidBody;
     private CharacterAnimation characterAnimation;
 
+    private float slashDelay = 0.53f;
+
     Vector2 movement;
 
     void Start()
@@ -89,7 +91,7 @@ public class PlayerControl : CharacterControl
         currentState = CharacterState.SLASH;
         characterAnimation.ChangeAnimationState(lastDirection, currentState);
         // yield return null;
-        yield return new WaitForSeconds(0.33f);
+        yield return new WaitForSeconds(slashDelay);
         currentState = CharacterState.WALK;
     }
 
