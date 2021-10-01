@@ -20,7 +20,7 @@ public class ObjectDialog : MonoBehaviour
     void Update()
     {
         // TODO: Convert this to use "input mat" ?? interact key for wider compatibility and user customization.
-        if (Input.GetKeyDown(KeyCode.Space) && playerInRange)
+        if (Input.GetButtonDown("interact") && playerInRange)
         {
             if (dialogBox.activeInHierarchy)
             {

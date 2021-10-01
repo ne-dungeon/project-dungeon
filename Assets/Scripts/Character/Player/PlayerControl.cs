@@ -8,10 +8,10 @@ public class PlayerControl : CharacterControl
 {
     private Rigidbody2D playerRigidBody;
     private CharacterAnimation characterAnimation;
+    Vector2 movement;
 
     private float slashDelay = 0.53f;
-
-    Vector2 movement;
+    private bool isAttacking = false;
 
     void Start()
     {
@@ -29,7 +29,7 @@ public class PlayerControl : CharacterControl
         movement.y = Input.GetAxisRaw("Vertical");
         movement = movement.normalized;
 
-        var isAttacking = IsAttacking();
+        isAttacking = IsAttacking();
         // This logic needs to change if we are not setting variables in the animator for stuff
         if (Input.GetButtonDown("slash") && !isAttacking)
         {
@@ -45,7 +45,7 @@ public class PlayerControl : CharacterControl
     void FixedUpdate()
     {
         // // Physics based on fixed update rate
-        if (!IsAttacking())
+        if (!isAttacking)
         {
             playerRigidBody.MovePosition(playerRigidBody.position + movement * moveSpeed * Time.fixedDeltaTime);
         }
