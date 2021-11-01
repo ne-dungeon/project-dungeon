@@ -38,7 +38,7 @@ public class CharacterAnimation : MonoBehaviour
     {
         AnimationName newAnimation = currentAnimation;
 
-    if (state == CharacterControl.CharacterState.SLASH)
+        if (state == CharacterControl.CharacterState.SLASH)
         {
             switch (direction)
             {

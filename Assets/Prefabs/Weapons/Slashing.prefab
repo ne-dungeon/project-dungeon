@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 2021427431
   m_SortingLayer: 2
   m_SortingOrder: 3
-  m_Sprite: {fileID: 1140721972040327245, guid: 315fab0e75a5d4acba61d43b8ad734d6, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &2218439324469802847
@@ -158,6 +158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8747408328839121772}
   - component: {fileID: 7791391560436627038}
+  - component: {fileID: 5749758379463930500}
   m_Layer: 0
   m_Name: HitBoxS
   m_TagString: Untagged
@@ -212,6 +213,18 @@ PolygonCollider2D:
       - {x: 0.6517409, y: -1.0435206}
       - {x: 0.93290645, y: -0.65016854}
       - {x: 0.92973804, y: -0.28790128}
+--- !u!114 &5749758379463930500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5219443148289109172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46019b111db3c46ed9731a3b91214a27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7570597313875845200
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8517828642166125565}
   - component: {fileID: 5348545973246387639}
+  - component: {fileID: 1354357069184237713}
   m_Layer: 0
   m_Name: HitBoxN
   m_TagString: Untagged
@@ -274,6 +288,18 @@ PolygonCollider2D:
       - {x: 0.66240007, y: -0.20143928}
       - {x: 0.88205415, y: 0.015117452}
       - {x: 0.8551231, y: 0.52220225}
+--- !u!114 &1354357069184237713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7570597313875845200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46019b111db3c46ed9731a3b91214a27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8221638462138418229
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,6 +310,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2750583802398601470}
   - component: {fileID: 5702526218895567070}
+  - component: {fileID: 1748183041349912712}
   m_Layer: 0
   m_Name: HitBoxW
   m_TagString: Untagged
@@ -338,6 +365,18 @@ PolygonCollider2D:
       - {x: -0.4141842, y: -0.99022424}
       - {x: -0.108446196, y: -0.70517826}
       - {x: -0.24278, y: -0.38383454}
+--- !u!114 &1748183041349912712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8221638462138418229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46019b111db3c46ed9731a3b91214a27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8518913871486355222
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,6 +387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1599783799035606629}
   - component: {fileID: 7148390826582795160}
+  - component: {fileID: 6799020781507304536}
   m_Layer: 0
   m_Name: HitBoxE
   m_TagString: Untagged
@@ -401,3 +441,15 @@ PolygonCollider2D:
       - {x: 0.38906375, y: -0.9024365}
       - {x: 0.8116297, y: -0.8623133}
       - {x: 1.2281973, y: -0.20262718}
+--- !u!114 &6799020781507304536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8518913871486355222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46019b111db3c46ed9731a3b91214a27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

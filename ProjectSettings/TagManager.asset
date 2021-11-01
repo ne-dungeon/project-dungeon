@@ -9,6 +9,7 @@ TagManager:
   - SpawnPoint_B
   - SpawnPoint_R
   - SpawnPoint_L
+  - Breakable
   layers:
   - Default
   - TransparentFX
