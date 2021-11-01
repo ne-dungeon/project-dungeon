@@ -220,3 +220,24 @@ MonoBehaviour:
     - m_Name: 6
       m_Hash: 498629140
       m_Sprite: {fileID: -8763375436952758585, guid: 8ba7bbf895a3b4ba2b62eacc64f518cc, type: 3}
+  - m_Name: Death
+    m_Hash: 646380074
+    m_CategoryList:
+    - m_Name: 1
+      m_Hash: -2082672713
+      m_Sprite: {fileID: -9152273946049085218, guid: 70a8bf88e663648a796b9a4a29ae7069, type: 3}
+    - m_Name: 2
+      m_Hash: 450215437
+      m_Sprite: {fileID: -978564113649102821, guid: 70a8bf88e663648a796b9a4a29ae7069, type: 3}
+    - m_Name: 3
+      m_Hash: 1842515611
+      m_Sprite: {fileID: -235719046664463621, guid: 70a8bf88e663648a796b9a4a29ae7069, type: 3}
+    - m_Name: 4
+      m_Hash: -206169288
+      m_Sprite: {fileID: 1749890294906181052, guid: 70a8bf88e663648a796b9a4a29ae7069, type: 3}
+    - m_Name: 5
+      m_Hash: -2068763730
+      m_Sprite: {fileID: -5169631563333190099, guid: 70a8bf88e663648a796b9a4a29ae7069, type: 3}
+    - m_Name: 6
+      m_Hash: 498629140
+      m_Sprite: {fileID: -495450661338146514, guid: 70a8bf88e663648a796b9a4a29ae7069, type: 3}
