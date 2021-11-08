@@ -33,34 +33,14 @@ public class CharacterControl : MonoBehaviour
 
     void Start()
     {
+        SetStartVariables();
+    }
+
+    protected void SetStartVariables()
+    {
         currentState = CharacterState.IDLE;
         characterRigidBody = GetComponent<Rigidbody2D>();
         characterAnimation = GetComponent<CharacterAnimation>();
-    }
-
-    void Update()
-    {
-
-        // isAttacking = IsAttacking();
-
-        // if (Input.GetButtonDown("slash") && !isAttacking)
-        // {
-        //     StartCoroutine(PlaySlash());
-        // }
-        // // Don't update animation if we are attacking, let it play out.
-        // else if (currentState <= CharacterState.WALK)
-        // {
-        //     UpdateAnimation();
-        // }
-    }
-
-    void FixedUpdate()
-    {
-        // Physics based on fixed update rate
-        if (!isAttacking)
-        {
-            characterRigidBody.MovePosition(characterRigidBody.position + movement * moveSpeed * Time.fixedDeltaTime);
-        }
     }
 
     protected void UpdateAnimation()
@@ -82,19 +62,19 @@ public class CharacterControl : MonoBehaviour
 
     protected CardinalDirection CheckDirection()
     {
-        if (movement.x == 0 && movement.y == 1)
+        if (movement.x == 0 && movement.y > 0)
         {
             return CardinalDirection.NORTH;
         }
-        else if (movement.x == -1 && movement.y == 0)
+        else if (movement.x < 0 && movement.y == 0)
         {
             return CardinalDirection.WEST;
         }
-        else if (movement.x == 0 && movement.y == -1)
+        else if (movement.x == 0 && movement.y < 0)
         {
             return CardinalDirection.SOUTH;
         }
-        else if (movement.x == 1 && movement.y == 0)
+        else if (movement.x > 0 && movement.y == 0)
         {
             return CardinalDirection.EAST;
         }

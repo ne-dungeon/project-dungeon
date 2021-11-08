@@ -27,4 +27,13 @@ public class PlayerControl : CharacterControl
             UpdateAnimation();
         }
     }
+
+    void FixedUpdate()
+    {
+        // Physics based on fixed update rate
+        if (!isAttacking)
+        {
+            characterRigidBody.MovePosition(characterRigidBody.position + movement * moveSpeed * Time.fixedDeltaTime);
+        }
+    }
 }

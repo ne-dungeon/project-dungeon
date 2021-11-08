@@ -10,6 +10,8 @@ TagManager:
   - SpawnPoint_R
   - SpawnPoint_L
   - Breakable
+  - Enemy
+  - NPC
   layers:
   - Default
   - TransparentFX

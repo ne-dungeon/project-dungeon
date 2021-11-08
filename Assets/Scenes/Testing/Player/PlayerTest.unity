@@ -4097,7 +4097,7 @@ GameObject:
   - component: {fileID: 1793267250}
   m_Layer: 0
   m_Name: Skeleton
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4293,16 +4293,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1793267240}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35dc385eda7d4476ea8e6e5580768af2, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d0f26238491842d19908a6728a17d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 2
+  currentState: 0
   lastDirection: 2
   moveSpeed: 3
   slashDelay: 0.53
-  health: 0
-  entityName: 
-  baseAttack: 0
+  health: 2
+  entityName: Skeleton Prime
+  baseAttack: 1
+  target: {fileID: 0}
+  chaseRadius: 4
+  attackRadius: 1
+  homePosition: {fileID: 0}
+  hostile: 1
 --- !u!1 &1880511522
 GameObject:
   m_ObjectHideFlags: 0
