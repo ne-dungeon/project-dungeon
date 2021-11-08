@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8252180178579858118}
   - component: {fileID: 8252180178579858117}
   - component: {fileID: 8252180178579858113}
-  - component: {fileID: 2455416006007034088}
   - component: {fileID: 8252180178579858116}
   - component: {fileID: 8252180178579858119}
   - component: {fileID: 2415007188703372304}
@@ -75,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2021427431
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -7248635466372067198, guid: 3105ce36ae28f4e9eb7e55b0f393c516, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -106,20 +105,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2455416006007034088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8252180178579858112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49e585b8277f24ff5a424c8f8cf47d68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wearableState: 0
-  wearableDirection: 0
 --- !u!114 &8252180178579858116
 MonoBehaviour:
   m_ObjectHideFlags: 0

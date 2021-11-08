@@ -9,6 +9,9 @@ TagManager:
   - SpawnPoint_B
   - SpawnPoint_R
   - SpawnPoint_L
+  - Breakable
+  - Enemy
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -51,4 +54,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2021427431
+    locked: 0
+  - name: NPCs
+    uniqueID: 927958007
     locked: 0

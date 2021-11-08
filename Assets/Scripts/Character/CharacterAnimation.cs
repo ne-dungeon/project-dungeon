@@ -23,19 +23,22 @@ public class CharacterAnimation : MonoBehaviour
     }
 
     Animator animator;
+    WearableControl wearableControl;
+
     private AnimationName currentAnimation;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        wearableControl = GetComponent<WearableControl>();
     }
 
     public void ChangeAnimationState(CardinalDirection direction, CharacterControl.CharacterState state)
     {
         AnimationName newAnimation = currentAnimation;
 
-    if (state == CharacterControl.CharacterState.SLASH)
+        if (state == CharacterControl.CharacterState.SLASH)
         {
             switch (direction)
             {
@@ -98,6 +101,7 @@ public class CharacterAnimation : MonoBehaviour
 
         // Play the input animation
         animator.Play(newAnimation.ToString());
+        wearableControl.UpdateAnimations(newAnimation);
 
         // Reassign the current state
         currentAnimation = newAnimation;
