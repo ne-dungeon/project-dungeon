@@ -16,7 +16,7 @@ public class EnemyControl : NPCControl
     {
         target = GameObject.FindWithTag("Player").transform;
     }
-
+// test
     protected void ChasePlayer()
     {
         if (Vector3.Distance(target.position, transform.position) <= chaseRadius && Vector3.Distance(target.position, transform.position) > attackRadius)
