@@ -159,6 +159,7 @@ GameObject:
   - component: {fileID: 8747408328839121772}
   - component: {fileID: 7791391560436627038}
   - component: {fileID: 5749758379463930500}
+  - component: {fileID: 844775964728644990}
   m_Layer: 0
   m_Name: HitBoxS
   m_TagString: Untagged
@@ -225,6 +226,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46019b111db3c46ed9731a3b91214a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &844775964728644990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5219443148289109172}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56dc83c8dc55c4babbfcb002f47fb8ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 0
 --- !u!1 &7570597313875845200
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,6 +250,7 @@ GameObject:
   - component: {fileID: 8517828642166125565}
   - component: {fileID: 5348545973246387639}
   - component: {fileID: 1354357069184237713}
+  - component: {fileID: 4097735947753354064}
   m_Layer: 0
   m_Name: HitBoxN
   m_TagString: Untagged
@@ -300,6 +315,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46019b111db3c46ed9731a3b91214a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4097735947753354064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7570597313875845200}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56dc83c8dc55c4babbfcb002f47fb8ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 0
 --- !u!1 &8221638462138418229
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,6 +339,7 @@ GameObject:
   - component: {fileID: 2750583802398601470}
   - component: {fileID: 5702526218895567070}
   - component: {fileID: 1748183041349912712}
+  - component: {fileID: 4837928474684330992}
   m_Layer: 0
   m_Name: HitBoxW
   m_TagString: Untagged
@@ -377,6 +406,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46019b111db3c46ed9731a3b91214a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4837928474684330992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8221638462138418229}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56dc83c8dc55c4babbfcb002f47fb8ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 0
 --- !u!1 &8518913871486355222
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,6 +430,7 @@ GameObject:
   - component: {fileID: 1599783799035606629}
   - component: {fileID: 7148390826582795160}
   - component: {fileID: 6799020781507304536}
+  - component: {fileID: 1704194536239499648}
   m_Layer: 0
   m_Name: HitBoxE
   m_TagString: Untagged
@@ -453,3 +496,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46019b111db3c46ed9731a3b91214a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1704194536239499648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8518913871486355222}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56dc83c8dc55c4babbfcb002f47fb8ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 0

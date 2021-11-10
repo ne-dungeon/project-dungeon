@@ -16,7 +16,7 @@ public class EnemyControl : NPCControl
     {
         target = GameObject.FindWithTag("Player").transform;
     }
-// test
+
     protected void ChasePlayer()
     {
         if (Vector3.Distance(target.position, transform.position) <= chaseRadius && Vector3.Distance(target.position, transform.position) > attackRadius)
@@ -51,6 +51,18 @@ public class EnemyControl : NPCControl
                 }
             }
             transform.position = newPosition;
+            // Using this makes the enemy SUPER SLOW D: hopefully next videos will provide insight on fixing this.
+            // characterRigidBody.MovePosition(newPosition);
         }
+    }
+
+    protected void Patrol(int steps)
+    {
+        // if not too close to player, pick a direction, walk x steps, stop for y seconds, pick another direction
+        // how to check for encountering wall?
+        // coroutine?
+        // if hostile will switch to chase player,if not, will ignore player proximity until player talks to them
+        // Use state interact to pause movement for talking?
+        // Set edges to patrol area for creatures not in rooms?
     }
 }

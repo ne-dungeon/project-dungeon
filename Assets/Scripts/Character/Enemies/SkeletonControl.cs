@@ -14,11 +14,15 @@ public class SkeletonControl : EnemyControl
     // Update is called once per frame
     void Update()
     {
-        movement = Vector2.zero;
-        ChasePlayer();
         if (currentState <= CharacterState.WALK)
         {
             UpdateAnimation();
         }
+    }
+
+    void FixedUpdate()
+    {
+        movement = Vector2.zero;
+        ChasePlayer();
     }
 }
