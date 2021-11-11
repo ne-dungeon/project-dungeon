@@ -48,7 +48,7 @@ public class LayoutGenerator : MonoBehaviour
 
     }
 
-    internal void ClearPrefabLayout()
+    public void ClearPrefabLayout()
     {
         if (activePrefabs.Count > 0)
         {
