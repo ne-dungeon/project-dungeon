@@ -67,7 +67,7 @@ public class SpriteProcessor : AssetPostprocessor
         Debug.Log(spriteRects);
         Debug.Log(spriteRects.Length);
 
-        List<SpriteMetaData> metas = new List<SpriteMetaData>();
+        List<SpriteMetaData> spriteMetas = new List<SpriteMetaData>();
         string fileNameNoExtension = Path.GetFileNameWithoutExtension(assetPath);
 
         TextureImporter textureImporter = (TextureImporter)assetImporter;
@@ -77,11 +77,11 @@ public class SpriteProcessor : AssetPostprocessor
             SpriteMetaData meta = new SpriteMetaData();
             meta.rect = spriteRects[i];
             meta.name = fileNameNoExtension + "_" + i;
-            metas.Add(meta);
+            spriteMetas.Add(meta);
         }
 
 
-        textureImporter.spritesheet = metas.ToArray();
+        textureImporter.spritesheet = spriteMetas.ToArray();
 
         // Debug.Log("Meta rects:");
         // for (int i = 0; i < textureImporter.spritesheet.Length; i++)
@@ -89,9 +89,8 @@ public class SpriteProcessor : AssetPostprocessor
         //     Debug.Log(textureImporter.spritesheet[i]);
         //     Debug.Log(textureImporter.spritesheet[i].rect);
         // }
-
-        AssetDatabase.ForceReserializeAssets(new List<string>() { assetImporter.assetPath });
-        AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
+        RunReimport();
+        Debug.Log("end of on postprocess texture");
 
     }
 
@@ -111,5 +110,13 @@ public class SpriteProcessor : AssetPostprocessor
         //     AssetDatabase.ImportAsset(assetImporter.assetPath);
         //     return;
         // }
+    }
+
+
+    void RunReimport()
+    {
+        Debug.Log("run Reimport");
+        AssetDatabase.ForceReserializeAssets(new List<string>() { assetImporter.assetPath });
+        AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
     }
 }
