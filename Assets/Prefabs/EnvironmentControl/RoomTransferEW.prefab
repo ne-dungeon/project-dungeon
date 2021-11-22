@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7792160640331134082}
   - component: {fileID: 7792160640331134109}
   m_Layer: 0
-  m_Name: RoomTransfer
+  m_Name: RoomTransferEW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
