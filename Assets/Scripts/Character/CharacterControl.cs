@@ -9,7 +9,8 @@ public class CharacterControl : MonoBehaviour
         IDLE,
         INTERACT,
         WALK,
-        SLASH
+        SLASH,
+        STAGGER,
     }
 
     // Control variables
@@ -43,6 +44,13 @@ public class CharacterControl : MonoBehaviour
         characterAnimation = GetComponent<CharacterAnimation>();
     }
 
+    protected void ChangeState(CharacterState newState)
+    {
+        if (currentState != newState) {
+            currentState = newState;
+        }
+    }
+
     protected void UpdateAnimation()
     {
         lastDirection = CheckDirection();
@@ -58,7 +66,6 @@ public class CharacterControl : MonoBehaviour
 
         characterAnimation.ChangeAnimationState(lastDirection, currentState);
     }
-
 
     protected CardinalDirection CheckDirection()
     {

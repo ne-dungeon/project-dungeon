@@ -19,7 +19,9 @@ public class EnemyControl : NPCControl
 
     protected void ChasePlayer()
     {
-        if (Vector3.Distance(target.position, transform.position) <= chaseRadius && Vector3.Distance(target.position, transform.position) > attackRadius)
+        if (currentState <= CharacterState.WALK
+        && Vector3.Distance(target.position, transform.position) <= chaseRadius
+        && Vector3.Distance(target.position, transform.position) > attackRadius)
         {
             var newPosition = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
             var change = new Vector2((newPosition.x - transform.position.x), (newPosition.y - transform.position.y));
@@ -53,6 +55,7 @@ public class EnemyControl : NPCControl
             transform.position = newPosition;
             // Using this makes the enemy SUPER SLOW D: hopefully next videos will provide insight on fixing this.
             // characterRigidBody.MovePosition(newPosition);
+            ChangeState(CharacterState.WALK);
         }
     }
 

@@ -4788,7 +4788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thrust: 7
-  knockTime: 0.4
+  knockTime: 0.3
 --- !u!114 &1880511534
 MonoBehaviour:
   m_ObjectHideFlags: 0

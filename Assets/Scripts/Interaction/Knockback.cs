@@ -23,11 +23,13 @@ public class Knockback : MonoBehaviour
 
     private IEnumerator PlayKnockBack(Rigidbody2D enemy)
     {
+        var enemyControl = enemy.GetComponent<CharacterControl>();
+        enemyControl.currentState = CharacterControl.CharacterState.STAGGER;
         Vector2 difference = enemy.transform.position - transform.position;
         Vector2 force = difference.normalized * thrust;
         enemy.velocity = force;
         yield return new WaitForSeconds(knockTime);
         enemy.velocity = Vector2.zero;
-
+        enemyControl.currentState = CharacterControl.CharacterState.IDLE;
     }
 }
