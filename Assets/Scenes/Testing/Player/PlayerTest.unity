@@ -4561,6 +4561,8 @@ GameObject:
   - component: {fileID: 1880511529}
   - component: {fileID: 1880511531}
   - component: {fileID: 1880511532}
+  - component: {fileID: 1880511533}
+  - component: {fileID: 1880511534}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4771,6 +4773,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 699b5b404c0e047f08ce3ab1d8c903fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1880511533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880511522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56dc83c8dc55c4babbfcb002f47fb8ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 7
+  knockTime: 0.4
+--- !u!114 &1880511534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880511522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46019b111db3c46ed9731a3b91214a27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1947956443
@@ -8777,6 +8805,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1880511524}
     m_Modifications:
+    - target: {fileID: 97742830850344460, guid: 645ef36c8ee6f4eefa78136308eb7f8b, type: 3}
+      propertyPath: thrust
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 97742830850344460, guid: 645ef36c8ee6f4eefa78136308eb7f8b, type: 3}
+      propertyPath: knockTime
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 243745984714497227, guid: 645ef36c8ee6f4eefa78136308eb7f8b, type: 3}
+      propertyPath: thrust
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 243745984714497227, guid: 645ef36c8ee6f4eefa78136308eb7f8b, type: 3}
+      propertyPath: knockTime
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 844775964728644990, guid: 645ef36c8ee6f4eefa78136308eb7f8b, type: 3}
       propertyPath: thrust
       value: 5
@@ -8885,6 +8929,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7055881102116350067, guid: 645ef36c8ee6f4eefa78136308eb7f8b, type: 3}
+      propertyPath: thrust
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055881102116350067, guid: 645ef36c8ee6f4eefa78136308eb7f8b, type: 3}
+      propertyPath: knockTime
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 7570597313875845200, guid: 645ef36c8ee6f4eefa78136308eb7f8b, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -8896,6 +8948,14 @@ PrefabInstance:
     - target: {fileID: 7637304196864203343, guid: 645ef36c8ee6f4eefa78136308eb7f8b, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7806977132407770602, guid: 645ef36c8ee6f4eefa78136308eb7f8b, type: 3}
+      propertyPath: thrust
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7806977132407770602, guid: 645ef36c8ee6f4eefa78136308eb7f8b, type: 3}
+      propertyPath: knockTime
+      value: 0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 645ef36c8ee6f4eefa78136308eb7f8b, type: 3}
