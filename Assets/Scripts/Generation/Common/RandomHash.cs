@@ -3,8 +3,7 @@ using UnityEngine;
 
 static class RandomHash
 {
-    [SerializeField]
-    private static uint seed = 0xABCDEF11;
+    public static uint seed;
 
     static uint BIT_NOISE1 = 0xB5297A4D;
     static uint BIT_NOISE2 = 0x68E31DA4;

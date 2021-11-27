@@ -35,7 +35,6 @@ class BasicLayoutGenerator : AbstractLayoutGenerator
 
             //int roomIndex = Random.Range(0, availableRooms.Count());
             var hash = RandomHash.Hash(roomId);
-            Debug.Log(hash);
             int roomIndex =  (int)(hash % availableRooms.Count());
             LayoutRoom room = availableRooms.rooms[roomIndex];
 

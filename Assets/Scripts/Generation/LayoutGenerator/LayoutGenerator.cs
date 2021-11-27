@@ -13,6 +13,9 @@ public class LayoutGenerator : MonoBehaviour
     private int totalRooms;
 
     [SerializeField]
+    private uint seed = 0x12345678;
+
+    [SerializeField]
     private List<GameObject> roomPrefabs = new List<GameObject>();
 
     AbstractLayoutGenerator layoutGenerator;
@@ -24,6 +27,8 @@ public class LayoutGenerator : MonoBehaviour
     {
         // First clear the existing layout.
         ClearPrefabLayout();
+
+        RandomHash.seed = seed;
 
         // Then set the generator and create the rooms.
         layoutGenerator = new BasicLayoutGenerator();
