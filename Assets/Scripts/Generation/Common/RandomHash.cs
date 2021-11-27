@@ -4,26 +4,26 @@ using UnityEngine;
 static class RandomHash
 {
     [SerializeField]
-    private int seed = 0xABCDEF12;
+    private static uint seed = 0xABCDEF11;
 
-    const int BIT_NOISE1 = 0xB5297A4D;
-    const int BIT_NOISE2 = 0x68E31DA4;
-    const int BIT_NOISE3 = 0x1B56C4E9;
+    static uint BIT_NOISE1 = 0xB5297A4D;
+    static uint BIT_NOISE2 = 0x68E31DA4;
+    static uint BIT_NOISE3 = 0x1B56C4E9;
 
-    public int Hash(params int[] args)
+    public static uint Hash(params int[] args)
     {
-        const int PARAM_MASK = 0b11111;
+        const uint PARAM_MASK = 0b11111;
 
-        int concatParams = 0;
+        uint concatParams = 0;
         int i = 0;
 
-        foreach (int arg in args)
+        foreach (uint arg in args)
         {
             concatParams |= (arg & PARAM_MASK) << i;
             i += 5;
-        }
+       }
 
-        unsigned int mangled = position;
+        uint mangled = concatParams;
         mangled *= BIT_NOISE1;
         mangled += seed;
         mangled ^= (mangled >> 8);
