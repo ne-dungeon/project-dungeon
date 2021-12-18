@@ -33,7 +33,9 @@ class BasicLayoutGenerator : AbstractLayoutGenerator
             doorPositions.Add(DoorDirection.EAST);
             doorPositions.Add(DoorDirection.WEST);
 
-            int roomIndex = Random.Range(0, availableRooms.Count());
+            //int roomIndex = Random.Range(0, availableRooms.Count());
+            var hash = RandomHash.Hash(roomId);
+            int roomIndex =  (int)(hash % availableRooms.Count());
             LayoutRoom room = availableRooms.rooms[roomIndex];
 
             // Create temp neighbours
@@ -71,7 +73,7 @@ class BasicLayoutGenerator : AbstractLayoutGenerator
             }
             else
             {
-                int neighbourDirectionIndex = Random.Range(0, doorPositions.Count);
+                int neighbourDirectionIndex = (int)(RandomHash.Hash(roomId) % doorPositions.Count);
                 DoorDirection neighbourDirection = doorPositions[neighbourDirectionIndex];
 
                 roomIndex = rooms.indexById(room.id);
