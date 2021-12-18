@@ -35,10 +35,13 @@ public class LayoutGenerator : MonoBehaviour
         LayoutRoomsList rooms = layoutGenerator.GenerateDungeonLayout(totalRooms);
 
         // Setting a random origin room
-        startingRoom = rooms.rooms[Random.Range(0, rooms.rooms.Count)];
 
+        // Passing a constant into the hash function will make the
+        // randomness depend on the game seed
+        var hash = RandomHash.Hash(1);
+        startingRoom = rooms.rooms[(int)(hash % rooms.rooms.Count)];
+        
         // FINDING THE BOSS ROOM //
-
         PathFinder pf = new PathFinder(rooms, startingRoom);
 
         bossRoom = pf.findBossRoom();

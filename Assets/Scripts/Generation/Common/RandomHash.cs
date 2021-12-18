@@ -20,7 +20,7 @@ static class RandomHash
         {
             concatParams |= (arg & PARAM_MASK) << i;
             i += 5;
-       }
+        }
 
         uint mangled = concatParams;
         mangled *= BIT_NOISE1;
