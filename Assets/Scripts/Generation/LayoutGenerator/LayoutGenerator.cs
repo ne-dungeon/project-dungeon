@@ -16,6 +16,12 @@ public class LayoutGenerator : MonoBehaviour
     private uint seed = 0x12345678;
 
     [SerializeField]
+    private int dungeonNumber = 1;
+
+    [SerializeField]
+    private int level = 1;
+
+    [SerializeField]
     private List<GameObject> roomPrefabs = new List<GameObject>();
 
     AbstractLayoutGenerator layoutGenerator;
@@ -32,13 +38,13 @@ public class LayoutGenerator : MonoBehaviour
 
         // Then set the generator and create the rooms.
         layoutGenerator = new BasicLayoutGenerator();
-        LayoutRoomsList rooms = layoutGenerator.GenerateDungeonLayout(totalRooms);
+        LayoutRoomsList rooms = layoutGenerator.GenerateDungeonLayout(dungeonNumber, level, totalRooms);
 
         // Setting a random origin room
 
         // Passing a constant into the hash function will make the
         // randomness depend on the game seed
-        var hash = RandomHash.Hash(1);
+        var hash = RandomHash.Hash(1, level);
         startingRoom = rooms.rooms[(int)(hash % rooms.rooms.Count)];
         
         // FINDING THE BOSS ROOM //

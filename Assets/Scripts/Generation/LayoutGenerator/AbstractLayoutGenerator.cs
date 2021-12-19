@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class AbstractLayoutGenerator
 {
-    public abstract LayoutRoomsList GenerateDungeonLayout(int numRooms);
+    public abstract LayoutRoomsList GenerateDungeonLayout(int dungeonNumber, int level, int numRooms);
 }

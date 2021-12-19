@@ -12,7 +12,7 @@ class BasicLayoutGenerator : AbstractLayoutGenerator
 
         Rooms contain grid coordinates that describe the placement of rooms
         in relation to each other, not the physical GameObject coordinates. */
-    public override LayoutRoomsList GenerateDungeonLayout(int numRooms)
+    public override LayoutRoomsList GenerateDungeonLayout(int dungeonNumber, int level, int numRooms)
     {
         LayoutRoomsList rooms = new LayoutRoomsList();
         LayoutRoomsList availableRooms = new LayoutRoomsList();
@@ -34,7 +34,7 @@ class BasicLayoutGenerator : AbstractLayoutGenerator
             doorPositions.Add(DoorDirection.WEST);
 
             //int roomIndex = Random.Range(0, availableRooms.Count());
-            var hash = RandomHash.Hash(roomId);
+            var hash = RandomHash.Hash(dungeonNumber, level, roomId);
             int roomIndex =  (int)(hash % availableRooms.Count());
             LayoutRoom room = availableRooms.rooms[roomIndex];
 
