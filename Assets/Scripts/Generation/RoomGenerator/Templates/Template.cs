@@ -49,7 +49,7 @@ public class Template : MonoBehaviour
     // continued testing) once things are working and proper tests are set up.
     public TilePositionTemplate GetTemplate()
     {
-        theme = Theme.Default;
+        theme = Theme.AbandonedMine;
         doors = new HashSet<DoorDetails>(){new DoorDetails(0, DoorDirection.NORTH, DoorType.Open, 4),
             new DoorDetails(0, DoorDirection.SOUTH, DoorType.Open, -3),
             new DoorDetails(0, DoorDirection.EAST, DoorType.Open, 1),

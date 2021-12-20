@@ -43,7 +43,7 @@ public class RoomGenDetails : ScriptableObject
         private set { _generated = value; }
     }
     // The theme of the dungeon being generated.
-    public Theme theme = Theme.Default;
+    public Theme theme = Theme.AbandonedMine;
     // The size of the room in grid tiles.
     public int roomHeight = 8;
     public int roomWidth = 12;
@@ -72,6 +72,9 @@ public class RoomGenDetails : ScriptableObject
     // What kind of loot are we getting here? :D
     public TreasureType treasure = TreasureType.None;
     public int id;
+    /// The coordinates for the lower left corner of the lower left floor tile. Ie, 0,0 for 
+    /// the starting room.
+    public Vector2Int baseCoords;
     // Coordinates?
     // public SomeType coordinates;
 
@@ -109,21 +112,6 @@ public struct DoorDetails
 
 public enum DoorDirection { NORTH, WEST, SOUTH, EAST }
 
-// public struct DoorDirections
-// {
-//     public DoorDirections(DoorType n, DoorType s, DoorType e, DoorType w)
-//     {
-//         north = n;
-//         west = w;
-//         south = s;
-//         east = e;
-//     }
-//     DoorType north;
-//     DoorType west;
-//     DoorType south;
-//     DoorType east;
-// }
-
 /// <summary>Type of door or none.</summary>
 public enum DoorType
 {
@@ -152,7 +140,7 @@ public enum TreasureType
 /// <summary>Zone or theme of dungeon being generated.</summary>
 public enum Theme
 {
-    Default
+    AbandonedMine
 }
 
 /// <summary>Type of puzzle to include in room or none.</summary>
