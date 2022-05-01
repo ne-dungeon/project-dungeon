@@ -10,10 +10,7 @@ public class PlayerControl : CharacterControl
     void Update()
     {
         // Input based on framerate
-        movement = Vector2.zero;
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-        movement = movement.normalized;
+        movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
         isAttacking = IsAttacking();
 
