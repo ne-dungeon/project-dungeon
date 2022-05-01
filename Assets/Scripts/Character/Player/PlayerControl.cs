@@ -12,6 +12,8 @@ public class PlayerControl : CharacterControl
         // Input based on framerate
         movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
+        // Setting variable here rather than just using the function call prevents a
+        // movement bug associated with trying to move and attacking at the same time.
         isAttacking = IsAttacking();
 
         if (Input.GetButtonDown("slash") && !isAttacking)
