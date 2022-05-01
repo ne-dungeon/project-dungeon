@@ -66,6 +66,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -436,6 +437,21 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      broken smol bit top: 5568278374786449489
+      scythe_n_pot_8: -5457350409660380795
+      potwhandles: -5225643259786825777
+      scythe_n_pot_11: -1434588459332036746
+      scythe_n_pot_0: -7485682373117006018
+      bottomofpot: -6792536151008441816
+      scythe_n_pot_6: -7068678912852090347
+      scythe_n_pot_12: 4333230805698319314
+      broken smol bit: -3932293132956595652
+      brokenbit: -5091243497048180296
+      scythe_n_pot_13: 7869239218945453190
+      pot: -857242058252672381
+      brokentop: -4288583168289710761
+      scythe_n_pot_7: -3720623959575001744
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

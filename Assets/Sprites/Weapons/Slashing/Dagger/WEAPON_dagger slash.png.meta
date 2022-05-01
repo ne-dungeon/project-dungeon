@@ -96,6 +96,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -676,6 +677,31 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      WEAPON_dagger slash_22: -1323728060451642300
+      WSlash2: 4763918234173315181
+      NSlash6: 3742513243437581358
+      NSlash5: 2796943683217586326
+      WEAPON_dagger slash_14: -5280020971900080096
+      WEAPON_dagger slash_21: -1803951820558720527
+      WSlash1: 2999382017511539836
+      WEAPON_dagger slash_15: -2393020285863135885
+      NSlash2: 6505986516114308921
+      WEAPON_dagger slash_20: -3064432351233774220
+      WSlash3: 7624641928487346347
+      NSlash4: 9034081822462574858
+      WSlash6: 3516088910649875677
+      WSlash4: 1693078781400417165
+      WEAPON_dagger slash_13: 8133942653371168620
+      WEAPON_dagger slash_19: 3341200573345970045
+      WEAPON_dagger slash_23: 7203401986160538506
+      NSlash1: 4127708214697197698
+      WEAPON_dagger slash_12: 5515311128502639079
+      WEAPON_dagger slash_16: 7012738292963723668
+      WEAPON_dagger slash_17: -2383425110364637242
+      WEAPON_dagger slash_18: 1140721972040327245
+      NSlash3: -2368188132429313840
+      WSlash5: 2231573389424600839
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

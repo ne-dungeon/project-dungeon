@@ -132,6 +132,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -964,6 +965,43 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      NWalk4: 1631461381033693559
+      WWalk2: 4957264774687548571
+      Ewalk6: -6106094513610796950
+      WWalk4: 7422402549346144794
+      WWalk6: 27378350236807076
+      SWalk3: -2772206281864603363
+      SWalk2: -4633869526901222686
+      Ewalk1: -6346661982788725694
+      Ewalk7: -7041570419286677499
+      WWalk8: 2626489558698862060
+      SWalk6: -4187344674283141781
+      Ewalk4: 8533016492962428085
+      WWalk1: 2885745657507772023
+      WWalk7: -2260569746228289980
+      Ewalk5: 6603569495368994540
+      NWalk7: -4080775372113846918
+      NStand: 7279455311186856980
+      NWalk1: -4088114138503326579
+      SWalk4: 1835343708331068171
+      NWalk5: -7510376275424592669
+      SWalk1: -696084962783557004
+      SWalk8: -7289395971409605218
+      SStand: -8592181219564633692
+      Ewalk8: 5902580393368434276
+      Ewalk2: -4932562223815412667
+      NWalk2: 468346854419608498
+      NWalk8: 5097417651578741670
+      WWalk3: 6759708557491977277
+      NWalk3: -2309791414601253
+      WWalk5: -8629613367748223465
+      Ewalk3: -55376975011484618
+      SWalk5: 4571637169126541102
+      WStand: 5477719328627080822
+      NWalk6: 7758749025480893312
+      EStand: 3964938425145790314
+      SWalk7: 8717497167138793728
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

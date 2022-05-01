@@ -42,6 +42,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -244,6 +245,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      BODY_male hurt_2: -235719046664463621
+      BODY_male hurt_3: 1749890294906181052
+      BODY_male hurt_4: -5169631563333190099
+      BODY_male hurt_0: -9152273946049085218
+      BODY_male hurt_1: -978564113649102821
+      BODY_male hurt_5: -495450661338146514
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

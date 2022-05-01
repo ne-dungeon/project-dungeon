@@ -129,6 +129,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -940,6 +941,42 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      MineFloorCenter: 7121119098465119362
+      MineFloorW: 1982922299392222387
+      MineFloorTileset_24: 7451898701420662927
+      MineFloorTileset_23: 4629270916693022911
+      MineFloorTileset_33: -7465405237309756607
+      MineFloorTileset_19: 4674523188977013011
+      MineFloorSW: -5940998215938308031
+      MineFloorN: 82301883476599628
+      MineFloorE: -375598293850444612
+      MineFloorTileset_14: 835998945203729867
+      MineFloorTileset_27: 2641862801070616040
+      MineFloorTileset_21: -248948969369592663
+      MineFloorTileset_29: -5278979977458664508
+      MineFloorNW: -3637432482611383689
+      MineFloorS: -5073445487814287704
+      MineFloorTileset_18: 5957555556309370559
+      MineFloorTileset_31: -7933011847781668297
+      MineFloorTileset_26: 5579449855875817161
+      MineFloorNE: 6109314760551085251
+      MineFloorTileset_13: 3355609450787209802
+      MineFloorTileset_22: 7168119281623335859
+      MineFloorTileset_8: -2934368885874468473
+      MineFloorTileset_20: 6845958178915029647
+      MineFloorTileset_9: 7906827896136000686
+      MineFloorTileset_28: -8575415102702053489
+      MineFloorTileset_30: 3683446336456303651
+      MineFloorTileset_3: 1071991870042992667
+      MineFloorTileset_16: -1804095332794813167
+      MineFloorSE: -2510625379198849349
+      MineFloorTileset_32: 5229696648867054834
+      MineFloorTileset_4: -1691804062945199325
+      MineFloorTileset_34: 7705462104185779630
+      MineFloorTileset_15: -3415450635195930507
+      MineFloorTileset_17: -5488694714079353922
+      MineFloorTileset_25: -3403015285872748324
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

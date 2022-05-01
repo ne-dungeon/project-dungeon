@@ -168,6 +168,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1252,6 +1253,55 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      MineWallsTileset_4: -6999299170590021316
+      MineWallsTileset_15: 991273041110266802
+      MineWallsTileset_24: -6593079503561919445
+      MineWallsTileset_20: 1565809578114717974
+      MineWallsTileset_19: 4429302406900442703
+      MineWallsTileset_41: -4264628847979372646
+      MineWallsTileset_34: -4388747410588397049
+      MineWallsTileset_1: 3021067276011499863
+      MineWallsTileset_6: -4337141090957590988
+      MineWallsTileset_35: 7376223647321098611
+      MineWallsTileset_14: 6381165889250533159
+      MineWallsTileset_2: 2214002059761325819
+      MineWallsTileset_7: 776661658262178607
+      MineWallsTileset_11: -4418112500882960590
+      MineWallsTileset_28: 5778832452684918011
+      MineWallsTileset_18: 3790880427916600920
+      MineWallsTileset_38: -3863794070990804626
+      MineWallsTileset_8: 3639513088185075537
+      MineWallsTileset_44: -7722959178676531594
+      MineWallsTileset_36: 1192445244663774577
+      MineWallsTileset_25: -3821037958640008090
+      MineWallsTileset_22: -1376337979154054911
+      MineWallsTileset_29: 228189782124193588
+      MineWallsTileset_42: -1591989341048296774
+      MineWallsTileset_21: 2097166403440442886
+      MineWallsTileset_17: -8069743890055104824
+      MineWallsTileset_3: 6089450091354770278
+      MineWallsTileset_26: -6690947388841859902
+      MineWallsTileset_16: -2971041021845994154
+      MineWallsTileset_45: -3389088853539546037
+      MineWallsTileset_13: -6240042336185983546
+      MineWallsTileset_9: 5719859353493452618
+      MineWallsTileset_46: 5588920329926716272
+      MineWallsTileset_0: -3860918683143217874
+      MineWallsTileset_43: -4161219861100565993
+      MineWallsTileset_27: 5600985024604588604
+      MineWallsTileset_30: -4956115608189464734
+      MineWallsTileset_23: -44938630072037768
+      MineWallsTileset_5: 4983126173706802008
+      MineWallsTileset_37: -2748028194508401886
+      MineWallsTileset_40: 1615409479209005967
+      MineWallsTileset_39: 2680672531203589168
+      MineWallsTileset_47: 8706188164099020109
+      MineWallsTileset_33: -9148683917119242768
+      MineWallsTileset_10: 39229985758204488
+      MineWallsTileset_31: 4026097360177602135
+      MineWallsTileset_12: 486648375795939907
+      MineWallsTileset_32: 3403254972179733476
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

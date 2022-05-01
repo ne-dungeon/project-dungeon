@@ -180,6 +180,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1348,6 +1349,59 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Wall Outer NW: -4170555087457116640
+      Wall Outer SE: -2347064146693634305
+      Wall Outer E: -443537862409895617
+      Pit SE: -2336358387269611956
+      Floor Inner SE: 3191488296516291494
+      Stairs: -6499017830206215050
+      Floor E: -4007826451262851744
+      Floor Inner NE: -8237007452588438253
+      Floor S: -472994131761971759
+      Wall Inner NE: 3776235955234632299
+      Floor W: 3279088705448880411
+      Pit Inner NW: -796035559688046695
+      Moss Clump: -4822892497430143628
+      Crystal: 302566366810190604
+      Floor Inner SW: 2228560182512649470
+      Pit Center: 6131687971799480424
+      Pit Inner NE: -2253748373665902629
+      Rock Brown: 8691523824438052742
+      Floor SE: 660559792249440876
+      Rock Grey Small: 3483803907885721410
+      Floor NW: 769945094620378288
+      Pit W: -1910697870135096236
+      Wall Inner E: -4331498607508138866
+      Pit Single: -8126788274282228521
+      Wall Outer S: -8650521493311892024
+      Pit S: 2563228223318416060
+      Rock Grey Tall: 9027350698208149292
+      Wall Inner W: -7139307309767073233
+      Wall Inner NW: -887103245037669355
+      Pit NE: 117673594298486427
+      Wall Inner SW: 7374803789854556362
+      Floor NE: 5815692676043715705
+      Pit N: -7309622429717128527
+      Pit Inner SW: -6356178407401083550
+      Wall Outer N: 4693019658330564282
+      Door Outside Lower: -4820552560579832791
+      Floor N: 5792420479177666896
+      Wall outer NE: 1836251499754214093
+      Wall Outer SW: 5912711938803718596
+      Wall Outer W: -6493159094153906343
+      Floor SW: -3256372209794200012
+      Mushroom Pair: 5311970170732194665
+      Pit NW: 2698617947219458041
+      Floor Single: 8655477434947692621
+      Pit SW: -1448032412989791189
+      Floor Inner NW: 3546525903179774367
+      Pit Inner SE: -5032027706720086520
+      Bones: -3727002655181885784
+      Wall Inner SE: 2849667064402962704
+      Pit E: -1271152098432255538
+      Floor Center: -3031307906575769487
+      Door Outside Upper: -1586751073771575769
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

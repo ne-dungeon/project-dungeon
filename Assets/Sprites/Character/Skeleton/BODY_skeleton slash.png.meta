@@ -96,6 +96,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -676,6 +677,31 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      BODY_skeleton slash_17: 4329352197941489165
+      BODY_skeleton slash_16: -4716502772758356874
+      BODY_skeleton slash_7: -34715402893791282
+      BODY_skeleton slash_11: 3769112189054965912
+      BODY_skeleton slash_10: 2485405699101636505
+      BODY_skeleton slash_2: -369931774799494537
+      BODY_skeleton slash_5: -4061552511736538362
+      BODY_skeleton slash_6: 6101359485665817224
+      BODY_skeleton slash_9: 2254765813328323955
+      BODY_skeleton slash_14: -5670713742927513810
+      BODY_skeleton slash_3: 4358167160345205422
+      BODY_skeleton slash_19: 6980194157188767183
+      BODY_skeleton slash_22: 8757224420342122606
+      BODY_skeleton slash_18: -7748311097289328365
+      BODY_skeleton slash_23: 856200772906163984
+      BODY_skeleton slash_13: -5608905169358784374
+      BODY_skeleton slash_4: -1443196295356184974
+      BODY_skeleton slash_12: -8373034322251576603
+      BODY_skeleton slash_0: 3579030972999897757
+      BODY_skeleton slash_1: 4030000863501828000
+      BODY_skeleton slash_8: -3765166374453587612
+      BODY_skeleton slash_15: 795007649472889778
+      BODY_skeleton slash_20: -4862616514281415034
+      BODY_skeleton slash_21: -722830275756932393
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

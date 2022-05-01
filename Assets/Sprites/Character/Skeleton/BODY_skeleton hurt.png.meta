@@ -42,6 +42,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -244,6 +245,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      BODY_skeleton hurt_1: 2615405608616902870
+      BODY_skeleton hurt_2: -5282426309617109148
+      BODY_skeleton hurt_3: -4002411605632887570
+      BODY_skeleton hurt_4: 3760223516952851804
+      BODY_skeleton hurt_0: 51087470914172328
+      BODY_skeleton hurt_5: -6186732390765930578
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
