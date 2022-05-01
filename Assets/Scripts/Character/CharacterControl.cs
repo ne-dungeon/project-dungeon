@@ -27,7 +27,7 @@ public class CharacterControl : MonoBehaviour
     public float moveSpeed = 3f;
     public float slashDelay = 0.53f;
 
-    public int health;
+    public Health health;
     public string entityName;
     public int baseAttack;
 
@@ -46,7 +46,8 @@ public class CharacterControl : MonoBehaviour
 
     protected void ChangeState(CharacterState newState)
     {
-        if (currentState != newState) {
+        if (currentState != newState)
+        {
             currentState = newState;
         }
     }

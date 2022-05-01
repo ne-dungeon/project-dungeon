@@ -1,4 +1,4 @@
-class Health
+public class Health
 {
   int health, minHealth, maxHealth;
 
