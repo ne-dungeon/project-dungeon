@@ -92,7 +92,12 @@ public class CharacterControl : MonoBehaviour
         }
     }
 
-    // Update this if/when we add additional attack types.
+    /// <summary>
+    /// Use property isAttacking to check attack state in FixedUpdate; use
+    /// Update to change property using this method. This avoids certain 
+    /// movement bugs when trying to move and attack at the same time.
+    /// </summary>
+    /// Update this if/when we add additional attack types.
     protected bool IsAttacking()
     {
         return currentState == CharacterState.SLASH;
