@@ -16,12 +16,13 @@ public class LayoutGeneratorEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        if (GUILayout.Button("Generate Dungeon"))
+        if (GUILayout.Button("Generate Dungeon Prefabs"))
         {
-            layoutGenerator.RunLayoutGen();
+            layoutGenerator.CreateLayout();
+            layoutGenerator.CreatePrefabLayout();
         }
 
-        if (GUILayout.Button("Clear Dungeon"))
+        if (GUILayout.Button("Clear Dungeon Prefabs"))
         {
             layoutGenerator.ClearPrefabLayout();
         }

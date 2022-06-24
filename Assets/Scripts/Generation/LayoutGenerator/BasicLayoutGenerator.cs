@@ -35,7 +35,7 @@ class BasicLayoutGenerator : AbstractLayoutGenerator
 
             //int roomIndex = Random.Range(0, availableRooms.Count());
             var hash = RandomHash.Hash(dungeonNumber, level, roomId);
-            int roomIndex =  (int)(hash % availableRooms.Count());
+            int roomIndex = (int)(hash % availableRooms.Count());
             LayoutRoom room = availableRooms.rooms[roomIndex];
 
             // Create temp neighbours

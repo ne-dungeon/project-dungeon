@@ -5,6 +5,7 @@ using UnityEngine;
 public class LayoutGenerator : MonoBehaviour
 {
 
+    private LayoutRoomsList rooms;
     private LayoutRoom startingRoom;
     private LayoutRoom bossRoom;
 
@@ -29,7 +30,7 @@ public class LayoutGenerator : MonoBehaviour
     // The active room prefabs in the scene.
     private List<GameObject> activePrefabs = new List<GameObject>();
 
-    public void RunLayoutGen()
+    public void CreateLayout()
     {
         // First clear the existing layout.
         ClearPrefabLayout();
@@ -38,7 +39,7 @@ public class LayoutGenerator : MonoBehaviour
 
         // Then set the generator and create the rooms.
         layoutGenerator = new BasicLayoutGenerator();
-        LayoutRoomsList rooms = layoutGenerator.GenerateDungeonLayout(dungeonNumber, level, totalRooms);
+        rooms = layoutGenerator.GenerateDungeonLayout(dungeonNumber, level, totalRooms);
 
         // Setting a random origin room
 
@@ -46,20 +47,19 @@ public class LayoutGenerator : MonoBehaviour
         // randomness depend on the game seed
         var hash = RandomHash.Hash(1, level);
         startingRoom = rooms.rooms[(int)(hash % rooms.rooms.Count)];
-        
+
         // FINDING THE BOSS ROOM //
         PathFinder pf = new PathFinder(rooms, startingRoom);
 
         bossRoom = pf.findBossRoom();
+    }
 
-        // print("Boss room: " + bossRoom.x + "," + bossRoom.y);
+    public void CreatePrefabLayout()
+    {
         foreach (LayoutRoom room in rooms.rooms)
         {
-            //print("Coords: " + room.x + "," + room.y);
             GenerateRoomPrefab(room);
-            // print("room: " + room.x + "," + room.y);
         }
-
     }
 
     public void ClearPrefabLayout()
